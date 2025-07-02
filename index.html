@@ -363,7 +363,11 @@
                 <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg max-w-3xl mx-auto">
                     <form id="goal-form">
                         <div class="form-question">
-                            <label for="income-goal">1. ¿Cuál es tu meta de ingreso semanal inicial?</label>
+                            <label for="user-name">1. ¿Cuál es tu nombre?</label>
+                            <input type="text" id="user-name" name="user-name" placeholder="Escribe tu nombre aquí">
+                        </div>
+                        <div class="form-question">
+                            <label for="income-goal">2. ¿Cuál es tu meta de ingreso semanal inicial?</label>
                             <div id="income-goal">
                                 <div class="radio-option"><input type="radio" name="income" value="Recuperar mi inversión y generar mis primeros $200 USD" checked> Recuperar mi inversión y generar mis primeros $200 USD.</div>
                                 <div class="radio-option"><input type="radio" name="income" value="Generar entre $300 - $500 USD para cubrir gastos importantes"> Generar entre $300 - $500 USD para cubrir gastos importantes.</div>
@@ -371,7 +375,7 @@
                             </div>
                         </div>
                         <div class="form-question">
-                            <label for="motivation">2. ¿Cuál es tu motor principal para construir este negocio?</label>
+                            <label for="motivation">3. ¿Cuál es tu motor principal para construir este negocio?</label>
                             <select name="motivation" id="motivation" class="bg-white">
                                 <option value="Seguridad: Crear un 'Plan B' sólido y un patrimonio heredable.">Seguridad y Patrimonio</option>
                                 <option value="Reconocimiento: Convertirme en un líder influyente y ser reconocido por mis logros.">Liderazgo y Reconocimiento</option>
@@ -381,11 +385,11 @@
                             </select>
                         </div>
                         <div class="form-question">
-                            <label for="health-goal">3. Para ser 'producto del producto', ¿qué área de bienestar te gustaría mejorar?</label>
+                            <label for="health-goal">4. Para ser 'producto del producto', ¿qué área de bienestar te gustaría mejorar?</label>
                             <input type="text" id="health-goal" name="health-goal" placeholder="Ej: Mejorar mi energía, manejar el estrés, etc.">
                         </div>
                         <div class="form-question">
-                             <label for="commitment">4. El éxito ama la velocidad. ¿A cuántas personas te comprometes a presentarles la visión en tus primeras 48 horas?</label>
+                             <label for="commitment">5. El éxito ama la velocidad. ¿A cuántas personas te comprometes a presentarles la visión en tus primeras 48 horas?</label>
                              <div id="commitment">
                                 <div class="radio-option"><input type="radio" name="commitment" value="a mis 2 mejores prospectos" checked> A mis 2 mejores prospectos.</div>
                                 <div class="radio-option"><input type="radio" name="commitment" value="a 4 personas de mi círculo de confianza"> A 4 personas de mi círculo de confianza.</div>
@@ -659,12 +663,13 @@
         }
     
         async function generateActionPlan() {
+            const userName = ui.goalForm.elements['user-name'].value;
             const incomeGoal = ui.goalForm.elements['income'].value;
             const motivation = ui.goalForm.elements['motivation'].value;
             const healthGoal = ui.goalForm.elements['health-goal'].value;
             const commitment = ui.goalForm.elements['commitment'].value;
 
-            if (!healthGoal) {
+            if (!userName || !healthGoal) {
                 ui.formError.style.display = 'block';
                 return;
             }
@@ -676,24 +681,34 @@
 
             const packageName = CONFIG.packages[state.selectedPackage].name;
 
-            const prompt = `Actúa como un coach Diamante de Gano Excel, experto en lanzamientos rápidos. Tu misión es crear un plan de acción de 30 días, hiper-personalizado y motivador para un nuevo socio.
-            Aquí está el perfil del socio:
+            const prompt = `Actúa como un coach Diamante de Gano Excel, experto en lanzamientos rápidos. Tu misión es crear un plan de acción de 30 días, hiper-personalizado y motivador.
+
+            **Tu Filosofía Central (Contexto Clave):**
+            - El éxito ama la velocidad. El objetivo es un "arranque explosivo" para generar resultados en la primera semana.
+            - No vendemos, conectamos y compartimos una experiencia. Resolvemos problemas de bienestar y financieros.
+            - El sistema es el que produce el resultado, no el talento individual. Nos apalancamos en un sistema probado.
+            - El objetivo final es construir un activo de ingreso residual, no un simple trabajo de ventas.
+            - La base del negocio es ser "producto del producto". Un testimonio genuino es la herramienta más poderosa.
+
+            **Perfil del Nuevo Socio (Datos del Formulario):**
+            - Nombre: ${userName}
             - Paquete de Inicio: ${packageName}
             - Meta Financiera Semanal: ${incomeGoal}
             - Su 'Gran Porqué': ${motivation}
             - Su Meta de Bienestar: Quiere usar los productos para ${healthGoal}.
             - Compromiso de Acción Inmediata: Se ha comprometido a contactar a ${commitment} en las primeras 48 horas.
 
-            Instrucciones para el Plan:
-            1. Enfócate en la Velocidad: El plan debe estar diseñado para alcanzar la 5ta generación en 5 semanas, enfatizando la duplicación rápida (2 que traen 2).
-            2. Personaliza la Motivación: Conecta las acciones semanales con su 'Gran Porqué'. Si quiere viajar, menciona cómo cada paso lo acerca a México. Si busca seguridad, resalta cómo cada nuevo socio fortalece su activo financiero.
-            3. Integra el Producto: Incluye recordatorios para que use los productos consistentemente para lograr su meta de bienestar, de modo que su testimonio se vuelva más fuerte cada día.
-            4. Crea un 'Plan de 48 Horas': La primera acción del plan debe ser cumplir con su compromiso de llamadas inmediatas.
-            5. Tono: El tono debe ser el de un líder que dice: 'Entiendo tus metas y este es exactamente el camino para lograrlas. Vamos a hacerlo juntos'.
+            **Instrucciones para el Plan:**
+            1.  **Inicia con un saludo cálido y personalizado, dirigiéndote al nuevo socio por su nombre.**
+            2.  **Enfócate en la Velocidad:** El plan debe estar diseñado para alcanzar la 5ta generación en 5 semanas, enfatizando la duplicación rápida (2 que traen 2).
+            3.  **Personaliza la Motivación:** Conecta las acciones semanales con su 'Gran Porqué'. Si quiere viajar, menciona cómo cada paso lo acerca a México. Si busca seguridad, resalta cómo cada nuevo socio fortalece su activo financiero.
+            4.  **Integra el Producto:** Incluye recordatorios para que use los productos consistentemente para lograr su meta de bienestar, de modo que su testimonio se vuelva más fuerte cada día.
+            5.  **Crea un 'Plan de 48 Horas':** La primera acción del plan debe ser cumplir con su compromiso de llamadas inmediatas.
+            6.  **Tono:** El tono debe ser el de un líder que dice: 'Entiendo tus metas y este es exactamente el camino para lograrlas. Vamos a hacerlo juntos'.
             
             Usa encabezados para cada semana, como '#### Semana 1: Cimientos del Negocio'. Para cada semana, crea una lista de 2 a 3 acciones clave usando asteriscos (*). Finaliza con una frase corta y motivadora.`;
             
-            const apiKey = "AIzaSyCnMk_BLlq_nyGJ5tE-YF29PhkfpgEvZQk"; // Provided by the environment
+            const apiKey = ""; // IMPORTANT: Paste your Gemini API Key here
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
             
             try {
