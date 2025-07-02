@@ -201,6 +201,24 @@
                 </div>
             </section>
             
+            <!-- Mexico Trip Section -->
+            <section class="mb-12">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-bold text-slate-700">Próximo Destino: ¡México!</h2>
+                    <p class="mt-2 text-slate-500 max-w-xl mx-auto">Este no es solo un proyecto de ingresos, es un proyecto de vida. Gano Excel premia tu esfuerzo con experiencias inolvidables.</p>
+                </div>
+                <div class="max-w-4xl mx-auto bg-cover bg-center rounded-xl shadow-lg text-white p-8" style="background-image: url('https://placehold.co/1200x600/000000/ffffff?text=M%C3%A9xico');">
+                    <div class="bg-black bg-opacity-50 p-6 rounded-lg">
+                        <h3 class="text-3xl font-bold">Viaje Corporativo a México</h3>
+                        <p class="mt-2 text-lg">Empower Your Life</p>
+                        <p class="mt-4 max-w-lg">Un viaje que no solo te lleva a México... te empodera a transformar tu historia. Califica y únete a los líderes destacados para vivir la magia mexicana en un entorno exclusivo.</p>
+                        <a href="https://www.ganoexcel.com.co/viaje-corporativo-a-mexico/" target="_blank" class="inline-block mt-6 bg-white text-blue-800 font-bold py-2 px-5 rounded-lg hover:bg-slate-200 transition-colors">
+                            Conoce cómo calificar
+                        </a>
+                    </div>
+                </div>
+            </section>
+
             <!-- Testimonial Section -->
             <section class="mb-12">
                  <div class="text-center mb-8">
@@ -367,11 +385,11 @@
                             <input type="text" id="user-name" name="user-name" placeholder="Escribe tu nombre aquí">
                         </div>
                         <div class="form-question">
-                            <label for="income-goal">2. ¿Cuál es tu meta de ingreso semanal inicial?</label>
-                            <div id="income-goal">
-                                <div class="radio-option"><input type="radio" name="income" value="Recuperar mi inversión y generar mis primeros $200 USD" checked> Recuperar mi inversión y generar mis primeros $200 USD.</div>
-                                <div class="radio-option"><input type="radio" name="income" value="Generar entre $300 - $500 USD para cubrir gastos importantes"> Generar entre $300 - $500 USD para cubrir gastos importantes.</div>
-                                <div class="radio-option"><input type="radio" name="income" value="Apuntar a más de $500 USD para empezar a construir un nuevo estilo de vida"> Apuntar a más de $500 USD para un nuevo estilo de vida.</div>
+                            <label>2. ¿Con qué paquete empresarial iniciarás tu proyecto?</label>
+                            <div id="package-choice">
+                                <div class="radio-option"><input type="radio" name="package" value="ESP3" checked> <label for="pkg-esp3">Paquete Empresarial ESP 3</label></div>
+                                <div class="radio-option"><input type="radio" name="package" value="ESP2"> <label for="pkg-esp2">Paquete Empresarial ESP 2</label></div>
+                                <div class="radio-option"><input type="radio" name="package" value="ESP1"> <label for="pkg-esp1">Paquete Empresarial ESP 1</label></div>
                             </div>
                         </div>
                         <div class="form-question">
@@ -385,18 +403,30 @@
                             </select>
                         </div>
                         <div class="form-question">
-                            <label for="health-goal">4. Para ser 'producto del producto', ¿qué área de bienestar te gustaría mejorar?</label>
+                            <label for="income-goal">4. ¿Cuál es tu meta de ingreso semanal inicial?</label>
+                            <div id="income-goal">
+                                <div class="radio-option"><input type="radio" name="income" value="Recuperar mi inversión y generar mis primeros {val}" data-usd="200" checked> <label id="income-label-1">Recuperar mi inversión y generar mis primeros $900.000 COP.</label></div>
+                                <div class="radio-option"><input type="radio" name="income" value="Generar entre {val1} - {val2} para cubrir gastos importantes" data-usd1="300" data-usd2="500"> <label id="income-label-2">Generar entre $1.350.000 - $2.250.000 COP para cubrir gastos importantes.</label></div>
+                                <div class="radio-option"><input type="radio" name="income" value="Apuntar a más de {val} para empezar a construir un nuevo estilo de vida" data-usd="500"> <label id="income-label-3">Apuntar a más de $2.250.000 COP para un nuevo estilo de vida.</label></div>
+                            </div>
+                        </div>
+                        <div class="form-question">
+                            <label for="personal-goal">5. ¿Qué meta personal o sueño inmediato te gustaría alcanzar con tus primeros ingresos? (Opcional)</label>
+                            <input type="text" id="personal-goal" name="personal-goal" placeholder="Ej: Pagar una deuda, las próximas vacaciones, etc.">
+                        </div>
+                        <div class="form-question">
+                            <label for="health-goal">6. Para ser 'producto del producto', ¿qué área de bienestar te gustaría mejorar?</label>
                             <input type="text" id="health-goal" name="health-goal" placeholder="Ej: Mejorar mi energía, manejar el estrés, etc.">
                         </div>
                         <div class="form-question">
-                             <label for="commitment">5. El éxito ama la velocidad. ¿A cuántas personas te comprometes a presentarles la visión en tus primeras 48 horas?</label>
+                             <label for="commitment">7. El éxito ama la velocidad. ¿A cuántas personas te comprometes a presentarles la visión en tus primeras 48 horas?</label>
                              <div id="commitment">
                                 <div class="radio-option"><input type="radio" name="commitment" value="a mis 2 mejores prospectos" checked> A mis 2 mejores prospectos.</div>
                                 <div class="radio-option"><input type="radio" name="commitment" value="a 4 personas de mi círculo de confianza"> A 4 personas de mi círculo de confianza.</div>
                                 <div class="radio-option"><input type="radio" name="commitment" value="a más de 5! Estoy listo para correr"> ¡A más de 5! Estoy listo para correr.</div>
                             </div>
                         </div>
-                        <div id="form-error" class="text-red-600 text-center mb-4" style="display: none;">Por favor, complete todos los campos.</div>
+                        <div id="form-error" class="text-red-600 text-center mb-4" style="display: none;">Por favor, complete todos los campos obligatorios.</div>
                         <div class="text-center">
                             <button type="button" id="generate-plan-btn" class="bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-blue-800 transition-transform hover:scale-105">
                                 ✨ Crear Mi Plan de Acción Personalizado
@@ -472,7 +502,10 @@
             generatePlanBtn: document.getElementById('generate-plan-btn'),
             planLoader: document.getElementById('plan-loader'),
             actionPlanResult: document.getElementById('action-plan-result'),
-            productAccordion: document.getElementById('product-accordion')
+            productAccordion: document.getElementById('product-accordion'),
+            incomeLabel1: document.getElementById('income-label-1'),
+            incomeLabel2: document.getElementById('income-label-2'),
+            incomeLabel3: document.getElementById('income-label-3'),
         };
         
         const formatCurrency = (value) => {
@@ -511,6 +544,21 @@
             renderFastStart();
             renderGen5Projection();
             renderBinary();
+            renderIncomeGoalLabels();
+        }
+
+        function renderIncomeGoalLabels() {
+            const radio1 = ui.incomeLabel1.parentElement.querySelector('input');
+            const label1Text = radio1.value.replace('{val}', formatCurrency(radio1.dataset.usd));
+            ui.incomeLabel1.textContent = label1Text;
+
+            const radio2 = ui.incomeLabel2.parentElement.querySelector('input');
+            const label2Text = radio2.value.replace('{val1}', formatCurrency(radio2.dataset.usd1)).replace('{val2}', formatCurrency(radio2.dataset.usd2));
+            ui.incomeLabel2.textContent = label2Text;
+
+            const radio3 = ui.incomeLabel3.parentElement.querySelector('input');
+            const label3Text = radio3.value.replace('{val}', formatCurrency(radio3.dataset.usd));
+            ui.incomeLabel3.textContent = label3Text;
         }
 
         function renderPackagePrices() {
@@ -664,10 +712,12 @@
     
         async function generateActionPlan() {
             const userName = ui.goalForm.elements['user-name'].value;
+            const selectedPackage = ui.goalForm.elements['package'].value;
             const incomeGoal = ui.goalForm.elements['income'].value;
             const motivation = ui.goalForm.elements['motivation'].value;
             const healthGoal = ui.goalForm.elements['health-goal'].value;
             const commitment = ui.goalForm.elements['commitment'].value;
+            const personalGoal = ui.goalForm.elements['personal-goal'].value || "No especificado";
 
             if (!userName || !healthGoal) {
                 ui.formError.style.display = 'block';
@@ -679,7 +729,7 @@
             ui.actionPlanResult.style.display = 'none';
             ui.actionPlanResult.innerHTML = '';
 
-            const packageName = CONFIG.packages[state.selectedPackage].name;
+            const packageName = CONFIG.packages[selectedPackage].name;
 
             const prompt = `Actúa como un coach Diamante de Gano Excel, experto en lanzamientos rápidos. Tu misión es crear un plan de acción de 30 días, hiper-personalizado y motivador.
 
@@ -696,12 +746,13 @@
             - Meta Financiera Semanal: ${incomeGoal}
             - Su 'Gran Porqué': ${motivation}
             - Su Meta de Bienestar: Quiere usar los productos para ${healthGoal}.
+            - Su Sueño Inmediato (Opcional): ${personalGoal}.
             - Compromiso de Acción Inmediata: Se ha comprometido a contactar a ${commitment} en las primeras 48 horas.
 
             **Instrucciones para el Plan:**
             1.  **Inicia con un saludo cálido y personalizado, dirigiéndote al nuevo socio por su nombre.**
             2.  **Enfócate en la Velocidad:** El plan debe estar diseñado para alcanzar la 5ta generación en 5 semanas, enfatizando la duplicación rápida (2 que traen 2).
-            3.  **Personaliza la Motivación:** Conecta las acciones semanales con su 'Gran Porqué'. Si quiere viajar, menciona cómo cada paso lo acerca a México. Si busca seguridad, resalta cómo cada nuevo socio fortalece su activo financiero.
+            3.  **Personaliza la Motivación:** Conecta las acciones semanales con su 'Gran Porqué' y su 'Sueño Inmediato'. Si quiere viajar, menciona cómo cada paso lo acerca a México. Si su sueño es pagar una deuda, recuérdale cómo este plan le ayudará a lograrlo.
             4.  **Integra el Producto:** Incluye recordatorios para que use los productos consistentemente para lograr su meta de bienestar, de modo que su testimonio se vuelva más fuerte cada día.
             5.  **Crea un 'Plan de 48 Horas':** La primera acción del plan debe ser cumplir con su compromiso de llamadas inmediatas.
             6.  **Tono:** El tono debe ser el de un líder que dice: 'Entiendo tus metas y este es exactamente el camino para lograrlas. Vamos a hacerlo juntos'.
