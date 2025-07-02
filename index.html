@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentación y Proyección de Ingresos: Modelo Gano Excel</title>
+
+    <!-- ============== Open Graph Meta Tags for Social Sharing ============== -->
+    <meta property="og:title" content="Proyecta tu Futuro: Simulador de Negocio Gano Excel">
+    <meta property="og:description" content="Descubre el potencial de ingresos y crea un plan de acción personalizado con IA para tu negocio Gano Excel. ¿Estás listo para empezar?">
+    <meta property="og:image" content="https://4millones.com/wp-content/uploads/2024/10/1.png">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://4millones.com/oportunidad/"> 
+    
+    <!-- ============== Performance Optimizations ============== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .stat-card {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .stat-value {
+            font-size: 2.25rem;
+            font-weight: 800;
+            line-height: 1.1;
+            color: #1e40af; /* blue-800 */
+        }
+        .stat-label {
+            margin-top: 0.5rem;
+            color: #64748b; /* slate-500 */
+            font-weight: 500;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 350px;
+        }
+        input[type=range] {
+            -webkit-appearance: none; width: 100%; background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none; height: 24px; width: 24px; border-radius: 50%;
+            background: #1d4ed8; cursor: pointer; margin-top: -9px; box-shadow: 0 0 2px #000;
+        }
+        input[type=range]::-moz-range-thumb {
+            height: 24px; width: 24px; border-radius: 50%; background: #1d4ed8;
+            cursor: pointer; border: none;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%; height: 6px; cursor: pointer; background: #dbeafe; border-radius: 5px;
+        }
+         input[type=range]::-moz-range-track {
+            width: 100%; height: 6px; cursor: pointer; background: #dbeafe; border-radius: 5px;
+        }
+        .currency-btn-active {
+            background-color: #1d4ed8;
+            color: white;
+        }
+         .currency-btn-inactive {
+            background-color: #e0e7ff;
+            color: #374151;
+        }
+        .table-cell {
+            padding: 0.75rem;
+            text-align: right;
+            white-space: nowrap;
+        }
+        .gemini-plan-container {
+            background-color: #e0f2fe;
+            border-left: 4px solid #0ea5e9;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-top: 1.5rem;
+            text-align: left;
+        }
+        .gemini-plan-container h4 {
+            font-weight: 700;
+            color: #0c4a6e;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+         .gemini-plan-container ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+            color: #075985;
+        }
+        .gemini-loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #1d4ed8;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .form-question {
+            margin-bottom: 1.5rem;
+        }
+        .form-question label {
+            font-weight: 600;
+            color: #374151;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .form-question input[type="text"], .form-question select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            transition: border-color 0.2s;
+        }
+        .form-question input[type="text"]:focus, .form-question select:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+        .radio-option {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+        }
+        .radio-option input {
+            margin-right: 0.75rem;
+        }
+        .product-accordion-item .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-3xl md:text-4xl font-extrabold text-slate-800">Modelo de Negocio Gano Excel</h1>
+            <p class="mt-3 max-w-3xl mx-auto text-lg text-slate-600">
+                Una herramienta de presentación para analizar la oportunidad y proyectar su potencial de ingresos con nuestro modelo de negocio.
+            </p>
+        </header>
+
+        <main>
+            <!-- Company Info Section -->
+            <section class="mb-12">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-bold text-slate-700">Su Socio Estratégico Global</h2>
+                    <p class="mt-2 text-slate-500 max-w-xl mx-auto">La base de una gran oportunidad es un socio confiable y sólido. Gano Excel le proporciona la plataforma.</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="stat-card">
+                        <p class="text-4xl font-bold text-blue-700">1995</p>
+                        <p class="stat-label">Año de Fundación</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="text-4xl font-bold text-blue-700">70+</p>
+                        <p class="stat-label">Países con Presencia</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="text-4xl font-bold text-blue-700">100%</p>
+                        <p class="stat-label">Libre de Deudas</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="text-4xl font-bold text-blue-700">✓</p>
+                        <p class="stat-label">Integración Vertical</p>
+                    </div>
+                </div>
+            </section>
+
+             <!-- Products Section -->
+            <section class="mb-12">
+                 <div class="text-center mb-8">
+                    <h2 class="text-2xl font-bold text-slate-700">Un Portafolio de Productos Inteligente</h2>
+                    <p class="mt-2 text-slate-500 max-w-xl mx-auto">No creamos nuevos hábitos, enriquecemos los existentes con nuestro extracto patentado de Ganoderma Lucidum.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <div id="product-accordion" class="space-y-4">
+                        <!-- Accordion items will be generated by JS -->
+                    </div>
+                    <div class="text-center mt-8">
+                        <a href="https://www.ganoexcel.com.co/todos-productos/" target="_blank" class="inline-block bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors">
+                            Conoce toda la línea de productos aquí
+                        </a>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Testimonial Section -->
+            <section class="mb-12">
+                 <div class="text-center mb-8">
+                    <h2 class="text-2xl font-bold text-slate-700">Una Historia de Éxito Real</h2>
+                    <p class="mt-2 text-slate-500 max-w-xl mx-auto">La prueba más grande del poder de esta oportunidad no son los números, son las vidas transformadas. Conoce la historia de nuestra más reciente Diamante del equipo.</p>
+                </div>
+                <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden md:flex">
+                    <div class="md:flex-shrink-0">
+                        <img class="h-48 w-full object-cover md:h-full md:w-48" src="https://placehold.co/400x400/1e3a8a/ffffff?text=LPM" alt="Foto de Liliana Patricia Moreno">
+                    </div>
+                    <div class="p-8">
+                        <div class="uppercase tracking-wide text-sm text-blue-600 font-semibold">Testimonio Diamante</div>
+                        <h3 class="block mt-1 text-lg leading-tight font-medium text-black">Liliana Patricia Moreno</h3>
+                        <p class="mt-2 text-slate-500">"Descubre cómo una decisión puede cambiarlo todo. Este no es solo un negocio, es un vehículo para alcanzar tus sueños y transformar tu vida y la de tu familia."</p>
+                        <a href="https://www.facebook.com/share/v/1BC7nRA3XT/" target="_blank" class="inline-block mt-4 bg-red-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-red-700 transition-colors">
+                            Ver Testimonio en Facebook
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Currency Toggle -->
+            <div class="flex justify-center mb-8">
+                <div class="flex rounded-lg p-1 bg-blue-200">
+                    <button id="btn-USD" class="currency-btn-inactive px-6 py-2 font-semibold text-sm rounded-md transition-colors">USD</button>
+                    <button id="btn-COP" class="currency-btn-active px-6 py-2 font-semibold text-sm rounded-md transition-colors">COP</button>
+                </div>
+            </div>
+
+            <!-- Stage 1: Initial Investment & Fast Start -->
+            <section class="mb-12">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-bold text-slate-700">Etapa 1: Arranque Explosivo (Pago Semanal)</h2>
+                    <p class="mt-2 text-slate-500 max-w-xl mx-auto">Objetivo: Recuperar su inversión y generar ganancias inmediatas a través del Bono de Inicio Rápido por patrocinar nuevos socios.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <div class="grid md:grid-cols-3 gap-6 items-center">
+                        <div class="md:col-span-1">
+                            <h3 class="font-bold text-lg text-slate-800 mb-4">1. Seleccione su Paquete de Inicio</h3>
+                            <div class="space-y-2">
+                                <button id="btn-ESP3" class="w-full text-left p-3 border-2 border-blue-600 rounded-lg bg-blue-50">
+                                    <p class="font-bold">Paquete ESP 3 <span class="text-xs font-medium">(Recomendado)</span></p>
+                                    <p class="text-sm text-blue-800" data-price-usd="1000" data-price-cop="4500000">Inversión: $4.500.000 COP</p>
+                                </button>
+                                <button id="btn-ESP2" class="w-full text-left p-3 border rounded-lg">
+                                    <p class="font-bold">Paquete ESP 2</p>
+                                    <p class="text-sm text-slate-600" data-price-usd="500" data-price-cop="2250000">Inversión: $2.250.000 COP</p>
+                                </button>
+                                <button id="btn-ESP1" class="w-full text-left p-3 border rounded-lg">
+                                    <p class="font-bold">Paquete ESP 1</p>
+                                    <p class="text-sm text-slate-600" data-price-usd="200" data-price-cop="900000">Inversión: $900.000 COP</p>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <h3 class="font-bold text-lg text-slate-800 mb-2">2. Proyecte su Bono de Inicio</h3>
+                            <p class="text-sm text-slate-500 mb-4">¿Cuántos socios puede integrar en su primer mes?</p>
+                            
+                            <div class="flex items-center space-x-4 mb-4">
+                                <input type="range" id="partnersSlider" min="2" max="10" value="2" class="w-full">
+                                <div id="partnersValue" class="font-bold text-blue-700 text-2xl w-12 text-center">2</div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                               <div class="stat-card">
+                                    <p id="fastStartBonus" class="stat-value">$300</p>
+                                    <p class="stat-label">Bono Total (GEN 1)</p>
+                                </div>
+                                <div class="stat-card">
+                                    <p id="netResult" class="stat-value text-red-600">-$700</p>
+                                    <p class="stat-label">Resultado Neto</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stage 1.5: Duplication Projection -->
+            <section class="mb-12">
+                 <div class="text-center mb-8">
+                    <h2 class="text-2xl font-bold text-slate-700">Etapa 1.5: Proyección de Duplicación (Bono GEN 5 y Binario)</h2>
+                    <p class="mt-2 text-slate-500 max-w-2xl mx-auto">Vea cómo sus ingresos crecen exponencialmente a medida que su equipo se duplica. Este ejemplo asume que usted y cada socio integran a 2 nuevos miembros.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead class="text-slate-600">
+                                <tr>
+                                    <th class="table-cell text-left">Generación</th>
+                                    <th class="table-cell">Nuevos Socios</th>
+                                    <th class="table-cell">Bono GEN 5</th>
+                                    <th class="table-cell">Bono Binario</th>
+                                    <th class="table-cell font-bold">Ingreso Acumulado</th>
+                                </tr>
+                            </thead>
+                            <tbody id="gen5-table-body" class="text-slate-800">
+                                <!-- Dynamic rows will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-6 text-center">
+                        <div class="stat-card max-w-sm mx-auto">
+                            <p id="gen5-total" class="stat-value text-green-600">$4,240</p>
+                            <p class="stat-label">Total Acumulado en 5 Generaciones</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stage 2: Team Building & Residual Income -->
+            <section class="mb-12">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-bold text-slate-700">Etapa 2: Riqueza Residual (Pago Semanal/Mensual)</h2>
+                    <p class="mt-2 text-slate-500 max-w-2xl mx-auto">Objetivo: Generar un ingreso pasivo a través de las comisiones de equipo (Binario), basadas en la recompra mensual de productos en su red.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                     <div class="text-center mb-6">
+                        <h3 class="font-bold text-lg text-slate-800">Simulador de Ingreso Residual Binario</h3>
+                        <p class="text-sm text-slate-500 max-w-xl mx-auto">Observe cómo crece su ingreso a medida que su red se expande. Cada persona representa un consumidor leal (~50 CV / mes).</p>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4 mb-8">
+                        <span class="text-sm font-medium">10</span>
+                        <input type="range" id="teamSlider" min="10" max="1000" value="10" step="1" class="w-full">
+                        <span class="text-sm font-medium">1000+</span>
+                    </div>
+
+                    <div class="grid lg:grid-cols-5 gap-8 items-center">
+                        <div class="lg:col-span-2">
+                             <div class="stat-card mb-4">
+                                <p id="teamSize" class="stat-value">10</p>
+                                <p class="stat-label">Personas por Equipo (Izq/Der)</p>
+                            </div>
+                             <div class="stat-card">
+                                <p id="binaryIncome" class="stat-value">$132</p>
+                                <p class="stat-label">Ingreso Binario Mensual Potencial</p>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-3">
+                            <div class="chart-container">
+                                <canvas id="binaryChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Stage 3: Gemini Action Plan -->
+            <section>
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-bold text-slate-700">Etapa 3: El Arquitecto de Metas con IA ✨</h2>
+                    <p class="mt-2 text-slate-500 max-w-2xl mx-auto">Responda estas preguntas para que nuestra IA cree un plan de acción ultra-personalizado para su arranque explosivo de 30 días.</p>
+                </div>
+                
+                <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg max-w-3xl mx-auto">
+                    <form id="goal-form">
+                        <div class="form-question">
+                            <label for="income-goal">1. ¿Cuál es tu meta de ingreso semanal inicial?</label>
+                            <div id="income-goal">
+                                <div class="radio-option"><input type="radio" name="income" value="Recuperar mi inversión y generar mis primeros $200 USD" checked> Recuperar mi inversión y generar mis primeros $200 USD.</div>
+                                <div class="radio-option"><input type="radio" name="income" value="Generar entre $300 - $500 USD para cubrir gastos importantes"> Generar entre $300 - $500 USD para cubrir gastos importantes.</div>
+                                <div class="radio-option"><input type="radio" name="income" value="Apuntar a más de $500 USD para empezar a construir un nuevo estilo de vida"> Apuntar a más de $500 USD para un nuevo estilo de vida.</div>
+                            </div>
+                        </div>
+                        <div class="form-question">
+                            <label for="motivation">2. ¿Cuál es tu motor principal para construir este negocio?</label>
+                            <select name="motivation" id="motivation" class="bg-white">
+                                <option value="Seguridad: Crear un 'Plan B' sólido y un patrimonio heredable.">Seguridad y Patrimonio</option>
+                                <option value="Reconocimiento: Convertirme en un líder influyente y ser reconocido por mis logros.">Liderazgo y Reconocimiento</option>
+                                <option value="Libertad y Viajes: Calificar a los viajes corporativos (como el de México) y tener libertad de tiempo.">Libertad y Viajes</option>
+                                <option value="Crecimiento: Desarrollar nuevas habilidades y convertirme en mi mejor versión.">Crecimiento Personal</option>
+                                <option value="Contribución: Ayudar a otras personas a mejorar su salud y sus finanzas.">Ayudar a Otros</option>
+                            </select>
+                        </div>
+                        <div class="form-question">
+                            <label for="health-goal">3. Para ser 'producto del producto', ¿qué área de bienestar te gustaría mejorar?</label>
+                            <input type="text" id="health-goal" name="health-goal" placeholder="Ej: Mejorar mi energía, manejar el estrés, etc.">
+                        </div>
+                        <div class="form-question">
+                             <label for="commitment">4. El éxito ama la velocidad. ¿A cuántas personas te comprometes a presentarles la visión en tus primeras 48 horas?</label>
+                             <div id="commitment">
+                                <div class="radio-option"><input type="radio" name="commitment" value="a mis 2 mejores prospectos" checked> A mis 2 mejores prospectos.</div>
+                                <div class="radio-option"><input type="radio" name="commitment" value="a 4 personas de mi círculo de confianza"> A 4 personas de mi círculo de confianza.</div>
+                                <div class="radio-option"><input type="radio" name="commitment" value="a más de 5! Estoy listo para correr"> ¡A más de 5! Estoy listo para correr.</div>
+                            </div>
+                        </div>
+                        <div id="form-error" class="text-red-600 text-center mb-4" style="display: none;">Por favor, complete todos los campos.</div>
+                        <div class="text-center">
+                            <button type="button" id="generate-plan-btn" class="bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-blue-800 transition-transform hover:scale-105">
+                                ✨ Crear Mi Plan de Acción Personalizado
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div id="plan-loader" class="gemini-loader" style="display: none;"></div>
+                <div id="action-plan-result" class="gemini-plan-container max-w-3xl mx-auto" style="display: none;"></div>
+            </section>
+        </main>
+        
+        <footer class="text-center mt-12">
+            <p class="text-xs text-slate-400 max-w-4xl mx-auto">
+                <strong>Nota Legal:</strong> Esta herramienta es un modelo de ejemplo y no representa una promesa de ingresos. Las ganancias de un afiliado de Gano Excel dependen de su esfuerzo, habilidades de liderazgo y las ventas de productos realizadas dentro de su organización que generan Volumen Comisional (CV). Los valores de inversión y comisiones son aproximados y pueden variar según el país y las promociones vigentes. Consulte el Plan de Compensación oficial para obtener detalles completos.
+            </p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js" defer></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const CONFIG = {
+            packages: {
+                'ESP1': { name: "Paquete Empresarial 1", investment: 200, gen5Bonuses: [25, 5, 5, 5, 10], cv: 100 },
+                'ESP2': { name: "Paquete Empresarial 2", investment: 500, gen5Bonuses: [75, 10, 10, 10, 20], cv: 250 },
+                'ESP3': { name: "Paquete Empresarial 3", investment: 1000, gen5Bonuses: [150, 20, 20, 20, 40], cv: 500 }
+            },
+            exchangeRate: 4500,
+            binary: {
+                cvPerPerson: 50,
+                percentage: 0.17
+            },
+            products: [
+                { category: "Bebidas Enriquecidas", items: ["Gano Café 3 en 1", "Gano Café Clásico", "Gano Schokolade", "GanoRico Latte", "MochaRico Latte", "ShokoRico Latte"] },
+                { category: "Luvoco: Café Premium", items: ["Suave", "Medio", "Fuerte"] },
+                { category: "Gano Plus: Belleza y Vitalidad", items: ["Reskine Collagen Drink"] },
+                { category: "Suplementos (Alimentos)", items: ["GanoCereal Espirulina", "Gano Rooibos Té"] },
+                { category: "Suplementos Potentes", items: ["Cápsulas de Ganoderma Lucidum", "Cápsulas de Excellium", "Cápsulas de Cordy Gold"] },
+                { category: "Cuidado Personal", items: ["Shampoo P&B", "Acondicionador P&B", "Exfoliante P&B", "Gano Transparent Soap", "Gano Soap", "Gano Fresh sin Flúor"] }
+            ]
+        };
+
+        let state = {
+            currency: 'COP', // Default to COP
+            selectedPackage: 'ESP3'
+        };
+
+        let binaryChartInstance;
+
+        const ui = {
+            partnersSlider: document.getElementById('partnersSlider'),
+            partnersValue: document.getElementById('partnersValue'),
+            fastStartBonusEl: document.getElementById('fastStartBonus'),
+            netResultEl: document.getElementById('netResult'),
+            teamSlider: document.getElementById('teamSlider'),
+            teamSizeEl: document.getElementById('teamSize'),
+            binaryIncomeEl: document.getElementById('binaryIncome'),
+            btnUSD: document.getElementById('btn-USD'),
+            btnCOP: document.getElementById('btn-COP'),
+            packageButtons: {
+                'ESP1': document.getElementById('btn-ESP1'),
+                'ESP2': document.getElementById('btn-ESP2'),
+                'ESP3': document.getElementById('btn-ESP3')
+            },
+            priceLabels: document.querySelectorAll('[data-price-usd]'),
+            gen5TableBody: document.getElementById('gen5-table-body'),
+            gen5Total: document.getElementById('gen5-total'),
+            binaryChartCanvas: document.getElementById('binaryChart'),
+            goalForm: document.getElementById('goal-form'),
+            formError: document.getElementById('form-error'),
+            generatePlanBtn: document.getElementById('generate-plan-btn'),
+            planLoader: document.getElementById('plan-loader'),
+            actionPlanResult: document.getElementById('action-plan-result'),
+            productAccordion: document.getElementById('product-accordion')
+        };
+        
+        const formatCurrency = (value) => {
+            const options = {
+                style: 'currency',
+                currency: state.currency,
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            };
+            const currencyValue = state.currency === 'COP' ? value * CONFIG.exchangeRate : value;
+            return new Intl.NumberFormat(state.currency === 'COP' ? 'es-CO' : 'en-US', options).format(currencyValue);
+        };
+
+        function setCurrency(currency) {
+            state.currency = currency;
+            ui.btnUSD.classList.toggle('currency-btn-active', currency === 'USD');
+            ui.btnUSD.classList.toggle('currency-btn-inactive', currency !== 'USD');
+            ui.btnCOP.classList.toggle('currency-btn-active', currency === 'COP');
+            ui.btnCOP.classList.toggle('currency-btn-inactive', currency !== 'COP');
+            renderAll();
+        }
+
+        function selectPackage(pkg) {
+            state.selectedPackage = pkg;
+            Object.keys(ui.packageButtons).forEach(p => {
+                const btn = ui.packageButtons[p];
+                btn.classList.toggle('border-blue-600', p === pkg);
+                btn.classList.toggle('bg-blue-50', p === pkg);
+            });
+            renderFastStart();
+            renderGen5Projection();
+        }
+
+        function renderAll() {
+            renderPackagePrices();
+            renderFastStart();
+            renderGen5Projection();
+            renderBinary();
+        }
+
+        function renderPackagePrices() {
+            ui.priceLabels.forEach(label => {
+                const usdPrice = parseFloat(label.dataset.priceUsd);
+                const value = state.currency === 'COP' ? usdPrice * CONFIG.exchangeRate : usdPrice;
+                const options = { style: 'currency', currency: state.currency, minimumFractionDigits: 0, maximumFractionDigits: 0 };
+                label.textContent = `Inversión: ${new Intl.NumberFormat(state.currency === 'COP' ? 'es-CO' : 'en-US', options).format(value)}`;
+            });
+        }
+        
+        function renderFastStart() {
+            if (!ui.partnersSlider) return;
+            const numPartners = parseInt(ui.partnersSlider.value);
+            ui.partnersValue.textContent = numPartners;
+
+            const packageInfo = CONFIG.packages[state.selectedPackage];
+            const totalBonusUSD = numPartners * packageInfo.gen5Bonuses[0];
+            const netResultUSD = totalBonusUSD - packageInfo.investment;
+
+            ui.fastStartBonusEl.textContent = formatCurrency(totalBonusUSD);
+            ui.netResultEl.textContent = formatCurrency(netResultUSD);
+            
+            ui.netResultEl.classList.toggle('text-red-600', netResultUSD < 0);
+            ui.netResultEl.classList.toggle('text-green-600', netResultUSD >= 0);
+        }
+
+        function renderGen5Projection() {
+            if (!ui.gen5TableBody) return;
+            const packageInfo = CONFIG.packages[state.selectedPackage];
+            const gen5Bonuses = packageInfo.gen5Bonuses;
+            const packageCV = packageInfo.cv;
+
+            let accumulatedIncome = 0;
+            let tableHTML = '';
+
+            for (let i = 0; i < 5; i++) {
+                const generation = i + 1;
+                const newPartners = Math.pow(2, generation);
+                
+                const gen5BonusPerPartner = gen5Bonuses[i];
+                const gen5Income = newPartners * gen5BonusPerPartner;
+                
+                const pairsInGeneration = Math.pow(2, i);
+                const binaryIncome = pairsInGeneration * packageCV * CONFIG.binary.percentage;
+
+                accumulatedIncome += gen5Income + binaryIncome;
+
+                tableHTML += `
+                    <tr class="border-b border-slate-200">
+                        <td class="table-cell text-left font-semibold">Generación ${generation}</td>
+                        <td class="table-cell">${newPartners}</td>
+                        <td class="table-cell">${formatCurrency(gen5Income)}</td>
+                        <td class="table-cell">${formatCurrency(binaryIncome)}</td>
+                        <td class="table-cell font-bold text-blue-700">${formatCurrency(accumulatedIncome)}</td>
+                    </tr>
+                `;
+            }
+            ui.gen5TableBody.innerHTML = tableHTML;
+            ui.gen5Total.textContent = formatCurrency(accumulatedIncome);
+        }
+
+        function renderBinary() {
+            if (!ui.teamSlider) return;
+            const teamMembers = parseInt(ui.teamSlider.value);
+            ui.teamSizeEl.textContent = teamMembers;
+            
+            const incomeUSD = calculateBinaryIncome(teamMembers) / 2;
+            ui.binaryIncomeEl.textContent = formatCurrency(incomeUSD);
+
+            if (binaryChartInstance) {
+                binaryChartInstance.data.datasets[0].data = generateChartData(teamMembers);
+                binaryChartInstance.options.scales.y.ticks.callback = function(value) {
+                    const convertedValue = state.currency === 'COP' ? value * CONFIG.exchangeRate : value;
+                    if (convertedValue >= 1000000) return `$${(convertedValue / 1000000).toFixed(1)}M`;
+                    if (convertedValue >= 1000) return `$${Math.round(convertedValue / 1000)}k`;
+                    return `$${convertedValue}`;
+                };
+                 binaryChartInstance.options.plugins.tooltip.callbacks.label = (context) => {
+                    const incomeUSD = context.parsed.y;
+                    return `Ingreso: ${formatCurrency(incomeUSD)}`;
+                };
+                binaryChartInstance.update();
+            }
+        }
+        
+        const calculateBinaryIncome = (teamMembers) => {
+            const { cvPerPerson, percentage } = CONFIG.binary;
+            const totalCV = teamMembers * cvPerPerson;
+            return totalCV * percentage;
+        };
+
+        function generateChartData(maxTeamSize) {
+            const data = [];
+            const steps = [10, 50, 100, 250, 500, 750, 1000];
+            for (const step of steps) {
+                if (step <= maxTeamSize) {
+                    data.push({ x: step, y: calculateBinaryIncome(step) / 2 });
+                } else {
+                    data.push({ x: maxTeamSize, y: calculateBinaryIncome(maxTeamSize) / 2 });
+                    break;
+                }
+            }
+             if (maxTeamSize < 1000 && !steps.includes(maxTeamSize)) {
+                const lastStep = data.length > 0 ? data[data.length - 1] : { x: 0 };
+                if (lastStep.x < maxTeamSize) {
+                   data.push({ x: maxTeamSize, y: calculateBinaryIncome(maxTeamSize) / 2 });
+                }
+            }
+            return data;
+        }
+
+        function createBinaryChart() {
+            if (!ui.binaryChartCanvas) return;
+            const ctx = ui.binaryChartCanvas.getContext('2d');
+            const initialData = generateChartData(parseInt(ui.teamSlider.value));
+
+            binaryChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: { datasets: [{
+                    label: 'Ingreso Mensual Potencial', data: initialData,
+                    borderColor: '#1d4ed8', backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    fill: true, tension: 0.4, pointBackgroundColor: '#1d4ed8',
+                    pointRadius: 5, pointHoverRadius: 7
+                }]},
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    scales: {
+                        x: { type: 'linear', title: { display: true, text: 'Miembros del Equipo (por lado)', color: '#475569' }, ticks: { color: '#64748b' } },
+                        y: { beginAtZero: true, title: { display: true, text: 'Ingreso Potencial', color: '#475569' }, ticks: { color: '#64748b' } }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#1e293b', titleFont: { size: 14, weight: 'bold' },
+                            bodyFont: { size: 12 }, padding: 12,
+                            callbacks: { title: (items) => `Equipo: ${items[0].parsed.x} personas` }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function parseMarkdownToHTML(text) {
+            text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            text = text.replace(/^\s*\*\s(.*)/gm, '<li>$1</li>');
+            text = text.replace(/(<li>.*<\/li>)/gs, '<ul>$1</ul>');
+            text = text.replace(/^####\s(.*)/gm, '<h4>$1</h4>');
+            return text;
+        }
+    
+        async function generateActionPlan() {
+            const incomeGoal = ui.goalForm.elements['income'].value;
+            const motivation = ui.goalForm.elements['motivation'].value;
+            const healthGoal = ui.goalForm.elements['health-goal'].value;
+            const commitment = ui.goalForm.elements['commitment'].value;
+
+            if (!healthGoal) {
+                ui.formError.style.display = 'block';
+                return;
+            }
+            ui.formError.style.display = 'none';
+
+            ui.planLoader.style.display = 'block';
+            ui.actionPlanResult.style.display = 'none';
+            ui.actionPlanResult.innerHTML = '';
+
+            const packageName = CONFIG.packages[state.selectedPackage].name;
+
+            const prompt = `Actúa como un coach Diamante de Gano Excel, experto en lanzamientos rápidos. Tu misión es crear un plan de acción de 30 días, hiper-personalizado y motivador para un nuevo socio.
+            Aquí está el perfil del socio:
+            - Paquete de Inicio: ${packageName}
+            - Meta Financiera Semanal: ${incomeGoal}
+            - Su 'Gran Porqué': ${motivation}
+            - Su Meta de Bienestar: Quiere usar los productos para ${healthGoal}.
+            - Compromiso de Acción Inmediata: Se ha comprometido a contactar a ${commitment} en las primeras 48 horas.
+
+            Instrucciones para el Plan:
+            1. Enfócate en la Velocidad: El plan debe estar diseñado para alcanzar la 5ta generación en 5 semanas, enfatizando la duplicación rápida (2 que traen 2).
+            2. Personaliza la Motivación: Conecta las acciones semanales con su 'Gran Porqué'. Si quiere viajar, menciona cómo cada paso lo acerca a México. Si busca seguridad, resalta cómo cada nuevo socio fortalece su activo financiero.
+            3. Integra el Producto: Incluye recordatorios para que use los productos consistentemente para lograr su meta de bienestar, de modo que su testimonio se vuelva más fuerte cada día.
+            4. Crea un 'Plan de 48 Horas': La primera acción del plan debe ser cumplir con su compromiso de llamadas inmediatas.
+            5. Tono: El tono debe ser el de un líder que dice: 'Entiendo tus metas y este es exactamente el camino para lograrlas. Vamos a hacerlo juntos'.
+            
+            Usa encabezados para cada semana, como '#### Semana 1: Cimientos del Negocio'. Para cada semana, crea una lista de 2 a 3 acciones clave usando asteriscos (*). Finaliza con una frase corta y motivadora.`;
+            
+            const apiKey = ""; // Provided by the environment
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+            
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API request failed with status ${response.status}`);
+                }
+
+                const result = await response.json();
+                
+                if (result.candidates && result.candidates.length > 0 && result.candidates[0].content && result.candidates[0].content.parts && result.candidates[0].content.parts.length > 0) {
+                    const rawText = result.candidates[0].content.parts[0].text;
+                    ui.actionPlanResult.innerHTML = parseMarkdownToHTML(rawText);
+                } else {
+                    throw new Error("No content received from API.");
+                }
+            } catch (error) {
+                console.error("Gemini API Error:", error);
+                ui.actionPlanResult.innerHTML = '<p class="text-red-600">Lo sentimos, no se pudo generar el plan de acción en este momento. Por favor, intente de nuevo más tarde.</p>';
+            } finally {
+                ui.planLoader.style.display = 'none';
+                ui.actionPlanResult.style.display = 'block';
+            }
+        }
+
+        function createProductAccordion() {
+            const accordionContainer = ui.productAccordion;
+            if (!accordionContainer) return;
+
+            CONFIG.products.forEach((category, index) => {
+                const item = document.createElement('div');
+                item.className = 'product-accordion-item border border-slate-200 rounded-lg';
+
+                const header = document.createElement('button');
+                header.className = 'accordion-header w-full flex justify-between items-center p-4 text-left font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-colors';
+                header.innerHTML = `
+                    <span>${category.category}</span>
+                    <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                `;
+
+                const content = document.createElement('div');
+                content.className = 'accordion-content';
+                
+                const contentWrapper = document.createElement('div');
+                contentWrapper.className = 'p-4';
+
+                const list = document.createElement('ul');
+                list.className = 'space-y-2 text-slate-600 list-disc list-inside';
+                category.items.forEach(product => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = product;
+                    list.appendChild(listItem);
+                });
+
+                contentWrapper.appendChild(list);
+                content.appendChild(contentWrapper);
+                item.appendChild(header);
+                item.appendChild(content);
+                accordionContainer.appendChild(item);
+
+                header.addEventListener('click', () => {
+                    const currentlyOpen = document.querySelector('.product-accordion-item .accordion-content[style*="max-height"]');
+                    if (currentlyOpen && currentlyOpen !== content) {
+                        currentlyOpen.style.maxHeight = null;
+                        currentlyOpen.previousElementSibling.querySelector('svg').classList.remove('rotate-180');
+                    }
+
+                    const svg = header.querySelector('svg');
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                        svg.classList.remove('rotate-180');
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        svg.classList.add('rotate-180');
+                    }
+                });
+            });
+        }
+
+        // Attach event listeners
+        ui.btnUSD.addEventListener('click', () => setCurrency('USD'));
+        ui.btnCOP.addEventListener('click', () => setCurrency('COP'));
+        ui.packageButtons.ESP1.addEventListener('click', () => selectPackage('ESP1'));
+        ui.packageButtons.ESP2.addEventListener('click', () => selectPackage('ESP2'));
+        ui.packageButtons.ESP3.addEventListener('click', () => selectPackage('ESP3'));
+        ui.partnersSlider.addEventListener('input', renderFastStart);
+        ui.teamSlider.addEventListener('input', renderBinary);
+        ui.generatePlanBtn.addEventListener('click', generateActionPlan);
+
+        // Initial render
+        createProductAccordion();
+        selectPackage('ESP3');
+        createBinaryChart();
+        setCurrency('COP');
+    });
+    </script>
+</body>
+</html>
