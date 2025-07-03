@@ -3,75 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Construye tu Futuro con Gano Excel | Oportunidad de Negocio</title>
+    <title>Gano Excel | Un Proyecto de Expansión Estratégica</title>
 
     <!-- ============== Open Graph Meta Tags for Social Sharing ============== -->
-    <meta property="og:title" content="Transforma tu Futuro: La Oportunidad de Negocio Gano Excel">
-    <meta property="og:description" content="Descubre un sistema probado para construir un activo empresarial con un socio global y productos de alto impacto.">
-    <!-- RECOMENDACIÓN: Crear una imagen específica para compartir en redes de 1200x630px -->
-    <meta property="og:image" content="https://4millones.com/wp-content/uploads/2024/10/gano-excel-social-share.png">
+    <meta property="og:title" content="Gano Excel | Un Proyecto de Expansión Estratégica">
+    <meta property="og:description" content="Descubre un modelo de negocio inteligente, diseñado para construir un activo propio con autonomía, propósito y el respaldo de un socio global.">
+    <meta property="og:image" content="https://4millones.com/wp-content/uploads/2024/10/gano-excel-social-share-final.png">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://4millones.com/oportunidad/">
+    <meta property="og:url" content="https://presentacion.4millones.com/">
 
     <!-- ============== Favicon ============== -->
-    <!-- RECOMENDACIÓN: Crear un favicon y subirlo a la raíz de tu sitio -->
     <link rel="icon" href="https://4millones.com/favicon.ico" type="image/x-icon">
 
     <!-- ============== Performance & Fonts ============== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 
     <!-- ============== Custom Styles ============== -->
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .hero-bg { background-color: #0c4a6e; background-image: radial-gradient(#1e3a8a 1px, transparent 1px); background-size: 20px 20px; }
-        .section-title { font-size: 2.25rem; line-height: 2.5rem; font-weight: 800; color: #1e293b; text-align: center; }
-        .section-subtitle { font-size: 1.125rem; line-height: 1.75rem; color: #475569; text-align: center; max-width: 700px; margin: 0.5rem auto 0; }
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9fa; color: #212529; }
+        .hero-bg { background-color: #0d1b2a; }
+        .section-title { font-weight: 800; color: #0d1b2a; }
+        .section-subtitle { color: #415a77; }
+        .card { background-color: #ffffff; border: 1px solid #dee2e6; border-radius: 1rem; box-shadow: 0 4px 25px rgba(0,0,0,0.05); }
         .feature-card { background-color: white; border-radius: 1.5rem; padding: 2rem; text-align: center; box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.05); border: 1px solid #e5e7eb; transition: all 0.3s ease; }
         .feature-card:hover { transform: translateY(-5px); box-shadow: 0 20px 30px -10px rgb(0 0 0 / 0.1); }
-        .problem-card { background-color: white; border-radius: 1.5rem; padding: 2rem; text-align: center; box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.05); border: 1px solid #e5e7eb; }
-        .human-need-card { background-color: white; border-radius: 1.5rem; padding: 2rem; text-align: left; box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.05); border: 1px solid #e5e7eb; }
-        .btn-primary { background-color: #1d4ed8; color: white; font-weight: 600; padding: 0.75rem 1.5rem; border-radius: 0.5rem; transition: all 0.3s ease; }
-        .btn-primary:hover { background-color: #1e40af; transform: scale(1.05); }
-        .chart-container { position: relative; width: 100%; max-width: 500px; margin: 2rem auto 0 auto; height: 400px; }
-        .tab { cursor: pointer; padding: 0.75rem 1rem; border-bottom: 3px solid transparent; color: #6b7280; font-weight: 500; transition: all 0.2s; }
-        .tab:hover { color: #1d4ed8; }
-        .tab-active { border-bottom-color: #1d4ed8; color: #1d4ed8; font-weight: 700; }
+        .btn-primary { background-color: #e0b1cb; color: #0d1b2a; font-weight: 700; transition: all 0.3s; }
+        .btn-primary:hover { background-color: #c497b2; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .chart-container { position: relative; width: 100%; max-width: 500px; margin: 2rem auto 0 auto; height: 350px; md:height: 400px; }
+        .tab { cursor: pointer; padding: 0.75rem 1rem; border-bottom: 4px solid transparent; color: #6b7280; font-weight: 600; transition: all 0.2s; }
+        .tab:hover { color: #415a77; }
+        .tab-active { border-bottom-color: #e0b1cb; color: #0d1b2a; }
         .tab-content { display: none; }
         .tab-content-active { display: block; animation: fadeIn 0.5s; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
         input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
-        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 24px; width: 24px; border-radius: 50%; background: #1d4ed8; cursor: pointer; margin-top: -9px; box-shadow: 0 0 2px #000; }
-        input[type=range]::-moz-range-thumb { height: 24px; width: 24px; border-radius: 50%; background: #1d4ed8; cursor: pointer; border: none; }
-        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 6px; cursor: pointer; background: #dbeafe; border-radius: 5px; }
-        input[type=range]::-moz-range-track { width: 100%; height: 6px; cursor: pointer; background: #dbeafe; border-radius: 5px; }
-        .currency-btn-active { background-color: #1d4ed8; color: white; }
-        .currency-btn-inactive { background-color: #e0e7ff; color: #374151; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 24px; width: 24px; border-radius: 50%; background: #415a77; cursor: pointer; margin-top: -9px; box-shadow: 0 0 2px #000; }
+        input[type=range]::-moz-range-thumb { height: 24px; width: 24px; border-radius: 50%; background: #415a77; cursor: pointer; border: none; }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 6px; cursor: pointer; background: #e0e7ff; border-radius: 5px; }
+        input[type=range]::-moz-range-track { width: 100%; height: 6px; cursor: pointer; background: #e0e7ff; border-radius: 5px; }
+        .currency-btn-active { background-color: #415a77; color: white; }
+        .currency-btn-inactive { background-color: #e0e7ff; color: #415a77; }
         .table-cell { padding: 0.75rem 1rem; text-align: right; white-space: nowrap; }
-        .gemini-plan-container { background-color: #f0f9ff; border-left: 4px solid #0ea5e9; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1.5rem; text-align: left; }
-        .gemini-plan-container h4 { font-weight: 700; color: #0c4a6e; margin-top: 1rem; margin-bottom: 0.5rem; }
-        .gemini-plan-container ul { list-style-type: disc; padding-left: 1.5rem; color: #075985; }
-        .gemini-loader { border: 4px solid #f3f3f3; border-top: 4px solid #1d4ed8; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto; }
+        .gemini-plan-container { background-color: #f0f9ff; border-left: 4px solid #778da9; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1.5rem; text-align: left; }
+        .gemini-plan-container h4 { font-weight: 700; color: #0d1b2a; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .gemini-plan-container ul { list-style-type: disc; padding-left: 1.5rem; color: #1b263b; }
+        .gemini-loader { border: 4px solid #f3f3f3; border-top: 4px solid #415a77; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         .form-question { margin-bottom: 1.5rem; }
-        .form-question label { font-weight: 600; color: #374151; display: block; margin-bottom: 0.75rem; }
+        .form-question label { font-weight: 600; color: #1b263b; display: block; margin-bottom: 0.75rem; }
         .form-question input[type="text"], .form-question select { width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem; transition: border-color 0.2s; }
-        .form-question input[type="text"]:focus, .form-question select:focus { outline: none; border-color: #2563eb; }
+        .form-question input[type="text"]:focus, .form-question select:focus { outline: none; border-color: #778da9; }
         .radio-option { display: flex; align-items: center; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem; margin-bottom: 0.5rem; cursor: pointer; }
         .radio-option input { margin-right: 0.75rem; }
-        .radio-option.selected { border-color: #2563eb; background-color: #eff6ff; }
+        .radio-option.selected { border-color: #778da9; background-color: #f8f9fa; }
     </style>
 </head>
-<body class="bg-slate-50">
+<body class="antialiased">
 
     <header class="hero-bg text-white">
-        <div class="container mx-auto px-6 py-20 text-center">
-            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">Construye el Futuro que Mereces</h1>
-            <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto text-slate-200">Descubre un modelo de negocio sólido, productos de alto impacto y un sistema probado que ya ha transformado miles de vidas. La tuya puede ser la siguiente.</p>
-            <a href="#proyeccion" class="inline-block bg-white text-blue-800 font-bold py-3 px-8 rounded-full mt-8 text-lg hover:bg-slate-200 transition-transform hover:scale-105">Proyecta tus Ingresos</a>
+        <div class="container mx-auto px-6 py-24 text-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-black">Conviértete en Arquitecto de tu Futuro</h1>
+            <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto text-gray-300">Descubre un modelo de negocio inteligente, diseñado para construir un activo propio con autonomía, propósito y el respaldo de un socio global.</p>
+            <a href="#proyeccion" class="inline-block mt-8 py-3 px-8 rounded-lg btn-primary text-lg">Explorar Proyecciones</a>
         </div>
     </header>
 
@@ -79,54 +76,54 @@
 
         <section id="problema-solucion" class="py-16 md:py-24">
             <div class="text-center">
-                <h2 class="text-3xl md:text-4xl font-black text-slate-800">La Trampa del Siglo XXI</h2>
-                <p class="mt-3 text-lg text-slate-500">¿Te identificas con alguna de estas situaciones?</p>
+                <h2 class="section-title text-3xl md:text-4xl">La Trampa del Siglo XXI</h2>
+                <p class="section-subtitle mt-3 text-lg">¿Te identificas con alguna de estas situaciones?</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 max-w-6xl mx-auto">
-                <div class="problem-card"><div class="text-4xl mb-4" role="img" aria-label="Icono de rutina">🔄</div><h3 class="text-xl font-bold text-slate-800">La Rutina Infinita</h3><p class="text-slate-600 mt-2">40+ horas semanales sin tiempo para vivir. El trabajo consume tu vida.</p></div>
-                <div class="problem-card"><div class="text-4xl mb-4" role="img" aria-label="Icono de techo de dinero">💸</div><h3 class="text-xl font-bold text-slate-800">El Techo Invisible</h3><p class="text-slate-600 mt-2">Sin importar cuánto trabajes, el techo salarial siempre está ahí.</p></div>
-                <div class="problem-card"><div class="text-4xl mb-4" role="img" aria-label="Icono de reloj">⏰</div><h3 class="text-xl font-bold text-slate-800">Tiempo vs. Dinero</h3><p class="text-slate-600 mt-2">Cambias las mejores horas de tu vida por un cheque mensual.</p></div>
+                <div class="card p-8 text-center"><div class="text-5xl mb-4" role="img" aria-label="Icono de rutina">🔄</div><h3 class="text-xl font-bold text-gray-900">La Rutina Infinita</h3><p class="text-gray-600 mt-2">40+ horas semanales sin tiempo para vivir. El trabajo consume tu vida.</p></div>
+                <div class="card p-8 text-center"><div class="text-5xl mb-4" role="img" aria-label="Icono de techo de dinero">💸</div><h3 class="text-xl font-bold text-gray-900">El Techo Invisible</h3><p class="text-gray-600 mt-2">Sin importar cuánto trabajes, el techo salarial siempre está ahí.</p></div>
+                <div class="card p-8 text-center"><div class="text-5xl mb-4" role="img" aria-label="Icono de reloj">⏰</div><h3 class="text-xl font-bold text-gray-900">Tiempo vs. Dinero</h3><p class="text-slate-600 mt-2">Cambias las mejores horas de tu vida por un cheque mensual.</p></div>
             </div>
-            <div class="mt-20 max-w-5xl mx-auto bg-blue-50 p-8 md:p-12 rounded-2xl">
-                <div class="text-center"><h2 class="text-3xl md:text-4xl font-black text-blue-900">La Salida: Un Modelo Diferente</h2><p class="mt-3 text-lg text-blue-700">En lugar de cambiar tiempo por dinero, te proponemos construir un activo que trabaje para ti.</p></div>
+            <div class="mt-20 max-w-5xl mx-auto bg-white p-8 md:p-12 rounded-2xl border border-gray-200">
+                <div class="text-center"><h2 class="section-title text-3xl md:text-4xl">La Salida: Un Modelo de Negocio Inteligente</h2><p class="section-subtitle mt-3 text-lg">En lugar de cambiar tiempo por dinero, te proponemos construir un activo que trabaje para ti.</p></div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10 text-center">
-                    <div><p class="text-3xl font-bold text-blue-600">✓</p><h4 class="text-xl font-bold text-slate-800 mt-2">Autonomía Estratégica</h4><p class="text-slate-600 mt-1">Tú decides tus horas y tu nivel de esfuerzo. El control vuelve a ti.</p></div>
-                    <div><p class="text-3xl font-bold text-blue-600">✓</p><h4 class="text-xl font-bold text-slate-800 mt-2">Ingreso Apalancado</h4><p class="text-slate-600 mt-1">Tu potencial no está limitado por un salario. Ganas por la productividad de toda una red.</p></div>
-                    <div><p class="text-3xl font-bold text-blue-600">✓</p><h4 class="text-xl font-bold text-slate-800 mt-2">Construcción de Activos</h4><p class="text-slate-600 mt-1">Inviertes tiempo en construir un sistema que genera ingresos a largo plazo.</p></div>
+                    <div><p class="text-4xl font-bold text-green-500">✓</p><h4 class="text-xl font-bold text-gray-900 mt-2">Autonomía Estratégica</h4><p class="text-gray-600 mt-1">Tú decides tus horas y tu nivel de esfuerzo. El control vuelve a ti.</p></div>
+                    <div><p class="text-4xl font-bold text-green-500">✓</p><h4 class="text-xl font-bold text-gray-900 mt-2">Ingreso Apalancado</h4><p class="text-gray-600 mt-1">Tu potencial no está limitado por un salario. Ganas por la productividad de toda una red.</p></div>
+                    <div><p class="text-4xl font-bold text-green-500">✓</p><h4 class="text-xl font-bold text-gray-900 mt-2">Construcción de Activos</h4><p class="text-gray-600 mt-1">Inviertes tiempo en construir un sistema que genera ingresos a largo plazo.</p></div>
                 </div>
             </div>
         </section>
 
-        <section id="momento-perfecto" class="py-16 md:py-24 bg-slate-100 rounded-2xl">
-            <div class="text-center"><h2 class="text-3xl md:text-4xl font-black text-slate-800">¿Por qué AHORA es el Momento Perfecto?</h2><p class="mt-3 text-lg text-slate-500 max-w-3xl mx-auto">Esta oportunidad no existe en el vacío. Se encuentra en la intersección de tres de las más grandes y sostenibles mega-tendencias globales. El gráfico de radar a continuación ilustra cómo Gano Excel capitaliza cada una de estas áreas de alto crecimiento.</p></div>
+        <section id="momento-perfecto" class="py-16 md:py-24 bg-white rounded-2xl border border-gray-200">
+            <div class="text-center"><h2 class="section-title text-3xl md:text-4xl">¿Por qué AHORA es el Momento Perfecto?</h2><p class="section-subtitle mt-3 text-lg max-w-3xl mx-auto">Esta oportunidad no existe en el vacío. Se encuentra en la intersección de tres de las más grandes y sostenibles mega-tendencias globales. El gráfico de radar a continuación ilustra cómo Gano Excel capitaliza cada una de estas áreas de alto crecimiento.</p></div>
             <div class="chart-container"><canvas id="trendsRadarChart"></canvas></div>
         </section>
 
         <section id="reencuadre" class="py-16 md:py-24">
-            <div class="text-center"><h2 class="text-3xl md:text-4xl font-black text-slate-800">No es lo que piensas. Es un modelo de negocio superior.</h2><p class="mt-3 text-lg text-slate-500 max-w-3xl mx-auto">Es crucial diferenciar este proyecto de otros modelos. Olvida los viejos estigmas y mira la estructura real.</p></div>
+            <div class="text-center"><h2 class="section-title text-3xl md:text-4xl">Un Modelo de Negocio Inteligente: La Diferencia Clave</h2><p class="section-subtitle mt-3 text-lg max-w-3xl mx-auto">Es crucial diferenciar este proyecto de otros modelos. Olvida los viejos estigmas y mira la estructura real.</p></div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 max-w-5xl mx-auto">
-                <div class="bg-red-50 border-2 border-red-200 rounded-2xl p-8"><h3 class="text-2xl font-bold text-red-800 text-center">✗ LO QUE NO ES:</h3><ul class="mt-6 space-y-4 text-lg"><li class="flex items-start"><span class="text-red-500 font-bold mr-3 mt-1">✗</span><span class="text-slate-700">Marketing multinivel tradicional</span></li><li class="flex items-start"><span class="text-red-500 font-bold mr-3 mt-1">✗</span><span class="text-slate-700">Venta puerta a puerta</span></li><li class="flex items-start"><span class="text-red-500 font-bold mr-3 mt-1">✗</span><span class="text-slate-700">Pirámide de productos caros</span></li><li class="flex items-start"><span class="text-red-500 font-bold mr-3 mt-1">✗</span><span class="text-slate-700">Esquema de reclutamiento</span></li><li class="flex items-start"><span class="text-red-500 font-bold mr-3 mt-1">✗</span><span class="text-slate-700">Depender de la suerte</span></li></ul></div>
-                <div class="bg-green-50 border-2 border-green-200 rounded-2xl p-8"><h3 class="text-2xl font-bold text-green-800 text-center">✓ LO QUE SÍ ES:</h3><ul class="mt-6 space-y-4 text-lg"><li class="flex items-start"><span class="text-green-500 font-bold mr-3 mt-1">✓</span><span class="text-slate-700">Franquicia personal de bajo costo</span></li><li class="flex items-start"><span class="text-green-500 font-bold mr-3 mt-1">✓</span><span class="text-slate-700">Expansión de mercado apalancada</span></li><li class="flex items-start"><span class="text-green-500 font-bold mr-3 mt-1">✓</span><span class="text-slate-700">Canal de distribución legítimo</span></li><li class="flex items-start"><span class="text-green-500 font-bold mr-3 mt-1">✓</span><span class="text-slate-700">Desarrollo de líderes empresariales</span></li><li class="flex items-start"><span class="text-green-500 font-bold mr-3 mt-1">✓</span><span class="text-slate-700">Sistema probado y duplicable</span></li></ul></div>
+                <div class="bg-red-50 border-2 border-red-200 rounded-2xl p-8"><h3 class="text-2xl font-bold text-red-800 text-center">✗ LO QUE NO ES:</h3><ul class="mt-6 space-y-4 text-lg"><li class="flex items-start"><span class="text-red-500 font-bold mr-3 mt-1">✗</span><span class="text-gray-700">Marketing multinivel tradicional</span></li><li class="flex items-start"><span class="text-red-500 font-bold mr-3 mt-1">✗</span><span class="text-gray-700">Venta puerta a puerta</span></li><li class="flex items-start"><span class="text-red-500 font-bold mr-3 mt-1">✗</span><span class="text-gray-700">Pirámide de productos caros</span></li><li class="flex items-start"><span class="text-red-500 font-bold mr-3 mt-1">✗</span><span class="text-gray-700">Esquema de reclutamiento</span></li><li class="flex items-start"><span class="text-red-500 font-bold mr-3 mt-1">✗</span><span class="text-gray-700">Depender de la suerte</span></li></ul></div>
+                <div class="bg-green-50 border-2 border-green-200 rounded-2xl p-8"><h3 class="text-2xl font-bold text-green-800 text-center">✓ LO QUE SÍ ES:</h3><ul class="mt-6 space-y-4 text-lg"><li class="flex items-start"><span class="text-green-500 font-bold mr-3 mt-1">✓</span><span class="text-gray-700">Franquicia personal de bajo costo</span></li><li class="flex items-start"><span class="text-green-500 font-bold mr-3 mt-1">✓</span><span class="text-gray-700">Expansión de mercado apalancada</span></li><li class="flex items-start"><span class="text-green-500 font-bold mr-3 mt-1">✓</span><span class="text-gray-700">Canal de distribución legítimo</span></li><li class="flex items-start"><span class="text-green-500 font-bold mr-3 mt-1">✓</span><span class="text-gray-700">Desarrollo de líderes empresariales</span></li><li class="flex items-start"><span class="text-green-500 font-bold mr-3 mt-1">✓</span><span class="text-gray-700">Sistema probado y duplicable</span></li></ul></div>
             </div>
         </section>
 
         <section id="empresa" class="py-16 md:py-24">
-            <div class="text-center"><h2 class="text-3xl md:text-4xl font-black text-slate-800">Su Socio Estratégico: El Pilar de la Confianza</h2><p class="mt-3 text-lg text-slate-500 max-w-3xl mx-auto">La base de cualquier gran empresa es la estabilidad. Nos asociamos con una potencia global que elimina la incertidumbre, permitiéndole construir con total confianza.</p></div>
+            <div class="text-center"><h2 class="section-title text-3xl md:text-4xl">Su Socio Estratégico: El Pilar de la Confianza</h2><p class="section-subtitle mt-3 text-lg max-w-3xl mx-auto">La base de cualquier gran empresa es la estabilidad. Nos asociamos con una potencia global que elimina la incertidumbre, permitiéndole construir con total confianza.</p></div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 max-w-6xl mx-auto">
-                <div class="feature-card"><div class="text-4xl mb-4" role="img" aria-label="Icono de fábrica">🏭</div><h3 class="text-xl font-bold text-slate-800">INTEGRACIÓN VERTICAL</h3><p class="text-slate-600 mt-2">Dueños de toda la cadena: Plantaciones → Producción → Distribución</p></div>
-                <div class="feature-card"><div class="text-4xl mb-4" role="img" aria-label="Icono de dinero">💰</div><h3 class="text-xl font-bold text-slate-800">100% LIBRE DE DEUDAS</h3><p class="text-slate-600 mt-2">29 años sin deber un centavo. Solidez financiera absoluta.</p></div>
-                <div class="feature-card"><div class="text-4xl mb-4" role="img" aria-label="Icono de globo terráqueo">🌍</div><h3 class="text-xl font-bold text-slate-800">INFRAESTRUCTURA GLOBAL</h3><p class="text-slate-600 mt-2">Oficinas en 70+ países. Call centers 24/7. Sistemas digitales propios.</p></div>
-                <div class="feature-card"><div class="text-4xl mb-4" role="img" aria-label="Icono de escudo">🛡️</div><h3 class="text-xl font-bold text-slate-800">CERO RIESGO OPERATIVO</h3><p class="text-slate-600 mt-2">Ellos asumen TODOS los costos: oficinas, empleados, sistemas, importaciones.</p></div>
+                <div class="feature-card"><div class="text-5xl mb-4" role="img" aria-label="Icono de fábrica">🏭</div><h3 class="text-xl font-bold text-gray-900">INTEGRACIÓN VERTICAL</h3><p class="text-gray-600 mt-2">Dueños de toda la cadena: Plantaciones → Producción → Distribución</p></div>
+                <div class="feature-card"><div class="text-5xl mb-4" role="img" aria-label="Icono de dinero">💰</div><h3 class="text-xl font-bold text-gray-900">100% LIBRE DE DEUDAS</h3><p class="text-gray-600 mt-2">Casi 3 décadas sin deber un centavo. Solidez financiera absoluta.</p></div>
+                <div class="feature-card"><div class="text-5xl mb-4" role="img" aria-label="Icono de globo terráqueo">🌍</div><h3 class="text-xl font-bold text-gray-900">INFRAESTRUCTURA GLOBAL</h3><p class="text-gray-600 mt-2">Oficinas en 70+ países. Call centers 24/7. Sistemas digitales propios.</p></div>
+                <div class="feature-card"><div class="text-5xl mb-4" role="img" aria-label="Icono de escudo">🛡️</div><h3 class="text-xl font-bold text-gray-900">CERO RIESGO OPERATIVO</h3><p class="text-gray-600 mt-2">Ellos asumen TODOS los costos: oficinas, empleados, sistemas, importaciones.</p></div>
             </div>
-            <div class="mt-12 text-center bg-blue-100 text-blue-800 font-bold text-xl p-6 rounded-2xl max-w-4xl mx-auto">"Tu Rol: Construir tu red. Su Rol: Todo lo demás."</div>
+            <div class="mt-12 text-center bg-gray-800 text-white font-bold text-xl p-6 rounded-2xl max-w-4xl mx-auto shadow-lg">"Tu Rol: Construir tu red. Su Rol: Todo lo demás."</div>
         </section>
 
-        <section id="innovacion" class="py-16 md:py-24 bg-slate-100 rounded-2xl">
-            <div class="text-center"><h2 class="text-3xl md:text-4xl font-black text-slate-800">La Innovación Disruptiva: Creando una Categoría Propia</h2><p class="mt-3 text-lg text-slate-500 max-w-3xl mx-auto">No competimos en el mercado del café, creamos una nueva categoría en el mercado del bienestar. Nuestro producto posee una ventaja competitiva patentada e imposible de replicar.</p></div>
-            <div class="mt-12 max-w-5xl mx-auto bg-white p-8 rounded-2xl shadow-lg">
+        <section id="innovacion" class="py-16 md:py-24 bg-white rounded-2xl border border-gray-200">
+            <div class="text-center"><h2 class="section-title text-3xl md:text-4xl">La Innovación Disruptiva: Creando una Categoría Propia</h2><p class="section-subtitle mt-3 text-lg max-w-3xl mx-auto">No competimos en el mercado del café, creamos una nueva categoría en el mercado del bienestar. Nuestro producto posee una ventaja competitiva patentada e imposible de replicar.</p></div>
+            <div class="mt-12 max-w-5xl mx-auto bg-white p-8 rounded-2xl">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div><h3 class="text-2xl font-bold text-blue-900">El Secreto: Extracto Patentado de Ganoderma Lucidum</h3><p class="mt-4 text-slate-600 text-lg">Nuestra innovación radica en fusionar las 6 variedades más potentes del Ganoderma y crear un extracto 100% hidrosoluble, que integra sus más de 200 fitonutrientes en el hábito más popular del mundo: tomar café.</p><div class="flex space-x-8 mt-6"><div><p class="text-4xl font-black text-blue-600">200+</p><p class="font-semibold text-slate-500">Fitonutrientes</p></div><div><p class="text-4xl font-black text-blue-600">150+</p><p class="font-semibold text-slate-500">Antioxidantes</p></div></div></div>
-                    <div class="space-y-6"><div class="flex items-start"><div class="flex-shrink-0 bg-blue-500 text-white rounded-full h-10 w-10 flex items-center justify-center font-bold text-xl">1</div><div class="ml-4"><h4 class="font-bold text-lg text-slate-800">Fusión de 6 Variedades</h4><p class="text-slate-600">Somos los únicos en el mundo que fusionamos las 6 variedades más potentes, creando un superalimento con un espectro de nutrientes inigualable.</p></div></div><div class="flex items-start"><div class="flex-shrink-0 bg-blue-500 text-white rounded-full h-10 w-10 flex items-center justify-center font-bold text-xl">2</div><div class="ml-4"><h4 class="font-bold text-lg text-slate-800">Extracto 100% Hidrosoluble</h4><p class="text-slate-600">Nuestra tecnología patentada permite que el extracto se disuelva perfectamente, garantizando máxima absorción y biodisponibilidad.</p></div></div><div class="flex items-start"><div class="flex-shrink-0 bg-blue-500 text-white rounded-full h-10 w-10 flex items-center justify-center font-bold text-xl">3</div><div class="ml-4"><h4 class="font-bold text-lg text-slate-800">Integrado a un Hábito Diario</h4><p class="text-slate-600">La genialidad fue incorporar esta innovación en productos de consumo diario. ¡No creamos nuevos hábitos, mejoramos los existentes!</p></div></div></div>
+                    <div><h3 class="text-2xl font-bold text-[#0d1b2a]">El Secreto: Extracto Patentado de Ganoderma Lucidum</h3><p class="mt-4 text-gray-600 text-lg">Nuestra innovación radica en fusionar las 6 variedades más potentes del Ganoderma y crear un extracto 100% hidrosoluble, que integra sus más de 200 fitonutrientes en el hábito más popular del mundo: tomar café.</p><div class="flex space-x-8 mt-6"><div><p class="text-4xl font-black text-[#415a77]">200+</p><p class="font-semibold text-gray-500">Fitonutrientes</p></div><div><p class="text-4xl font-black text-[#415a77]">150+</p><p class="font-semibold text-gray-500">Antioxidantes</p></div></div></div>
+                    <div class="space-y-6"><div class="flex items-start"><div class="flex-shrink-0 bg-[#415a77] text-white rounded-full h-10 w-10 flex items-center justify-center font-bold text-xl">1</div><div class="ml-4"><h4 class="font-bold text-lg text-gray-900">Fusión de 6 Variedades</h4><p class="text-gray-600">Somos los únicos en el mundo que fusionamos las 6 variedades más potentes, creando un superalimento con un espectro de nutrientes inigualable.</p></div></div><div class="flex items-start"><div class="flex-shrink-0 bg-[#415a77] text-white rounded-full h-10 w-10 flex items-center justify-center font-bold text-xl">2</div><div class="ml-4"><h4 class="font-bold text-lg text-gray-900">Extracto 100% Hidrosoluble</h4><p class="text-gray-600">Nuestra tecnología patentada permite que el extracto se disuelva perfectamente, garantizando máxima absorción y biodisponibilidad.</p></div></div><div class="flex items-start"><div class="flex-shrink-0 bg-[#415a77] text-white rounded-full h-10 w-10 flex items-center justify-center font-bold text-xl">3</div><div class="ml-4"><h4 class="font-bold text-lg text-gray-900">Integrado a un Hábito Diario</h4><p class="text-gray-600">La genialidad fue incorporar esta innovación en productos de consumo diario. ¡No creamos nuevos hábitos, mejoramos los existentes!</p></div></div></div>
                 </div>
             </div>
         </section>
@@ -135,30 +132,30 @@
             <h2 class="section-title">La Materialización: Un Portafolio de Bienestar Premium</h2><p class="section-subtitle">Nuestra innovación patentada cobra vida en una línea de productos de alta rotación, diseñados para el consumo diario y el bienestar integral.</p>
             <div class="mt-12 max-w-5xl mx-auto p-2">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                    <div class="p-6"><img src="https://placehold.co/128x128/3b82f6/ffffff?text=☕" alt="Icono de café" class="w-32 h-32 mx-auto rounded-full shadow-lg border-4 border-white"><h3 class="text-xl font-bold mt-5 text-slate-800">Bebidas Enriquecidas</h3><p class="mt-2 text-slate-500">El corazón de nuestro portafolio. Café, chocolate y té transformados en vehículos de bienestar diario.</p></div>
-                    <div class="p-6"><img src="https://placehold.co/128x128/10b981/ffffff?text=🌿" alt="Icono de bienestar" class="w-32 h-32 mx-auto rounded-full shadow-lg border-4 border-white"><h3 class="text-xl font-bold mt-5 text-slate-800">Suplementos Potentes</h3><p class="mt-2 text-slate-500">Cápsulas con la máxima concentración de Ganoderma para un apoyo nutricional superior y específico.</p></div>
-                    <div class="p-6"><img src="https://placehold.co/128x128/8b5cf6/ffffff?text=✨" alt="Icono de cuidado personal" class="w-32 h-32 mx-auto rounded-full shadow-lg border-4 border-white"><h3 class="text-xl font-bold mt-5 text-slate-800">Cuidado Personal</h3><p class="mt-2 text-slate-500">Productos de uso cotidiano que llevan los beneficios del Ganoderma a la rutina de toda la familia.</p></div>
+                    <div class="p-6"><div class="text-6xl mb-4">☕</div><h3 class="text-xl font-bold mt-5 text-gray-900">Bebidas Enriquecidas</h3><p class="mt-2 text-gray-600">El corazón de nuestro portafolio. Café, chocolate y té transformados en vehículos de bienestar diario.</p></div>
+                    <div class="p-6"><div class="text-6xl mb-4">🌿</div><h3 class="text-xl font-bold mt-5 text-gray-900">Suplementos Potentes</h3><p class="mt-2 text-gray-600">Cápsulas con la máxima concentración de Ganoderma para un apoyo nutricional superior y específico.</p></div>
+                    <div class="p-6"><div class="text-6xl mb-4">✨</div><h3 class="text-xl font-bold mt-5 text-gray-900">Cuidado Personal</h3><p class="mt-2 text-gray-600">Productos de uso cotidiano que llevan los beneficios del Ganoderma a la rutina de toda la familia.</p></div>
                 </div>
-                <div class="text-center mt-10"><a href="https://www.ganoexcel.com.co/todos-productos/" target="_blank" class="btn-primary">Conoce el Catálogo Completo</a></div>
+                <div class="text-center mt-10"><a href="https://www.ganoexcel.com.co/todos-productos/" target="_blank" class="btn-primary py-3 px-6 text-lg">Conoce el Catálogo Completo</a></div>
             </div>
         </section>
 
-        <section id="nucleo-humano" class="py-16 md:py-24 bg-slate-100 rounded-2xl">
-            <div class="text-center"><h2 class="text-3xl md:text-4xl font-black text-slate-800">El Núcleo Humano de la Oportunidad</h2><p class="mt-3 text-lg text-slate-500 max-w-3xl mx-auto">Una decisión de negocio exitosa no solo debe ser lógica, debe satisfacer nuestras necesidades más profundas. Vea cómo este modelo está diseñado para la realización humana integral.</p></div>
+        <section id="nucleo-humano" class="py-16 md:py-24 bg-white rounded-2xl border border-gray-200">
+            <div class="text-center"><h2 class="section-title text-3xl md:text-4xl">El Núcleo Humano de la Oportunidad</h2><p class="section-subtitle mt-3 text-lg max-w-3xl mx-auto">Una decisión de negocio exitosa no solo debe ser lógica, debe satisfacer nuestras necesidades más profundas. Vea cómo este modelo está diseñado para la realización humana integral.</p></div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 max-w-6xl mx-auto">
-                <div class="human-need-card"><h3 class="text-xl font-bold text-blue-900">1. Seguridad</h3><p class="text-slate-600 mt-2">Construya un activo a prueba de recesiones sobre una empresa libre de deudas y con un producto de consumo masivo.</p></div>
-                <div class="human-need-card"><h3 class="text-xl font-bold text-blue-900">2. Reconocimiento</h3><p class="text-slate-600 mt-2">Un plan de carrera claro que celebra y recompensa cada avance en su camino hacia el liderazgo global.</p></div>
-                <div class="human-need-card"><h3 class="text-xl font-bold text-blue-900">3. Conexión</h3><p class="text-slate-600 mt-2">Sea parte de una comunidad de apoyo global. Aquí, nunca estará solo. Construimos y celebramos juntos.</p></div>
-                <div class="human-need-card"><h3 class="text-xl font-bold text-blue-900">4. Crecimiento</h3><p class="text-slate-600 mt-2">El programa de desarrollo personal y de liderazgo más impactante, disfrazado de negocio.</p></div>
-                <div class="human-need-card"><h3 class="text-xl font-bold text-blue-900">5. Contribución</h3><p class="text-slate-600 mt-2">Transforme vidas llevando bienestar a las familias y un vehículo de prosperidad a los soñadores.</p></div>
-                <div class="human-need-card"><h3 class="text-xl font-bold text-blue-900">6. Dinamismo y Nuevos Horizontes</h3><p class="text-slate-600 mt-2">Diga adiós a la rutina. Cada día trae nuevos desafíos, conexiones y la posibilidad de viajar por el mundo.</p></div>
+                <div class="human-need-card"><h3 class="text-xl font-bold text-[#0d1b2a]">1. Seguridad</h3><p class="text-gray-600 mt-2">Construya un activo a prueba de recesiones sobre una empresa libre de deudas y con un producto de consumo masivo.</p></div>
+                <div class="human-need-card"><h3 class="text-xl font-bold text-[#0d1b2a]">2. Reconocimiento</h3><p class="text-gray-600 mt-2">Un plan de carrera claro que celebra y recompensa cada avance en su camino hacia el liderazgo global.</p></div>
+                <div class="human-need-card"><h3 class="text-xl font-bold text-[#0d1b2a]">3. Conexión</h3><p class="text-gray-600 mt-2">Sea parte de una comunidad de apoyo global. Aquí, nunca estará solo. Construimos y celebramos juntos.</p></div>
+                <div class="human-need-card"><h3 class="text-xl font-bold text-[#0d1b2a]">4. Crecimiento</h3><p class="text-gray-600 mt-2">El programa de desarrollo personal y de liderazgo más impactante, disfrazado de negocio.</p></div>
+                <div class="human-need-card"><h3 class="text-xl font-bold text-[#0d1b2a]">5. Contribución</h3><p class="text-gray-600 mt-2">Transforme vidas llevando bienestar a las familias y un vehículo de prosperidad a los soñadores.</p></div>
+                <div class="human-need-card"><h3 class="text-xl font-bold text-[#0d1b2a]">6. Dinamismo y Nuevos Horizontes</h3><p class="text-gray-600 mt-2">Diga adiós a la rutina. Cada día trae nuevos desafíos, conexiones y la posibilidad de viajar por el mundo.</p></div>
             </div>
         </section>
 
         <section id="modelo-ingresos" class="py-16 md:py-24">
             <div class="text-center">
-                 <h2 class="text-3xl md:text-4xl font-black text-slate-800">Tu Modelo de Franquicia Personal</h2>
-                 <p class="mt-3 text-lg text-slate-500 max-w-3xl mx-auto">Este no es un empleo, es la construcción de un activo. El plan de ingresos está estructurado para recompensar cada etapa de desarrollo de tu negocio. Haz clic para explorar cada fase.</p>
+                 <h2 class="section-title text-3xl md:text-4xl">Tu Modelo de Franquicia Personal</h2>
+                 <p class="section-subtitle mt-3 text-lg max-w-3xl mx-auto">Este no es un empleo, es la construcción de un activo. El plan de ingresos está estructurado para recompensar cada etapa de desarrollo de tu negocio. Haz clic para explorar cada fase.</p>
             </div>
             <div class="mt-12 max-w-4xl mx-auto">
                 <div class="bg-white rounded-2xl shadow-lg border border-slate-200">
@@ -171,159 +168,70 @@
                     </div>
                     <div class="p-6 md:p-8 min-h-[12rem]">
                         <div id="content-1" class="tab-content tab-content-active">
-                            <h4 class="text-2xl font-bold text-blue-800">Fase de Capitalización Rápida</h4>
-                            <p class="mt-2 text-lg text-slate-700">El objetivo inicial es generar un retorno sobre tu inversión de forma ágil. A través de bonos por la integración de nuevos socios a tu canal de distribución, obtienes ingresos semanales que validan la efectividad del modelo desde el principio.</p>
+                            <h4 class="text-2xl font-bold text-[#415a77]">Fase de Capitalización Rápida</h4>
+                            <p class="mt-2 text-lg text-gray-700">El objetivo inicial es generar un retorno sobre tu inversión de forma ágil. A través de bonos por la integración de nuevos socios a tu canal de distribución, obtienes ingresos semanales que validan la efectividad del modelo desde el principio.</p>
                         </div>
                         <div id="content-2" class="tab-content">
-                             <h4 class="text-2xl font-bold text-blue-800">Fase de Crecimiento Apalancado</h4>
-                            <p class="mt-2 text-lg text-slate-700">Aquí comienza la construcción de tu activo. El sistema te recompensa por el volumen de negocio generado por toda tu organización. Al enseñar a otros a desarrollar sus propias franquicias personales, tus ingresos crecen de forma exponencial.</p>
+                             <h4 class="text-2xl font-bold text-[#415a77]">Fase de Crecimiento Apalancado</h4>
+                            <p class="mt-2 text-lg text-gray-700">Aquí comienza la construcción de tu activo. El sistema te recompensa por el volumen de negocio generado por toda tu organización. Al enseñar a otros a desarrollar sus propias franquicias personales, tus ingresos crecen de forma exponencial.</p>
                         </div>
                          <div id="content-3" class="tab-content">
-                             <h4 class="text-2xl font-bold text-blue-800">Fase de Ingreso Residual</h4>
-                            <p class="mt-2 text-lg text-slate-700">Esta es la meta estratégica: construir un flujo de ingreso pasivo, mensual y heredable. Este ingreso proviene del consumo constante de productos en toda tu red global, un activo que genera rendimientos independientemente de tu esfuerzo directo.</p>
+                             <h4 class="text-2xl font-bold text-[#415a77]">Fase de Ingreso Residual</h4>
+                            <p class="mt-2 text-lg text-gray-700">Esta es la meta estratégica: construir un flujo de ingreso pasivo, mensual y heredable. Este ingreso proviene del consumo constante de productos en toda tu red global, un activo que genera rendimientos independientemente de tu esfuerzo directo.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="proyeccion" class="py-16 md:py-24 bg-slate-100 rounded-2xl">
-            <div class="text-center">
-                <h2 class="section-title">Tu Potencial de Ingresos: Proyéctalo Aquí</h2>
-                <p class="section-subtitle">Esta herramienta interactiva te ayudará a visualizar las 3 etapas de ganancia en nuestro modelo de negocio. Juega con los números y aduéñate de la visión.</p>
-            </div>
-            
+        <section id="proyeccion" class="py-16 md:py-24 bg-white rounded-2xl border border-gray-200">
+            <div class="text-center"><h2 class="section-title text-3xl md:text-4xl">Tu Potencial de Ingresos: Proyéctalo Aquí</h2><p class="section-subtitle mt-3 text-lg">Esta herramienta interactiva te ayudará a visualizar el potencial de nuestro modelo de negocio. Juega con los números y aduéñate de la visión.</p></div>
             <div class="max-w-6xl mx-auto mt-12">
-                <div class="flex justify-center mb-8">
-                    <div class="flex rounded-lg p-1 bg-blue-200">
-                        <button id="btn-USD" class="currency-btn-inactive px-6 py-2 font-semibold text-sm rounded-md transition-colors">USD</button>
-                        <button id="btn-COP" class="currency-btn-active px-6 py-2 font-semibold text-sm rounded-md transition-colors">COP</button>
-                    </div>
-                </div>
-
-                <div class="bg-white p-6 rounded-2xl shadow-lg mb-8">
-                    <div class="text-center mb-8">
-                        <h3 class="text-2xl font-bold text-slate-800">Etapa 1: Arranque Explosivo (Pago Semanal)</h3>
-                        <p class="text-slate-500 max-w-2xl mx-auto">Objetivo: Recuperar su inversión y generar ganancias inmediatas a través del Bono de Inicio Rápido por patrocinar nuevos socios.</p>
-                    </div>
+                <div class="flex justify-center mb-8"><div class="flex rounded-lg p-1 bg-gray-200"><button id="btn-USD" class="currency-btn-inactive px-6 py-2 font-semibold text-sm rounded-md transition-colors">USD</button><button id="btn-COP" class="currency-btn-active px-6 py-2 font-semibold text-sm rounded-md transition-colors">COP</button></div></div>
+                <div class="bg-gray-50 p-6 rounded-2xl shadow-inner mb-8">
+                    <div class="text-center mb-8"><h3 class="text-2xl font-bold text-slate-800">Etapa 1: Arranque Explosivo (Pago Semanal)</h3><p class="text-slate-500 max-w-2xl mx-auto mt-2">Objetivo: Recuperar su inversión y generar ganancias inmediatas a través del Bono de Inicio Rápido por patrocinar nuevos socios.</p></div>
                     <div class="grid md:grid-cols-2 gap-8 items-center">
-                        <div>
-                            <h4 class="font-semibold text-lg text-slate-800 mb-4">1. Seleccione su Paquete de Inicio</h4>
-                            <div class="space-y-2">
-                                <button id="btn-ESP3" class="w-full text-left p-4 border-2 rounded-lg"><p class="font-bold">Paquete ESP 3 <span class="text-xs font-medium">(Recomendado)</span></p><p class="text-sm text-blue-800" data-price-usd="1000">Inversión: $0</p></button>
-                                <button id="btn-ESP2" class="w-full text-left p-4 border rounded-lg"><p class="font-bold">Paquete ESP 2</p><p class="text-sm text-slate-600" data-price-usd="500">Inversión: $0</p></button>
-                                <button id="btn-ESP1" class="w-full text-left p-4 border rounded-lg"><p class="font-bold">Paquete ESP 1</p><p class="text-sm text-slate-600" data-price-usd="200">Inversión: $0</p></button>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-lg text-slate-800 mb-2">2. Proyecte su Bono de Inicio</h4>
-                            <p class="text-sm text-slate-500 mb-4">¿Cuántos socios puede integrar en su primer mes?</p>
-                            <div class="flex items-center space-x-4 mb-6"><input type="range" id="partnersSlider" min="2" max="10" value="2" class="w-full"><div id="partnersValue" class="font-bold text-blue-700 text-3xl w-12 text-center">2</div></div>
-                            <div class="grid grid-cols-2 gap-4">
-                               <div class="feature-card !p-4"><p id="fastStartBonus" class="text-3xl md:text-4xl font-black text-blue-600">$0</p><p class="text-sm font-semibold text-slate-500 mt-1">Bono Total (GEN 1)</p></div>
-                               <div class="feature-card !p-4"><p id="netResult" class="text-3xl md:text-4xl font-black">$0</p><p class="text-sm font-semibold text-slate-500 mt-1">Resultado Neto</p></div>
-                            </div>
-                        </div>
+                        <div><h4 class="font-semibold text-lg text-slate-800 mb-4">1. Seleccione su Paquete de Inicio</h4><div class="space-y-2"><button id="btn-ESP3" class="w-full text-left p-4 border-2 rounded-lg"><p class="font-bold">Paquete ESP 3 <span class="text-xs font-medium">(Recomendado)</span></p><p class="text-sm text-[#415a77]" data-price-usd="1000">Inversión: $0</p></button><button id="btn-ESP2" class="w-full text-left p-4 border rounded-lg"><p class="font-bold">Paquete ESP 2</p><p class="text-sm text-slate-600" data-price-usd="500">Inversión: $0</p></button><button id="btn-ESP1" class="w-full text-left p-4 border rounded-lg"><p class="font-bold">Paquete ESP 1</p><p class="text-sm text-slate-600" data-price-usd="200">Inversión: $0</p></button></div></div>
+                        <div><h4 class="font-semibold text-lg text-slate-800 mb-2">2. Proyecte su Bono de Inicio</h4><p class="text-sm text-slate-500 mb-4">¿Cuántos socios puede integrar en su primer mes?</p><div class="flex items-center space-x-4 mb-6"><input type="range" id="partnersSlider" min="2" max="10" value="2" class="w-full"><div id="partnersValue" class="font-bold text-[#415a77] text-3xl w-12 text-center">2</div></div><div class="grid grid-cols-2 gap-4"><div class="card !p-4"><p id="fastStartBonus" class="text-2xl md:text-3xl font-black text-[#415a77]">$0</p><p class="text-sm font-semibold text-slate-500 mt-1">Bono Total (GEN 1)</p></div><div class="card !p-4"><p id="netResult" class="text-2xl md:text-3xl font-black">$0</p><p class="text-sm font-semibold text-slate-500 mt-1">Resultado Neto</p></div></div></div>
                     </div>
                 </div>
-
-                <div class="bg-white p-6 rounded-2xl shadow-lg mb-8">
-                    <div class="text-center mb-6"><h3 class="text-2xl font-bold text-slate-800">Etapa 1.5: Proyección de Duplicación (Bono GEN 5 y Binario)</h3><p class="text-slate-500 max-w-2xl mx-auto">Vea cómo sus ingresos crecen exponencialmente a medida que su equipo se duplica. Este ejemplo asume que usted y cada socio integran a 2 nuevos miembros.</p></div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-sm">
-                            <thead class="text-slate-600 bg-slate-50"><tr><th class="table-cell text-left font-semibold">Generación</th><th class="table-cell">Nuevos Socios</th><th class="table-cell">Bono GEN 5</th><th class="table-cell">Bono Binario</th><th class="table-cell font-bold text-base">Ingreso Acumulado</th></tr></thead>
+                <div class="bg-gray-50 p-6 rounded-2xl shadow-inner mb-8">
+                    <div class="text-center mb-6"><h3 class="text-2xl font-bold text-slate-800">Etapa 1.5: Proyección de Duplicación (Bono GEN 5 y Binario)</h3><p class="text-slate-500 max-w-2xl mx-auto mt-2">Vea cómo sus ingresos crecen exponencialmente a medida que su equipo se duplica. Este ejemplo asume que usted y cada socio integran a 2 nuevos miembros.</p></div>
+                    <div class="overflow-x-auto"><table class="w-full text-sm">
+                            <thead class="text-slate-600 bg-gray-200"><tr><th class="table-cell text-left font-semibold">Generación</th><th class="table-cell">Nuevos Socios</th><th class="table-cell">Bono GEN 5</th><th class="table-cell">Bono Binario</th><th class="table-cell font-bold text-base">Ingreso Acumulado</th></tr></thead>
                             <tbody id="gen5-table-body" class="text-slate-800"></tbody>
-                        </table>
-                    </div>
-                    <div class="mt-6 text-center bg-slate-50 p-6 rounded-lg"><p class="text-base font-semibold text-slate-500">Total Acumulado en 5 Generaciones</p><p id="gen5-total" class="text-4xl md:text-5xl font-black text-green-600 mt-1">$0</p></div>
+                        </table></div>
+                    <div class="mt-6 text-center bg-white p-6 rounded-lg shadow"><p class="text-base font-semibold text-slate-500">Total Acumulado en 5 Generaciones</p><p id="gen5-total" class="text-4xl md:text-5xl font-black text-green-600 mt-1">$0</p></div>
                 </div>
-
-                <div class="bg-white p-8 rounded-2xl shadow-lg">
-                    <div class="text-center mb-8">
-                        <h3 class="text-2xl font-bold text-slate-800">Etapa 2: Riqueza Residual (Pago Semanal/Mensual)</h3>
-                        <p class="text-slate-500 max-w-2xl mx-auto mt-2">Objetivo: Generar un ingreso pasivo a través de las comisiones de equipo (Binario), basadas en la recompra mensual de productos en su red.</p>
-                    </div>
+                <div class="bg-gray-50 p-8 rounded-2xl shadow-inner">
+                    <div class="text-center mb-8"><h3 class="text-2xl font-bold text-slate-800">Etapa 2: Riqueza Residual (Pago Semanal/Mensual)</h3><p class="text-slate-500 max-w-2xl mx-auto mt-2">Objetivo: Generar un ingreso pasivo a través de las comisiones de equipo (Binario), basadas en la recompra mensual de productos en su red.</p></div>
                     <div class="max-w-3xl mx-auto">
-                        <div class="text-center mb-4">
-                            <h4 class="text-xl font-bold text-slate-700">Simulador de Ingreso Residual Binario</h4>
-                            <p class="text-slate-500 mt-1">Observe cómo crece su ingreso a medida que su red se expande. Cada persona representa un consumidor leal (~50 CV / mes).</p>
-                        </div>
-                        <div class="flex items-center space-x-4 my-6">
-                            <span class="text-sm font-medium text-slate-500">10</span>
-                            <input type="range" id="teamSlider" min="10" max="1000" value="10" step="1" class="w-full">
-                            <span class="text-sm font-medium text-slate-500">1000+</span>
-                        </div>
+                        <div class="text-center mb-4"><h4 class="text-xl font-bold text-slate-700">Simulador de Ingreso Residual Binario</h4><p class="text-slate-500 mt-1">Observe cómo crece su ingreso a medida que su red se expande. Cada persona representa un consumidor leal (~50 CV / mes).</p></div>
+                        <div class="flex items-center space-x-4 my-6"><span class="text-sm font-medium text-slate-500">10</span><input type="range" id="teamSlider" min="10" max="1000" value="10" step="1" class="w-full"><span class="text-sm font-medium text-slate-500">1000+</span></div>
                         <div class="text-center space-y-6">
-                            <div class="bg-slate-50 p-4 rounded-lg">
-                                <p id="teamSize" class="text-4xl font-black text-blue-600">10</p>
-                                <p class="text-sm font-semibold text-slate-500 mt-1">Personas por Equipo (Izq/Der)</p>
-                            </div>
-                            <div class="bg-blue-50 p-6 rounded-lg">
-                                <p id="binaryIncome" class="text-5xl font-black text-blue-800">$0</p>
-                                <p class="text-base font-semibold text-blue-600 mt-1">Ingreso Binario Mensual Potencial</p>
-                            </div>
+                            <div class="bg-white p-4 rounded-lg shadow-sm"><p id="teamSize" class="text-4xl font-black text-[#415a77]">10</p><p class="text-sm font-semibold text-slate-500 mt-1">Personas por Equipo (Izq/Der)</p></div>
+                            <div class="bg-white p-6 rounded-lg shadow"><p id="binaryIncome" class="text-5xl font-black text-[#0d1b2a]">$0</p><p class="text-base font-semibold text-slate-600 mt-1">Ingreso Binario Mensual Potencial</p></div>
                         </div>
-                        <div class="mt-8 h-80">
-                            <canvas id="binaryChart"></canvas>
-                        </div>
+                        <div class="mt-8 h-80"><canvas id="binaryChart"></canvas></div>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="plan-accion" class="py-16 md:py-24">
-            <div class="text-center"><span class="inline-block bg-blue-100 text-blue-800 text-sm font-semibold px-4 py-1 rounded-full">BONUS EXCLUSIVO</span><h2 class="section-title mt-4">Etapa 3: El Arquitecto de Metas con IA ✨</h2><p class="section-subtitle">Responda estas preguntas para que nuestra IA cree un plan de acción ultra-personalizado para su arranque explosivo de 30 días.</p></div>
+            <div class="text-center"><span class="inline-block bg-gray-200 text-[#0d1b2a] text-sm font-semibold px-4 py-1 rounded-full">BONUS ESTRATÉGICO</span><h2 class="section-title mt-4">Etapa 3: El Arquitecto de Metas con IA ✨</h2><p class="section-subtitle">Responda estas preguntas para que nuestra IA cree un plan de acción ultra-personalizado para su arranque explosivo de 30 días.</p></div>
             <div class="mt-12 max-w-3xl mx-auto">
                 <div class="bg-white p-6 md:p-8 rounded-xl shadow-2xl">
                     <form id="goal-form" class="space-y-6">
-                        <div class="form-question">
-                            <label for="user-name">1. ¿Cuál es tu nombre?</label>
-                            <input type="text" id="user-name" name="user-name" placeholder="Escribe tu nombre aquí">
-                        </div>
-                        <div class="form-question">
-                            <label>2. ¿Con qué paquete empresarial iniciarás tu proyecto?</label>
-                            <div id="package-choice" class="space-y-2">
-                                <label class="radio-option"><input type="radio" name="package" value="ESP3" checked><span>Paquete Empresarial ESP 3</span></label>
-                                <label class="radio-option"><input type="radio" name="package" value="ESP2"><span>Paquete Empresarial ESP 2</span></label>
-                                <label class="radio-option"><input type="radio" name="package" value="ESP1"><span>Paquete Empresarial ESP 1</span></label>
-                            </div>
-                        </div>
-                        <div class="form-question">
-                            <label for="motivation">3. ¿Cuál es tu motor principal para construir este negocio?</label>
-                            <select name="motivation" id="motivation" class="bg-white">
-                                <option value="Seguridad: Crear un 'Plan B' sólido y un patrimonio heredable.">Seguridad y Patrimonio</option>
-                                <option value="Reconocimiento: Convertirme en un líder influyente y ser reconocido por mis logros.">Liderazgo y Reconocimiento</option>
-                                <option value="Autonomía y Viajes: Calificar a los viajes corporativos y tener autonomía de tiempo.">Autonomía y Viajes</option>
-                                <option value="Crecimiento: Desarrollar nuevas habilidades y convertirme en mi mejor versión.">Crecimiento Personal</option>
-                                <option value="Contribución: Ayudar a otras personas a mejorar su salud y sus finanzas.">Ayudar a Otros</option>
-                            </select>
-                        </div>
-                        <div class="form-question">
-                            <label>4. ¿Cuál es tu meta de ingreso semanal inicial?</label>
-                            <div id="income-goal" class="space-y-2">
-                                <label class="radio-option"><input type="radio" name="income" value="Recuperar mi inversión y generar mis primeros {val}" data-usd="200" checked><span id="income-label-1">Recuperar mi inversión y generar mis primeros $900.000 COP.</span></label>
-                                <label class="radio-option"><input type="radio" name="income" value="Generar entre {val1} y {val2} para cubrir gastos importantes" data-usd1="300" data-usd2="500"><span id="income-label-2">Generar entre $1.350.000 - $2.250.000 COP para cubrir gastos importantes.</span></label>
-                                <label class="radio-option"><input type="radio" name="income" value="Apuntar a más de {val} para empezar a construir un nuevo estilo de vida" data-usd="500"><span id="income-label-3">Apuntar a más de $2.250.000 COP para un nuevo estilo de vida.</span></label>
-                            </div>
-                        </div>
-                        <div class="form-question">
-                            <label for="personal-goal">5. ¿Qué meta personal o sueño inmediato te gustaría alcanzar con tus primeros ingresos? (Opcional)</label>
-                            <input type="text" id="personal-goal" name="personal-goal" placeholder="Ej: Pagar una deuda, las próximas vacaciones, etc.">
-                        </div>
-                        <div class="form-question">
-                            <label for="health-goal">6. Para ser 'producto del producto', ¿qué área de bienestar te gustaría mejorar?</label>
-                            <input type="text" id="health-goal" name="health-goal" placeholder="Ej: Mejorar mi energía, manejar el estrés, etc.">
-                        </div>
-                        <div class="form-question">
-                             <label>7. El éxito ama la velocidad. ¿A cuántas personas te comprometes a presentarles la visión en tus primeras 48 horas?</label>
-                             <div id="commitment" class="space-y-2">
-                                <label class="radio-option"><input type="radio" name="commitment" value="a mis 2 mejores prospectos" checked><span>A mis 2 mejores prospectos.</span></label>
-                                <label class="radio-option"><input type="radio" name="commitment" value="a 4 personas de mi círculo de confianza"><span>A 4 personas de mi círculo de confianza.</span></label>
-                                <label class="radio-option"><input type="radio" name="commitment" value="a más de 5! Estoy listo para correr"><span>¡A más de 5! Estoy listo para correr.</span></label>
-                            </div>
-                        </div>
+                        <div class="form-question"><label for="user-name">1. ¿Cuál es tu nombre?</label><input type="text" id="user-name" name="user-name" placeholder="Escribe tu nombre aquí"></div>
+                        <div class="form-question"><label>2. ¿Con qué paquete empresarial iniciarás tu proyecto?</label><div id="package-choice" class="space-y-2"><label class="radio-option"><input type="radio" name="package" value="ESP3" checked><span>Paquete Empresarial ESP 3</span></label><label class="radio-option"><input type="radio" name="package" value="ESP2"><span>Paquete Empresarial ESP 2</span></label><label class="radio-option"><input type="radio" name="package" value="ESP1"><span>Paquete Empresarial ESP 1</span></label></div></div>
+                        <div class="form-question"><label for="motivation">3. ¿Cuál es tu motor principal para construir este negocio?</label><select name="motivation" id="motivation" class="bg-white"><option value="Seguridad: Crear un 'Plan B' sólido y un patrimonio heredable.">Seguridad y Patrimonio</option><option value="Reconocimiento: Convertirme en un líder influyente y ser reconocido por mis logros.">Liderazgo y Reconocimiento</option><option value="Autonomía y Viajes: Calificar a los viajes corporativos y tener autonomía de tiempo.">Autonomía y Viajes</option><option value="Crecimiento: Desarrollar nuevas habilidades y convertirme en mi mejor versión.">Crecimiento Personal</option><option value="Contribución: Ayudar a otras personas a mejorar su salud y sus finanzas.">Ayudar a Otros</option></select></div>
+                        <div class="form-question"><label>4. ¿Cuál es tu meta de ingreso semanal inicial?</label><div id="income-goal" class="space-y-2"><label class="radio-option"><input type="radio" name="income" value="Recuperar mi inversión y generar mis primeros {val}" data-usd="200" checked><span id="income-label-1">Recuperar mi inversión y generar mis primeros $900.000 COP.</span></label><label class="radio-option"><input type="radio" name="income" value="Generar entre {val1} y {val2} para cubrir gastos importantes" data-usd1="300" data-usd2="500"><span id="income-label-2">Generar entre $1.350.000 - $2.250.000 COP para cubrir gastos importantes.</span></label><label class="radio-option"><input type="radio" name="income" value="Apuntar a más de {val} para empezar a construir un nuevo estilo de vida" data-usd="500"><span id="income-label-3">Apuntar a más de $2.250.000 COP para un nuevo estilo de vida.</span></label></div></div>
+                        <div class="form-question"><label for="personal-goal">5. ¿Qué meta personal o sueño inmediato te gustaría alcanzar con tus primeros ingresos? (Opcional)</label><input type="text" id="personal-goal" name="personal-goal" placeholder="Ej: Pagar una deuda, las próximas vacaciones, etc."></div>
+                        <div class="form-question"><label for="health-goal">6. Para ser 'producto del producto', ¿qué área de bienestar te gustaría mejorar?</label><input type="text" id="health-goal" name="health-goal" placeholder="Ej: Mejorar mi energía, manejar el estrés, etc."></div>
+                        <div class="form-question"><label>7. El éxito ama la velocidad. ¿A cuántas personas te comprometes a presentarles la visión en tus primeras 48 horas?</label><div id="commitment" class="space-y-2"><label class="radio-option"><input type="radio" name="commitment" value="a mis 2 mejores prospectos" checked><span>A mis 2 mejores prospectos.</span></label><label class="radio-option"><input type="radio" name="commitment" value="a 4 personas de mi círculo de confianza"><span>A 4 personas de mi círculo de confianza.</span></label><label class="radio-option"><input type="radio" name="commitment" value="a más de 5! Estoy listo para correr"><span>¡A más de 5! Estoy listo para correr.</span></label></div></div>
                         <div id="form-error" class="text-red-600 text-center" style="display: none;">Por favor, complete todos los campos obligatorios.</div>
-                        <div class="text-center mt-8"><button type="button" id="generate-plan-btn" class="w-full md:w-auto bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-blue-800 transition-transform hover:scale-105">✨ Crear Mi Plan de Acción Personalizado</button></div>
+                        <div class="text-center mt-8"><button type="button" id="generate-plan-btn" class="w-full md:w-auto btn-primary py-3 px-8 rounded-lg shadow-lg text-lg">✨ Crear Mi Plan de Acción Personalizado</button></div>
                     </form>
                 </div>
                 <div id="plan-loader" class="gemini-loader" style="display: none;"></div>
@@ -333,13 +241,13 @@
 
     </main>
 
-    <footer class="bg-slate-800 text-white">
+    <footer class="bg-gray-800 text-white">
         <div class="container mx-auto px-6 py-12 text-center">
             <h3 class="text-2xl font-bold">¿Estás listo para dar el siguiente paso?</h3>
-            <p class="mt-2 text-slate-300">Contacta a la persona que te compartió esta página y dile que estás listo para empezar.</p>
+            <p class="mt-2 text-gray-300">Contacta a la persona que te compartió esta página y dile que estás listo para empezar.</p>
             <a id="whatsapp-link" href="#" class="inline-flex items-center bg-green-500 text-white font-bold py-3 px-8 rounded-full mt-6 text-lg hover:bg-green-600 transition-transform hover:scale-105"><svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.456l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.451-4.437-9.887-9.888-9.888-5.452 0-9.888 4.436-9.889 9.888-.001 2.225.651 4.315 1.847 6.062l-1.07 3.908 3.996-1.044z"></path></svg>Contactar por WhatsApp</a>
-            <p class="text-xs text-slate-400 mt-12 max-w-4xl mx-auto"><strong>Nota Legal:</strong> Esta página y su calculadora son una herramienta de presentación y no constituyen una promesa de ingresos. Las ganancias de un afiliado de Gano Excel son el resultado de su esfuerzo, dedicación y las ventas de productos generadas dentro de su organización. Los valores son ilustrativos. Consulta el Plan de Compensación oficial para detalles completos.</p>
-            <p class="text-sm text-slate-500 mt-4">&copy; 2025 | 4millones.com - Todos los derechos reservados.</p>
+            <p class="text-xs text-gray-400 mt-12 max-w-4xl mx-auto"><strong>Nota Legal:</strong> Esta página y su calculadora son una herramienta de presentación y no constituyen una promesa de ingresos. Las ganancias de un afiliado de Gano Excel son el resultado de su esfuerzo, dedicación y las ventas de productos generadas dentro de su organización. Los valores son ilustrativos. Consulta el Plan de Compensación oficial para detalles completos.</p>
+            <p class="text-sm text-gray-500 mt-4">&copy; 2025 | 4millones.com - Todos los derechos reservados.</p>
         </div>
     </footer>
 
@@ -465,8 +373,8 @@
             const ctx = ui.trendsRadarChart.getContext('2d');
             new Chart(ctx, {
                 type: 'radar',
-                data: { labels: ['Industria del Bienestar', 'Economía Colaborativa', 'Industria del Café'], datasets: [{ label: 'Posicionamiento de Gano Excel', data: [9, 8, 9.5], backgroundColor: 'rgba(29, 78, 216, 0.2)', borderColor: 'rgb(29, 78, 216)', pointBackgroundColor: 'rgb(29, 78, 216)', pointBorderColor: '#fff', pointHoverBackgroundColor: '#fff', pointHoverBorderColor: 'rgb(29, 78, 216)' }] },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { r: { angleLines: { color: '#d1d5db' }, grid: { color: '#e5e7eb' }, pointLabels: { font: { size: 14, weight: '600' }, color: '#1f2937' }, ticks: { backdropColor: 'rgba(255, 255, 255, 0.75)', color: '#4b5563' } } } }
+                data: { labels: ['Industria del Bienestar', 'Economía Colaborativa', 'Industria del Café'], datasets: [{ label: 'Posicionamiento de Gano Excel', data: [9, 8, 9.5], backgroundColor: 'rgba(67, 90, 119, 0.2)', borderColor: 'rgb(67, 90, 119)', pointBackgroundColor: 'rgb(67, 90, 119)', pointBorderColor: '#fff', pointHoverBackgroundColor: '#fff', pointHoverBorderColor: 'rgb(67, 90, 119)' }] },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { r: { angleLines: { color: '#dee2e6' }, grid: { color: '#e5e7eb' }, pointLabels: { font: { size: 14, weight: '600' }, color: '#1b263b' }, ticks: { display: false, stepSize: 2 } } } }
             });
         }
 
@@ -512,8 +420,6 @@
                 const message = encodeURIComponent("Hola, vi la presentación de la oportunidad y me gustaría saber más.");
                 ui.whatsappLink.href = `https://wa.me/${phone}?text=${message}`;
             } else {
-                // Fallback: si no hay número, el enlace no irá a un chat específico.
-                // Podrías ocultarlo o dirigirlo a una página de contacto general.
                 ui.whatsappLink.href = "https://wa.me/"; 
             }
         }
