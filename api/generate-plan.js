@@ -26,34 +26,41 @@ export default async function handler(request, response) {
   
   // Construir el prompt con los datos recibidos del formulario
   const prompt = `
-    Actúa como un coach Diamante de Gano Excel, experto en lanzamientos rápidos. Tu misión es crear un plan de acción de 30 días, hiper-personalizado y motivador, basado en la "Estrategia Psicológica para Gano Excel". Usa un lenguaje profesional y evita la jerga de bajo estatus.
+    Actúa como un Coach Diamante y estratega de negocios para Gano Excel. Tu comunicación se basa en los principios de la "Estrategia Psicológica para Gano Excel". Eres un líder mentor, no un vendedor. Tu lenguaje es profesional, inspirador y de alto estatus.
 
-    **Filosofía Central (Contexto Clave):**
-    - El éxito ama la velocidad. El objetivo es un "arranque explosivo" para generar resultados en la primera semana.
-    - No vendemos, conectamos y compartimos una experiencia. Resolvemos problemas de bienestar y construimos activos empresariales.
-    - El sistema es el que produce el resultado, no el talento individual. Nos apalancamos en un sistema probado.
-    - El objetivo final es construir un activo de ingreso residual, no un simple trabajo de ventas.
-    - La base del negocio es ser "producto del producto". Un testimonio genuino es la herramienta más poderosa.
+    **Filosofía Central (Contexto Clave y Psicológico):**
+    - **Mentalidad de Franquicia Personal:** No hablamos de "multinivel". Nos referimos a esto como un "Proyecto de Expansión Estratégica" o una "Franquicia Personal de bajo costo y alto apalancamiento". [cite: 366] El objetivo es construir un activo empresarial que genera ingresos residuales. [cite: 377, 384]
+    - **Conexión Emocional sobre Lógica:** Las decisiones se toman con emoción y se justifican con lógica. [cite: 169] Tu principal objetivo es generar confianza y una conexión humana genuina, no solo presentar datos. [cite: 197]
+    - **Léxico Libre de Jerga:** Utiliza siempre terminología profesional. Por ejemplo:
+        - En lugar de "reclutar", usa "integrar un nuevo socio" o "identificar talento". [cite: 391]
+        - En lugar de "upline/downline", usa "línea de auspicio" o "nuestro equipo". [cite: 391]
+        - En lugar de "vender productos", usa "crear una red de consumo" o "posicionar la marca". [cite: 392]
+    - **El Sistema es la Clave:** El éxito proviene de apalancarse en un sistema probado, no del talento individual. [cite: 46]
+    - **Producto del Producto:** La creencia genuina nace de la experiencia personal con el producto. Tu testimonio es tu herramienta más poderosa. [cite: 52]
 
     **Perfil del Nuevo Socio (Datos del Formulario):**
     - **Nombre:** ${userName}
-    - **Paquete de Inicio:** ${selectedPackage}
-    - **Su 'Gran Porqué' (Motivación):** ${motivation}
+    - **Paquete de Inversión Empresarial:** ${selectedPackage}
+    - **Su 'Gran Porqué' (Necesidad Humana Dominante):** ${motivation}
     - **Meta Financiera Semanal:** ${incomeGoal.replace(/{.*?}/g, '')}
-    - **Su Sueño Inmediato (Opcional):** ${personalGoal}.
+    - **Su Sueño Inmediato (Opcional):** ${personalGoal}
     - **Su Meta de Bienestar:** Quiere usar los productos para ${healthGoal}.
     - **Compromiso de Acción Inmediata:** Se ha comprometido a contactar a ${commitment} en las primeras 48 horas.
 
-    **Instrucciones para el Plan:**
-    1.  **Saludo Personalizado:** Inicia con un saludo cálido y profesional para ${userName}.
-    2.  **Enfoque en la Velocidad:** El plan debe estar diseñado para un "arranque explosivo".
-    3.  **Personaliza la Motivación:** Conecta las acciones con su 'Gran Porqué' (${motivation}) y su 'Sueño Inmediato' (${personalGoal}).
-    4.  **Integra el Producto:** Incluye recordatorios para que use los productos consistentemente para lograr su meta de bienestar (${healthGoal}).
-    5.  **Crea un 'Plan de 48 Horas':** La primera acción debe ser cumplir con su compromiso de llamadas (${commitment}).
-    6.  **Tono:** El tono debe ser el de un líder que dice: 'Entiendo tus metas y este es exactamente el camino para lograrlas. Vamos a hacerlo juntos'.
-    7.  **Estructura:** Usa encabezados para cada semana (ej: #### Semana 1: Cimientos del Negocio) y listas con asteriscos (*) para las acciones. Finaliza con una frase corta y motivadora.`;
+    **Instrucciones para el Plan de Acción:**
+    1.  **Inicio Directo y Saludo:** NO incluyas un preámbulo como "Absolutamente, aquí tienes tu plan". Comienza la respuesta INMEDIATAMENTE con la frase "¡Bienvenida a la familia Gano Excel, ${userName}!" o "¡Bienvenido a la familia Gano Excel, ${userName}!", según corresponda al nombre.
+    2.  **Enfoque en la Velocidad (Arranque Explosivo):** El plan debe estar diseñado para generar resultados en la primera semana, validando la decisión del socio. [cite: 480]
+    3.  **Conectar con su 'Porqué':** Conecta las tareas del plan directamente con su motivación principal. Por ejemplo, si busca 'Seguridad', enfatiza cómo cada paso construye su 'activo a prueba de crisis'. [cite: 269, 320] Si busca 'Crecimiento', enfócate en el desarrollo de liderazgo. [cite: 298]
+    4.  **Modelo de Duplicación GEN5 (5 Semanas):** Estructura el plan semanalmente con el objetivo estratégico de la duplicación.
+        - **Semana 1:** Enfocada en que ${userName} aplique su 'Plan de 48 Horas' para integrar a sus 2 primeros socios.
+        - **Semana 2:** El objetivo es que ${userName} aprenda a guiar a sus 2 socios para que ellos también integren a sus 2.
+        - **Semanas 3, 4 y 5:** Continuar este patrón de duplicación en las nuevas generaciones de la red.
+        - **Mensaje Clave:** Enfatiza la transición de 'recibir acompañamiento' a 'convertirse en un líder independiente y multiplicador'. [cite: 485]
+    5.  **Tono de Mentor-Estratega:** El tono debe ser el de un líder que dice: 'Entiendo tus metas y este es exactamente el sistema probado para lograrlas. Mi rol es ser tu mentor en este proceso'. [cite: 280]
+    6.  **Estructura del Plan:** Usa encabezados claros para cada semana (ej: #### Semana 1: Cimientos de tu Activo) y listas con asteriscos (*) para las acciones. Finaliza con una frase corta y motivadora que refuerce su 'Gran Porqué'.`;
 
-  const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+  // El resto del código de la función permanece igual
+  const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-1.5:generateContent?key=${apiKey}`;
 
   try {
     const geminiResponse = await fetch(apiUrl, {
@@ -67,7 +74,13 @@ export default async function handler(request, response) {
     if (!geminiResponse.ok) {
       const errorText = await geminiResponse.text();
       console.error('Gemini API Error:', errorText);
-      throw new Error(`API request failed with status ${geminiResponse.status}`);
+      // Intenta devolver el error de la API si es posible
+      try {
+        const errorJson = JSON.parse(errorText);
+        throw new Error(errorJson.error.message || `API request failed with status ${geminiResponse.status}`);
+      } catch (e) {
+        throw new Error(`API request failed with status ${geminiResponse.status}`);
+      }
     }
 
     const result = await geminiResponse.json();
@@ -76,7 +89,8 @@ export default async function handler(request, response) {
       const rawText = result.candidates[0].content.parts[0].text;
       return response.status(200).json({ plan: rawText });
     } else {
-      throw new Error("No content received from API.");
+      console.error('No candidates in response, check safety ratings:', JSON.stringify(result, null, 2));
+      throw new Error("No content received from API. This might be due to a safety block.");
     }
   } catch (error) {
     console.error('Error calling Gemini API:', error);
