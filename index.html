@@ -11,13 +11,21 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://presentacion.4millones.com/">
 
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://presentacion.4millones.com/">
+    <meta name="twitter:title" content="Gano Excel | Un Proyecto de Expansión Estratégica">
+    <meta name="twitter:description" content="Descubre un modelo de negocio inteligente, diseñado para construir un activo propio con autonomía, propósito y el respaldo de un socio global.">
+    <meta name="twitter:image" content="https://4millones.com/wp-content/uploads/2024/10/gano-excel-social-share-final.png">
+
     <link rel="icon" href="https://4millones.com/wp-content/uploads/2024/10/1.png" type="image/png">
- 
+    <link rel="apple-touch-icon" href="https://4millones.com/wp-content/uploads/2024/10/1.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
 
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f8f9fa; color: #212529; }
@@ -27,8 +35,10 @@
         .card { background-color: #ffffff; border: 1px solid #dee2e6; border-radius: 1rem; box-shadow: 0 4px 25px rgba(0,0,0,0.05); }
         .feature-card { background-color: white; border-radius: 1.5rem; padding: 2rem; text-align: center; box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.05); border: 1px solid #e5e7eb; transition: all 0.3s ease; }
         .feature-card:hover { transform: translateY(-5px); box-shadow: 0 20px 30px -10px rgb(0 0 0 / 0.1); }
-        .btn-primary { background-color: #e0b1cb; color: #0d1b2a; font-weight: 700; transition: all 0.3s; }
+        .btn-primary { background-color: #e0b1cb; color: #0d1b2a; font-weight: 700; transition: all 0.3s ease; padding: 0.75rem 1.5rem; border-radius: 0.5rem; }
         .btn-primary:hover { background-color: #c497b2; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .btn-secondary { background-color: #e2e8f0; color: #1e293b; font-weight: 700; transition: all 0.3s ease; padding: 0.75rem 1.5rem; border-radius: 0.5rem; }
+        .btn-secondary:hover { background-color: #cbd5e1; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .chart-container { position: relative; width: 100%; max-width: 500px; margin: 2rem auto 0 auto; height: 350px; md:height: 400px; }
         .tab { cursor: pointer; padding: 0.75rem 1rem; border-bottom: 4px solid transparent; color: #6b7280; font-weight: 600; transition: all 0.2s; }
         .tab:hover { color: #415a77; }
@@ -47,7 +57,7 @@
         .gemini-plan-container { background-color: #f0f9ff; border-left: 4px solid #778da9; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1.5rem; text-align: left; }
         .gemini-plan-container h4 { font-weight: 700; color: #0d1b2a; margin-top: 1rem; margin-bottom: 0.5rem; }
         .gemini-plan-container ul { list-style-type: disc; padding-left: 1.5rem; color: #1b263b; }
-        .gemini-loader { border: 4px solid #f3f3f3; border-top: 4px solid #415a77; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto; }
+        .gemini-loader { border: 4px solid #f3f3f3; border-top: 4px solid #415a77; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         .form-question { margin-bottom: 1.5rem; }
         .form-question label { font-weight: 600; color: #1b263b; display: block; margin-bottom: 0.75rem; }
@@ -268,8 +278,18 @@
                         <div class="text-center mt-8"><button type="button" id="generate-plan-btn" class="w-full md:w-auto btn-primary py-3 px-8 rounded-lg shadow-lg text-lg">✨ Crear Mi Plan de Acción Personalizado</button></div>
                     </form>
                 </div>
-                <div id="plan-loader" class="gemini-loader" style="display: none;"></div>
+                
+                <div id="plan-loader-container" class="text-center mt-8" style="display: none;">
+                    <div class="gemini-loader"></div>
+                    <p class="text-slate-500 font-semibold mt-4">✨ Personalizando tu camino al éxito...</p>
+                </div>
+
                 <div id="action-plan-result" class="gemini-plan-container" style="display: none;"></div>
+
+                <div id="plan-actions" class="mt-6 text-center space-y-4 sm:space-y-0 sm:space-x-4" style="display: none;">
+                    <button id="copy-plan-btn" class="btn-secondary w-full sm:w-auto">Copiar Plan</button>
+                    <button id="pdf-plan-btn" class="btn-primary w-full sm:w-auto">Descargar PDF</button>
+                </div>
             </div>
         </section>
 
@@ -319,8 +339,11 @@
             goalForm: document.getElementById('goal-form'),
             formError: document.getElementById('form-error'),
             generatePlanBtn: document.getElementById('generate-plan-btn'),
-            planLoader: document.getElementById('plan-loader'),
+            planLoaderContainer: document.getElementById('plan-loader-container'), // <-- NUEVO
             actionPlanResult: document.getElementById('action-plan-result'),
+            planActions: document.getElementById('plan-actions'), // <-- NUEVO
+            copyPlanBtn: document.getElementById('copy-plan-btn'), // <-- NUEVO
+            pdfPlanBtn: document.getElementById('pdf-plan-btn'), // <-- NUEVO
             trendsRadarChart: document.getElementById('trendsRadarChart'),
             tabsContainer: document.getElementById('tabs-container'),
             tabContents: document.querySelectorAll('.tab-content'),
@@ -476,7 +499,35 @@
             } else { ui.whatsappLink.href = "https://wa.me/"; }
         }
 
-        // ============== FUNCIÓN CLAVE CORREGIDA (LLAMADA SEGURA A LA API) ==============
+        // ============== NUEVAS FUNCIONES PARA COPIAR Y PDF ==============
+        function copyPlanToClipboard() {
+            const planText = ui.actionPlanResult.innerText;
+            navigator.clipboard.writeText(planText).then(() => {
+                ui.copyPlanBtn.textContent = '¡Copiado!';
+                setTimeout(() => { ui.copyPlanBtn.textContent = 'Copiar Plan'; }, 2000);
+            }).catch(err => {
+                console.error('Error al copiar el plan: ', err);
+                alert("No se pudo copiar el plan.");
+            });
+        }
+
+        function downloadPlanAsPDF() {
+            const element = ui.actionPlanResult;
+            const userName = ui.goalForm.elements['user-name'].value || 'socio';
+            const fileName = `plan-de-accion-${userName.toLowerCase().replace(/\s/g, '-')}.pdf`;
+            
+            const opt = {
+                margin:       0.5,
+                filename:     fileName,
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true },
+                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+            
+            html2pdf().set(opt).from(element).save();
+        }
+
+        // ============== FUNCIÓN CLAVE (SIN CAMBIOS EN LA LÓGICA DE API) ==============
         async function generateActionPlan() {
             const form = ui.goalForm;
             const formData = {
@@ -493,12 +544,14 @@
                 ui.formError.style.display = 'block';
                 return;
             }
+            
+            // Ocultar todo antes de empezar
             ui.formError.style.display = 'none';
-            ui.planLoader.style.display = 'block';
             ui.actionPlanResult.style.display = 'none';
+            ui.planActions.style.display = 'none';
+            ui.planLoaderContainer.style.display = 'block'; // Mostrar loader con texto
             ui.actionPlanResult.innerHTML = '';
 
-            // URL del asistente seguro en Vercel. ¡Esta es la parte clave!
             const apiUrl = '/api/generate-plan';
 
             try {
@@ -509,23 +562,26 @@
                 });
 
                 if (!response.ok) {
-                    throw new Error(`API request failed with status ${response.status}`);
+                    const errData = await response.json().catch(() => ({ error: 'Error desconocido en el servidor.' }));
+                    throw new Error(errData.error || `La petición a la API falló con estado ${response.status}`);
                 }
                 
                 const result = await response.json();
 
                 if (result.plan) {
                     ui.actionPlanResult.innerHTML = parseMarkdownToHTML(result.plan);
+                    ui.actionPlanResult.style.display = 'block';
+                    ui.planActions.style.display = 'block'; // Mostrar botones de acción
                 } else {
-                    throw new Error("No plan received from API.");
+                    throw new Error("No se recibió un plan de la API.");
                 }
 
             } catch (error) {
                 console.error("API Error:", error);
-                ui.actionPlanResult.innerHTML = '<p class="text-red-600">Lo sentimos, no se pudo generar el plan de acción en este momento. Por favor, intente de nuevo más tarde.</p>';
-            } finally {
-                ui.planLoader.style.display = 'none';
+                ui.actionPlanResult.innerHTML = `<p class="text-red-600">Lo sentimos, no se pudo generar el plan de acción en este momento. Por favor, intente de nuevo más tarde.</p>`;
                 ui.actionPlanResult.style.display = 'block';
+            } finally {
+                ui.planLoaderContainer.style.display = 'none';
                 ui.actionPlanResult.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         }
@@ -546,6 +602,8 @@
             if(ui.partnersSlider) ui.partnersSlider.addEventListener('input', renderFastStart);
             if(ui.teamSlider) ui.teamSlider.addEventListener('input', renderBinary);
             if(ui.generatePlanBtn) ui.generatePlanBtn.addEventListener('click', generateActionPlan);
+            if(ui.copyPlanBtn) ui.copyPlanBtn.addEventListener('click', copyPlanToClipboard); // <-- NUEVO
+            if(ui.pdfPlanBtn) ui.pdfPlanBtn.addEventListener('click', downloadPlanAsPDF); // <-- NUEVO
             
             document.querySelectorAll('input[name="package"], input[name="income"], input[name="commitment"]').forEach(radio => {
                 radio.addEventListener('change', () => {
