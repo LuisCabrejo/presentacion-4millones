@@ -80,6 +80,6 @@ export default async function handler(request, response) {
     }
   } catch (error) {
     console.error('Error calling Gemini API:', error);
-    return response.status(500).json({ error: 'Failed to generate action plan.' });
+    return response.status(500).json({ error: error.message });
   }
 }
