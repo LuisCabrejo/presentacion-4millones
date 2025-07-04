@@ -1,4 +1,3 @@
-// Contenido para js/main.js
 document.addEventListener('DOMContentLoaded', function() {
     // ============== CONFIGURACIÓN INICIAL ==============
     const CONFIG = {
@@ -53,12 +52,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function setCurrency(currency) {
         state.currency = currency;
-        if(ui.btnUSD) {
-            ui.btnUSD.classList.toggle('currency-btn-active', currency === 'USD');
-            ui.btnUSD.classList.toggle('currency-btn-inactive', currency !== 'USD');
-            ui.btnCOP.classList.toggle('currency-btn-active', currency === 'COP');
-            ui.btnCOP.classList.toggle('currency-btn-inactive', currency !== 'COP');
-        }
+        ui.btnUSD.classList.toggle('currency-btn-active', currency === 'USD');
+        ui.btnUSD.classList.toggle('currency-btn-inactive', currency !== 'USD');
+        ui.btnCOP.classList.toggle('currency-btn-active', currency === 'COP');
+        ui.btnCOP.classList.toggle('currency-btn-inactive', currency !== 'COP');
         renderAll();
     }
 
@@ -77,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
         updateIncomeGoalLabels();
     }
 
-    function renderPackagePrices() { if(ui.priceLabels) { ui.priceLabels.forEach(label => { const usdPrice = parseFloat(label.dataset.priceUsd); label.textContent = `Inversión: ${formatCurrency(usdPrice)}`; }); } }
+    function renderPackagePrices() { ui.priceLabels.forEach(label => { const usdPrice = parseFloat(label.dataset.priceUsd); label.textContent = `Inversión: ${formatCurrency(usdPrice)}`; }); }
     
     function renderFastStart() {
         if (!ui.partnersSlider) return;
@@ -174,7 +171,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function updateIncomeGoalLabels() {
-        if (!ui.incomeGoalRadios || ui.incomeGoalRadios.length === 0) return;
         ui.incomeGoalRadios.forEach(radio => {
             const labelSpan = document.getElementById(radio.nextElementSibling.id);
             let text = radio.value;
@@ -195,6 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else { ui.whatsappLink.href = "https://wa.me/"; }
     }
 
+    // ============== FUNCIÓN PARA COPIAR CON MEJOR UX ==============
     function copyPlanToClipboard() {
         const planText = ui.actionPlanResult.innerText;
         navigator.clipboard.writeText(planText).then(() => {
@@ -212,6 +209,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // ============== FUNCIÓN CLAVE (SIN CAMBIOS EN LA LÓGICA DE API) ==============
     async function generateActionPlan() {
         const form = ui.goalForm;
         const formData = {
@@ -282,27 +280,23 @@ document.addEventListener('DOMContentLoaded', function() {
         if(ui.btnUSD) ui.btnUSD.addEventListener('click', () => setCurrency('USD'));
         if(ui.btnCOP) ui.btnCOP.addEventListener('click', () => setCurrency('COP'));
         if(ui.packageButtons) {
-            Object.values(ui.packageButtons).forEach(btn => {
-                if(btn) btn.addEventListener('click', () => selectPackage(btn.id.replace('btn-', '')));
-            });
+            Object.values(ui.packageButtons).forEach(btn => btn.addEventListener('click', () => selectPackage(btn.id.replace('btn-', ''))));
         }
         if(ui.partnersSlider) ui.partnersSlider.addEventListener('input', renderFastStart);
         if(ui.teamSlider) ui.teamSlider.addEventListener('input', renderBinary);
         if(ui.generatePlanBtn) ui.generatePlanBtn.addEventListener('click', generateActionPlan);
         if(ui.copyPlanBtn) ui.copyPlanBtn.addEventListener('click', copyPlanToClipboard);
         
-        if (ui.goalForm) {
-            document.querySelectorAll('input[name="package"], input[name="income"], input[name="commitment"]').forEach(radio => {
-                radio.addEventListener('change', () => {
-                    document.querySelectorAll(`input[name="${radio.name}"]`).forEach(r => {
-                        r.parentElement.classList.remove('selected');
-                    });
-                    if (radio.checked) {
-                        radio.parentElement.classList.add('selected');
-                    }
+        document.querySelectorAll('input[name="package"], input[name="income"], input[name="commitment"]').forEach(radio => {
+            radio.addEventListener('change', () => {
+                document.querySelectorAll(`input[name="${radio.name}"]`).forEach(r => {
+                    r.parentElement.classList.remove('selected');
                 });
+                if (radio.checked) {
+                    radio.parentElement.classList.add('selected');
+                }
             });
-        }
+        });
 
         handleTabs();
         if(ui.binaryChartCanvas) createBinaryChart();
@@ -314,4 +308,3 @@ document.addEventListener('DOMContentLoaded', function() {
 
     initialize();
 });
-</script>
