@@ -6,33 +6,71 @@
     <title>Gano Excel | Un Proyecto de Expansión Estratégica</title>
 
     <meta property="og:title" content="Gano Excel | Un Proyecto de Expansión Estratégica">
-    <meta property="og:description" content="Descubre un modelo de negocio inteligente, diseñado para construir un activo empresarial heredable con autonomía y el respaldo de un socio global.">
+    <meta property="og:description" content="Descubre un modelo de negocio inteligente, diseñado para construir un activo propio con autonomía, propósito y el respaldo de un socio global.">
     <meta property="og:image" content="https://4millones.com/wp-content/uploads/2024/10/gano-excel-social-share-final.png">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://presentacion.4millones.com/">
+
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://presentacion.4millones.com/">
     <meta name="twitter:title" content="Gano Excel | Un Proyecto de Expansión Estratégica">
-    <meta name="twitter:description" content="Descubre un modelo de negocio inteligente, diseñado para construir un activo empresarial heredable con autonomía y el respaldo de un socio global.">
+    <meta name="twitter:description" content="Descubre un modelo de negocio inteligente, diseñado para construir un activo propio con autonomía, propósito y el respaldo de un socio global.">
     <meta name="twitter:image" content="https://4millones.com/wp-content/uploads/2024/10/gano-excel-social-share-final.png">
 
-    <link rel="icon" href="https://4millones.com/wp-content/uploads/2025/07/favicon-4millones.com_.png" type="image/png">
-    <link rel="apple-touch-icon" href="https://4millones.com/wp-content/uploads/2025/07/favicon-4millones.com_.png">
+    <link rel="icon" href="https://4millones.com/wp-content/uploads/2024/10/1.png" type="image/png">
+    <link rel="apple-touch-icon" href="https://4millones.com/wp-content/uploads/2024/10/1.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
-    
-    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9fa; color: #212529; }
+        .hero-bg { background-color: #0d1b2a; }
+        .section-title { font-weight: 800; color: #0d1b2a; }
+        .section-subtitle { color: #415a77; }
+        .card { background-color: #ffffff; border: 1px solid #dee2e6; border-radius: 1rem; box-shadow: 0 4px 25px rgba(0,0,0,0.05); }
+        .feature-card { background-color: white; border-radius: 1.5rem; padding: 2rem; text-align: center; box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.05); border: 1px solid #e5e7eb; transition: all 0.3s ease; }
+        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 20px 30px -10px rgb(0 0 0 / 0.1); }
+        .btn-primary { background-color: #e0b1cb; color: #0d1b2a; font-weight: 700; transition: all 0.3s ease; padding: 0.75rem 1.5rem; border-radius: 0.5rem; }
+        .btn-primary:hover { background-color: #c497b2; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .chart-container { position: relative; width: 100%; max-width: 500px; margin: 2rem auto 0 auto; height: 350px; md:height: 400px; }
+        .tab { cursor: pointer; padding: 0.75rem 1rem; border-bottom: 4px solid transparent; color: #6b7280; font-weight: 600; transition: all 0.2s; }
+        .tab:hover { color: #415a77; }
+        .tab-active { border-bottom-color: #e0b1cb; color: #0d1b2a; }
+        .tab-content { display: none; }
+        .tab-content-active { display: block; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 24px; width: 24px; border-radius: 50%; background: #415a77; cursor: pointer; margin-top: -9px; box-shadow: 0 0 2px #000; }
+        input[type=range]::-moz-range-thumb { height: 24px; width: 24px; border-radius: 50%; background: #415a77; cursor: pointer; border: none; }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 6px; cursor: pointer; background: #e0e7ff; border-radius: 5px; }
+        input[type=range]::-moz-range-track { width: 100%; height: 6px; cursor: pointer; background: #e0e7ff; border-radius: 5px; }
+        .currency-btn-active { background-color: #415a77; color: white; }
+        .currency-btn-inactive { background-color: #e0e7ff; color: #415a77; }
+        .table-cell { padding: 0.75rem 1rem; text-align: right; white-space: nowrap; }
+        .gemini-plan-container { background-color: #f0f9ff; border-left: 4px solid #778da9; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1.5rem; text-align: left; }
+        .gemini-plan-container h4 { font-weight: 700; color: #0d1b2a; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .gemini-plan-container ul { list-style-type: disc; padding-left: 1.5rem; color: #1b263b; }
+        .gemini-loader { border: 4px solid #f3f3f3; border-top: 4px solid #415a77; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .form-question { margin-bottom: 1.5rem; }
+        .form-question label { font-weight: 600; color: #1b263b; display: block; margin-bottom: 0.75rem; }
+        .form-question input[type="text"], .form-question select { width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem; transition: border-color 0.2s; }
+        .form-question input[type="text"]:focus, .form-question select:focus { outline: none; border-color: #778da9; }
+        .radio-option { display: flex; align-items: center; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem; margin-bottom: 0.5rem; cursor: pointer; }
+        .radio-option input { margin-right: 0.75rem; }
+        .radio-option.selected { border-color: #778da9; background-color: #f8f9fa; }
+    </style>
 </head>
 <body class="antialiased">
 
     <header class="hero-bg text-white">
         <div class="container mx-auto px-6 py-24 text-center">
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-black">Conviértete en Arquitecto de tu Futuro</h1>
-            <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto text-gray-300">Descubre un modelo de negocio inteligente, diseñado para construir <strong class="text-[#e0b1cb]">un activo empresarial heredable</strong> con autonomía y el respaldo de un socio global.</p>
+            <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto text-gray-300">Descubre un modelo de negocio inteligente, diseñado para construir un activo propio con autonomía, propósito y el respaldo de un socio global.</p>
             <a href="#proyeccion" class="inline-block mt-8 py-3 px-8 rounded-lg btn-primary text-lg">Explorar Proyecciones</a>
         </div>
     </header>
@@ -54,7 +92,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10 text-center">
                     <div><p class="text-4xl font-bold text-green-500">✓</p><h4 class="text-xl font-bold text-gray-900 mt-2">Autonomía Estratégica</h4><p class="text-gray-600 mt-1">Tú decides tus horas y tu nivel de esfuerzo. El control vuelve a ti.</p></div>
                     <div><p class="text-4xl font-bold text-green-500">✓</p><h4 class="text-xl font-bold text-gray-900 mt-2">Ingreso Apalancado</h4><p class="text-gray-600 mt-1">Tu potencial no está limitado por un salario. Ganas por la productividad de toda una red.</p></div>
-                    <div><p class="text-4xl font-bold text-green-500">✓</p><h4 class="text-xl font-bold text-gray-900 mt-2">Construcción de Activos</h4><p class="text-gray-600 mt-1">Inviertes tiempo en construir un <strong>activo empresarial heredable</strong> que genera ingresos a largo plazo.</p></div>
+                    <div><p class="text-4xl font-bold text-green-500">✓</p><h4 class="text-xl font-bold text-gray-900 mt-2">Construcción de Activos</h4><p class="text-gray-600 mt-1">Inviertes tiempo en construir un sistema que genera ingresos a largo plazo.</p></div>
                 </div>
             </div>
         </section>
@@ -99,21 +137,9 @@
             </div>
             <div class="mt-12 max-w-5xl mx-auto p-2">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                    <div class="p-6">
-                        <img src="https://4millones.com/wp-content/uploads/2025/07/bebidas.webp" alt="Bebidas Enriquecidas con Ganoderma" class="mx-auto h-32 w-32 object-cover rounded-full shadow-lg mb-5">
-                        <h3 class="text-xl font-bold mt-5 text-gray-900">Bebidas Enriquecidas</h3>
-                        <p class="mt-2 text-gray-600">El corazón de nuestro portafolio. Café, chocolate y té transformados en vehículos de bienestar diario.</p>
-                    </div>
-                    <div class="p-6">
-                        <img src="https://4millones.com/wp-content/uploads/2025/07/capsulas.webp" alt="Suplementos Potentes con Ganoderma" class="mx-auto h-32 w-32 object-cover rounded-full shadow-lg mb-5">
-                        <h3 class="text-xl font-bold mt-5 text-gray-900">Suplementos Potentes</h3>
-                        <p class="mt-2 text-gray-600">Cápsulas con la máxima concentración de Ganoderma para un apoyo nutricional superior y específico.</p>
-                    </div>
-                    <div class="p-6">
-                        <img src="https://4millones.com/wp-content/uploads/2025/07/cuidado-personal.webp" alt="Cuidado Personal con Ganoderma" class="mx-auto h-32 w-32 object-cover rounded-full shadow-lg mb-5">
-                        <h3 class="text-xl font-bold mt-5 text-gray-900">Cuidado Personal</h3>
-                        <p class="mt-2 text-gray-600">Productos de uso cotidiano que llevan los beneficios del Ganoderma a la rutina de toda la familia.</p>
-                    </div>
+                    <div class="p-6"><div class="text-6xl mb-4">☕</div><h3 class="text-xl font-bold mt-5 text-gray-900">Bebidas Enriquecidas</h3><p class="mt-2 text-gray-600">El corazón de nuestro portafolio. Café, chocolate y té transformados en vehículos de bienestar diario.</p></div>
+                    <div class="p-6"><div class="text-6xl mb-4">🌿</div><h3 class="text-xl font-bold mt-5 text-gray-900">Suplementos Potentes</h3><p class="mt-2 text-gray-600">Cápsulas con la máxima concentración de Ganoderma para un apoyo nutricional superior y específico.</p></div>
+                    <div class="p-6"><div class="text-6xl mb-4">✨</div><h3 class="text-xl font-bold mt-5 text-gray-900">Cuidado Personal</h3><p class="mt-2 text-gray-600">Productos de uso cotidiano que llevan los beneficios del Ganoderma a la rutina de toda la familia.</p></div>
                 </div>
                 <div class="text-center mt-10"><a href="https://www.ganoexcel.com.co/todos-productos/" target="_blank" class="btn-primary py-3 px-6 text-lg">Conoce el Catálogo Completo</a></div>
             </div>
@@ -192,7 +218,7 @@
                         </div>
                          <div id="content-3" class="tab-content">
                              <h4 class="text-2xl font-bold text-[#415a77]">Fase de Ingreso Residual</h4>
-                            <p class="mt-2 text-lg text-gray-700">Esta es la meta estratégica: construir un <strong>activo empresarial</strong> que genere un flujo de ingreso pasivo, mensual y <strong>heredable</strong>. Este ingreso proviene del consumo constante de productos en toda tu red global, un activo que genera rendimientos independientemente de tu esfuerzo directo.</p>
+                            <p class="mt-2 text-lg text-gray-700">Esta es la meta estratégica: construir un flujo de ingreso pasivo, mensual y heredable. Este ingreso proviene del consumo constante de productos en toda tu red global, un activo que genera rendimientos independientemente de tu esfuerzo directo.</p>
                         </div>
                     </div>
                 </div>
@@ -227,8 +253,7 @@
                             <div class="bg-white p-4 rounded-lg shadow-sm"><p id="teamSize" class="text-3xl md:text-4xl font-black text-[#415a77]">10</p><p class="text-sm font-semibold text-slate-500 mt-1">Personas por Equipo (Izq/Der)</p></div>
                             <div class="bg-white p-6 rounded-lg shadow"><p id="binaryIncome" class="text-4xl md:text-5xl font-black text-[#0d1b2a]">$0</p><p class="text-base font-semibold text-slate-600 mt-1">Ingreso Binario Mensual Potencial</p></div>
                         </div>
-                        <div class="mt-8 h-96"><canvas id="binaryChart"></canvas></div>
-                    </div>
+                        <div class="mt-8 h-96"><canvas id="binaryChart"></canvas></div> </div>
                 </div>
             </div>
         </section>
@@ -276,6 +301,317 @@
         </div>
     </footer>
 
-    <script src="js/main.js" defer></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // ============== CONFIGURACIÓN INICIAL ==============
+        const CONFIG = {
+            packages: {
+                'ESP1': { investment: 200, gen5Bonuses: [25, 5, 5, 5, 10], cv: 100 },
+                'ESP2': { investment: 500, gen5Bonuses: [75, 10, 10, 10, 20], cv: 250 },
+                'ESP3': { investment: 1000, gen5Bonuses: [150, 20, 20, 20, 40], cv: 500 }
+            },
+            exchangeRate: 4500,
+            binary: { cvPerPerson: 50, percentage: 0.17 }
+        };
+
+        let state = { currency: 'COP', selectedPackage: 'ESP3' };
+        let binaryChartInstance;
+
+        const ui = {
+            partnersSlider: document.getElementById('partnersSlider'),
+            partnersValue: document.getElementById('partnersValue'),
+            fastStartBonusEl: document.getElementById('fastStartBonus'),
+            netResultEl: document.getElementById('netResult'),
+            teamSlider: document.getElementById('teamSlider'),
+            teamSizeEl: document.getElementById('teamSize'),
+            binaryIncomeEl: document.getElementById('binaryIncome'),
+            btnUSD: document.getElementById('btn-USD'),
+            btnCOP: document.getElementById('btn-COP'),
+            packageButtons: { 'ESP1': document.getElementById('btn-ESP1'), 'ESP2': document.getElementById('btn-ESP2'), 'ESP3': document.getElementById('btn-ESP3') },
+            priceLabels: document.querySelectorAll('[data-price-usd]'),
+            gen5TableBody: document.getElementById('gen5-table-body'),
+            gen5Total: document.getElementById('gen5-total'),
+            binaryChartCanvas: document.getElementById('binaryChart'),
+            goalForm: document.getElementById('goal-form'),
+            formError: document.getElementById('form-error'),
+            generatePlanBtn: document.getElementById('generate-plan-btn'),
+            planLoaderContainer: document.getElementById('plan-loader-container'),
+            actionPlanResult: document.getElementById('action-plan-result'),
+            planActions: document.getElementById('plan-actions'),
+            copyPlanBtn: document.getElementById('copy-plan-btn'),
+            copyFeedback: document.getElementById('copy-feedback'),
+            trendsRadarChart: document.getElementById('trendsRadarChart'),
+            tabsContainer: document.getElementById('tabs-container'),
+            tabContents: document.querySelectorAll('.tab-content'),
+            incomeGoalRadios: document.querySelectorAll('input[name="income"]'),
+            whatsappLink: document.getElementById('whatsapp-link'),
+        };
+
+        // ============== FUNCIONES DE RENDERIZADO Y CÁLCULO ==============
+        const formatCurrency = (value) => {
+            const options = { style: 'currency', currency: state.currency, minimumFractionDigits: 0, maximumFractionDigits: 0 };
+            const currencyValue = state.currency === 'COP' ? value * CONFIG.exchangeRate : value;
+            return new Intl.NumberFormat(state.currency === 'COP' ? 'es-CO' : 'en-US', options).format(currencyValue);
+        };
+
+        function setCurrency(currency) {
+            state.currency = currency;
+            ui.btnUSD.classList.toggle('currency-btn-active', currency === 'USD');
+            ui.btnUSD.classList.toggle('currency-btn-inactive', currency !== 'USD');
+            ui.btnCOP.classList.toggle('currency-btn-active', currency === 'COP');
+            ui.btnCOP.classList.toggle('currency-btn-inactive', currency !== 'COP');
+            renderAll();
+        }
+
+        function selectPackage(pkg) {
+            state.selectedPackage = pkg;
+            Object.values(ui.packageButtons).forEach(btn => btn.classList.remove('border-blue-600', 'bg-blue-50', 'border-2'));
+            ui.packageButtons[pkg].classList.add('border-blue-600', 'bg-blue-50', 'border-2');
+            renderAll();
+        }
+
+        function renderAll() {
+            renderPackagePrices();
+            renderFastStart();
+            renderGen5Projection();
+            if(ui.teamSlider) renderBinary();
+            updateIncomeGoalLabels();
+        }
+
+        function renderPackagePrices() { ui.priceLabels.forEach(label => { const usdPrice = parseFloat(label.dataset.priceUsd); label.textContent = `Inversión: ${formatCurrency(usdPrice)}`; }); }
+        
+        function renderFastStart() {
+            if (!ui.partnersSlider) return;
+            const numPartners = parseInt(ui.partnersSlider.value);
+            ui.partnersValue.textContent = numPartners;
+            const packageInfo = CONFIG.packages[state.selectedPackage];
+            const totalBonusUSD = numPartners * packageInfo.gen5Bonuses[0];
+            const netResultUSD = totalBonusUSD - packageInfo.investment;
+            ui.fastStartBonusEl.textContent = formatCurrency(totalBonusUSD);
+            ui.netResultEl.textContent = formatCurrency(netResultUSD);
+            ui.netResultEl.classList.toggle('text-red-600', netResultUSD < 0);
+            ui.netResultEl.classList.toggle('text-green-600', netResultUSD >= 0);
+        }
+
+        function renderGen5Projection() {
+            if (!ui.gen5TableBody) return;
+            let accumulatedIncome = 0, tableHTML = '';
+            const { gen5Bonuses, cv } = CONFIG.packages[state.selectedPackage];
+            for (let i = 0; i < 5; i++) {
+                const generation = i + 1;
+                const newPartners = Math.pow(2, generation);
+                const gen5Income = newPartners * gen5Bonuses[i];
+                const binaryIncome = Math.pow(2, i) * cv * CONFIG.binary.percentage;
+                accumulatedIncome += gen5Income + binaryIncome;
+                tableHTML += `<tr class="border-b border-slate-200"><td class="table-cell text-left font-semibold text-slate-700">Generación ${generation}</td><td class="table-cell">${newPartners}</td><td class="table-cell">${formatCurrency(gen5Income)}</td><td class="table-cell">${formatCurrency(binaryIncome)}</td><td class="table-cell font-bold text-blue-700">${formatCurrency(accumulatedIncome)}</td></tr>`;
+            }
+            ui.gen5TableBody.innerHTML = tableHTML;
+            ui.gen5Total.textContent = formatCurrency(accumulatedIncome);
+        }
+
+        const calculateBinaryIncome = (teamMembers) => CONFIG.binary.cvPerPerson * teamMembers * CONFIG.binary.percentage;
+        
+        function renderBinary() {
+            if (!ui.teamSlider) return;
+            const teamMembers = parseInt(ui.teamSlider.value);
+            ui.teamSizeEl.textContent = teamMembers;
+            const incomeUSD = calculateBinaryIncome(teamMembers);
+            ui.binaryIncomeEl.textContent = formatCurrency(incomeUSD);
+            if (binaryChartInstance) updateChartData(teamMembers);
+        }
+        
+        function updateChartData(maxTeamSize) {
+             if (!binaryChartInstance) return;
+            const labels = [];
+            const data = [];
+            const step = Math.max(10, Math.floor(maxTeamSize / 10));
+
+            for (let i = 10; i <= maxTeamSize; i += step) {
+                labels.push(i);
+                data.push(calculateBinaryIncome(i));
+            }
+            if (labels[labels.length - 1] < maxTeamSize) {
+                 labels.push(maxTeamSize);
+                 data.push(calculateBinaryIncome(maxTeamSize));
+            }
+
+            binaryChartInstance.data.labels = labels;
+            binaryChartInstance.data.datasets[0].data = data;
+            binaryChartInstance.update();
+        }
+
+        function createBinaryChart() {
+            if (!ui.binaryChartCanvas) return;
+            const ctx = ui.binaryChartCanvas.getContext('2d');
+            binaryChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: { labels: [], datasets: [{ label: 'Ingreso Binario Mensual', data: [], fill: true, borderColor: 'rgb(75, 192, 192)', tension: 0.1, backgroundColor: 'rgba(75, 192, 192, 0.2)' }] },
+                options: { scales: { y: { beginAtZero: true, ticks: { callback: value => formatCurrency(value) } }, x: { title: { display: true, text: 'Personas por Equipo' } } }, plugins: { legend: { display: false } } }
+            });
+            updateChartData(parseInt(ui.teamSlider.value));
+        }
+        
+        function createTrendsRadarChart() {
+            if (!ui.trendsRadarChart) return;
+            const ctx = ui.trendsRadarChart.getContext('2d');
+            const labels = [['Industria del', 'Bienestar'], ['Economía', 'Colaborativa'], ['Industria', 'del Café']];
+            new Chart(ctx, {
+                type: 'radar',
+                data: { labels: labels, datasets: [{ label: 'Posicionamiento de Gano Excel', data: [9, 8, 9.5], backgroundColor: 'rgba(67, 90, 119, 0.2)', borderColor: 'rgb(67, 90, 119)', pointBackgroundColor: 'rgb(67, 90, 119)', pointBorderColor: '#fff', pointHoverBackgroundColor: '#fff', pointHoverBorderColor: 'rgb(67, 90, 119)' }] },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { title: function(tooltipItems) { const item = tooltipItems[0]; let label = item.chart.data.labels[item.dataIndex]; return Array.isArray(label) ? label.join(' ') : label; } } } }, scales: { r: { angleLines: { color: '#dee2e6' }, grid: { color: '#e5e7eb' }, pointLabels: { font: { size: window.innerWidth < 640 ? 12 : 14, weight: '600' }, color: '#1b263b' }, ticks: { display: false, stepSize: 2 } } } }
+            });
+        }
+
+        function handleTabs() {
+            if (!ui.tabsContainer) return;
+            ui.tabsContainer.addEventListener('click', (e) => {
+                if (e.target.matches('.tab')) {
+                    const tabNumber = e.target.dataset.tab;
+                    ui.tabsContainer.querySelectorAll('.tab').forEach(t => t.classList.remove('tab-active'));
+                    e.target.classList.add('tab-active');
+                    ui.tabContents.forEach(c => { c.classList.remove('tab-content-active'); if (c.id === `content-${tabNumber}`) { c.classList.add('tab-content-active'); } });
+                }
+            });
+        }
+        
+        function updateIncomeGoalLabels() {
+            ui.incomeGoalRadios.forEach(radio => {
+                const labelSpan = document.getElementById(radio.nextElementSibling.id);
+                let text = radio.value;
+                if(text.includes('{val}')) { text = text.replace('{val}', formatCurrency(radio.dataset.usd)); }
+                if(text.includes('{val1}')) { text = text.replace('{val1}', formatCurrency(radio.dataset.usd1)); }
+                 if(text.includes('{val2}')) { text = text.replace('{val2}', formatCurrency(radio.dataset.usd2)); }
+                labelSpan.textContent = text;
+            });
+        }
+        
+        function setupWhatsAppLink() {
+            if (!ui.whatsappLink) return;
+            const params = new URLSearchParams(window.location.search);
+            const phone = params.get('socio');
+            if (phone) {
+                const message = encodeURIComponent("Hola, vi la presentación de la oportunidad y me gustaría saber más.");
+                ui.whatsappLink.href = `https://wa.me/${phone}?text=${message}`;
+            } else { ui.whatsappLink.href = "https://wa.me/"; }
+        }
+
+        // ============== FUNCIÓN PARA COPIAR CON MEJOR UX ==============
+        function copyPlanToClipboard() {
+            const planText = ui.actionPlanResult.innerText;
+            navigator.clipboard.writeText(planText).then(() => {
+                ui.copyPlanBtn.textContent = '✅ ¡Copiado!';
+                ui.copyFeedback.textContent = 'Ahora puedes pegarlo en tu app de notas, WhatsApp o un documento (Word, Google Docs).';
+                ui.copyFeedback.style.display = 'block';
+
+                setTimeout(() => {
+                    ui.copyPlanBtn.textContent = 'Copiar Plan';
+                    ui.copyFeedback.style.display = 'none';
+                }, 4000);
+            }).catch(err => {
+                console.error('Error al copiar el plan: ', err);
+                alert("No se pudo copiar el plan.");
+            });
+        }
+
+        // ============== FUNCIÓN CLAVE (SIN CAMBIOS EN LA LÓGICA DE API) ==============
+        async function generateActionPlan() {
+            const form = ui.goalForm;
+            const formData = {
+                userName: form.elements['user-name'].value,
+                selectedPackage: form.elements['package'].value,
+                motivation: form.elements['motivation'].value,
+                incomeGoal: form.elements['income'].value,
+                personalGoal: form.elements['personal-goal'].value || "No especificado",
+                healthGoal: form.elements['health-goal'].value,
+                commitment: form.elements['commitment'].value,
+            };
+
+            if (!formData.userName || !formData.healthGoal) {
+                ui.formError.style.display = 'block';
+                return;
+            }
+            
+            ui.formError.style.display = 'none';
+            ui.actionPlanResult.style.display = 'none';
+            ui.planActions.style.display = 'none';
+            ui.planLoaderContainer.style.display = 'block';
+            ui.actionPlanResult.innerHTML = '';
+
+            const apiUrl = '/api/generate-plan';
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                if (!response.ok) {
+                    const errData = await response.json().catch(() => ({ error: 'Error desconocido en el servidor.' }));
+                    throw new Error(errData.error || `La petición a la API falló con estado ${response.status}`);
+                }
+                
+                const result = await response.json();
+
+                if (result.plan) {
+                    ui.actionPlanResult.innerHTML = parseMarkdownToHTML(result.plan);
+                    ui.actionPlanResult.style.display = 'block';
+                    ui.planActions.style.display = 'block';
+                } else {
+                    throw new Error("No se recibió un plan de la API.");
+                }
+
+            } catch (error) {
+                console.error("API Error:", error);
+                ui.actionPlanResult.innerHTML = `<p class="text-red-600">Lo sentimos, no se pudo generar el plan de acción en este momento. Por favor, intente de nuevo más tarde.</p>`;
+                ui.actionPlanResult.style.display = 'block';
+            } finally {
+                ui.planLoaderContainer.style.display = 'none';
+                ui.actionPlanResult.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+        
+        function parseMarkdownToHTML(text) {
+            text = text.replace(/^####\s+(.*$)/gim, '<h4 class="text-lg font-bold text-sky-800 mt-4 mb-2">$1</h4>');
+            text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            text = text.replace(/^\s*\*\s+(.*$)/gim, '<li class="mb-1">$1</li>');
+            text = text.replace(/((<li>.*<\/li>\s*)+)/g, '<ul class="list-disc list-inside text-sky-700 space-y-1">$1</ul>');
+            return text;
+        }
+
+        // ============== FUNCIÓN DE INICIALIZACIÓN ==============
+        function initialize() {
+            if(ui.btnUSD) ui.btnUSD.addEventListener('click', () => setCurrency('USD'));
+            if(ui.btnCOP) ui.btnCOP.addEventListener('click', () => setCurrency('COP'));
+            if(ui.packageButtons) {
+                Object.values(ui.packageButtons).forEach(btn => btn.addEventListener('click', () => selectPackage(btn.id.replace('btn-', ''))));
+            }
+            if(ui.partnersSlider) ui.partnersSlider.addEventListener('input', renderFastStart);
+            if(ui.teamSlider) ui.teamSlider.addEventListener('input', renderBinary);
+            if(ui.generatePlanBtn) ui.generatePlanBtn.addEventListener('click', generateActionPlan);
+            if(ui.copyPlanBtn) ui.copyPlanBtn.addEventListener('click', copyPlanToClipboard);
+            
+            document.querySelectorAll('input[name="package"], input[name="income"], input[name="commitment"]').forEach(radio => {
+                radio.addEventListener('change', () => {
+                    document.querySelectorAll(`input[name="${radio.name}"]`).forEach(r => {
+                        r.parentElement.classList.remove('selected');
+                    });
+                    if (radio.checked) {
+                        radio.parentElement.classList.add('selected');
+                    }
+                });
+            });
+
+            handleTabs();
+            if(ui.binaryChartCanvas) createBinaryChart();
+            if(ui.trendsRadarChart) createTrendsRadarChart();
+            setupWhatsAppLink();
+            if(ui.packageButtons && ui.packageButtons.ESP3) selectPackage('ESP3');
+            setCurrency('COP');
+        }
+
+        initialize();
+    });
+    </script>
 </body>
 </html>
