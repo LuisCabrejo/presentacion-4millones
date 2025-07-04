@@ -5,24 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gano Excel | Un Proyecto de Expansión Estratégica</title>
 
-    <!-- ============== Open Graph Meta Tags for Social Sharing ============== -->
     <meta property="og:title" content="Gano Excel | Un Proyecto de Expansión Estratégica">
     <meta property="og:description" content="Descubre un modelo de negocio inteligente, diseñado para construir un activo propio con autonomía, propósito y el respaldo de un socio global.">
     <meta property="og:image" content="https://4millones.com/wp-content/uploads/2024/10/gano-excel-social-share-final.png">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://presentacion.4millones.com/">
 
-    <!-- ============== Favicon ============== -->
     <link rel="icon" href="https://4millones.com/wp-content/uploads/2024/10/1.png" type="image/png">
 
-    <!-- ============== Performance & Fonts ============== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 
-    <!-- ============== Custom Styles ============== -->
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f8f9fa; color: #212529; }
         .hero-bg { background-color: #0d1b2a; }
@@ -74,7 +70,6 @@
 
     <main class="container mx-auto px-4 md:px-6">
 
-        <!-- Sections remain the same until the AI plan section -->
         <section id="problema-solucion" class="py-16 md:py-24">
             <div class="text-center">
                 <h2 class="section-title text-3xl md:text-4xl">La Trampa del Siglo XXI</h2>
@@ -130,7 +125,9 @@
         </section>
 
         <section id="productos" class="py-16 md:py-24">
-            <h2 class="section-title text-3xl md:text-4xl">La Materialización: Un Portafolio de Bienestar Premium</h2><p class="section-subtitle">Nuestra innovación patentada cobra vida en una línea de productos de alta rotación, diseñados para el consumo diario y el bienestar integral.</p>
+            <div class="text-center">
+                <h2 class="section-title text-3xl md:text-4xl">La Materialización: Un Portafolio de Bienestar Premium</h2><p class="section-subtitle mt-3 text-lg">Nuestra innovación patentada cobra vida en una línea de productos de alta rotación, diseñados para el consumo diario y el bienestar integral.</p>
+            </div>
             <div class="mt-12 max-w-5xl mx-auto p-2">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                     <div class="p-6"><div class="text-6xl mb-4">☕</div><h3 class="text-xl font-bold mt-5 text-gray-900">Bebidas Enriquecidas</h3><p class="mt-2 text-gray-600">El corazón de nuestro portafolio. Café, chocolate y té transformados en vehículos de bienestar diario.</p></div>
@@ -260,14 +257,14 @@
             <div class="mt-12 max-w-3xl mx-auto">
                 <div class="bg-white p-6 md:p-8 rounded-xl shadow-2xl">
                     <form id="goal-form" class="space-y-6">
-                        <div class="form-question"><label for="user-name">1. ¿Cuál es tu nombre?</label><input type="text" id="user-name" name="user-name" placeholder="Escribe tu nombre aquí"></div>
+                        <div class="form-question"><label for="user-name">1. ¿Cuál es tu nombre?</label><input type="text" id="user-name" name="user-name" placeholder="Escribe tu nombre aquí" required></div>
                         <div class="form-question"><label>2. ¿Con qué paquete empresarial iniciarás tu proyecto?</label><div id="package-choice" class="space-y-2"><label class="radio-option"><input type="radio" name="package" value="ESP3" checked><span>Paquete Empresarial ESP 3</span></label><label class="radio-option"><input type="radio" name="package" value="ESP2"><span>Paquete Empresarial ESP 2</span></label><label class="radio-option"><input type="radio" name="package" value="ESP1"><span>Paquete Empresarial ESP 1</span></label></div></div>
                         <div class="form-question"><label for="motivation">3. ¿Cuál es tu motor principal para construir este negocio?</label><select name="motivation" id="motivation" class="bg-white"><option value="Seguridad: Crear un 'Plan B' sólido y un patrimonio heredable.">Seguridad y Patrimonio</option><option value="Reconocimiento: Convertirme en un líder influyente y ser reconocido por mis logros.">Liderazgo y Reconocimiento</option><option value="Autonomía y Viajes: Calificar a los viajes corporativos y tener autonomía de tiempo.">Autonomía y Viajes</option><option value="Crecimiento: Desarrollar nuevas habilidades y convertirme en mi mejor versión.">Crecimiento Personal</option><option value="Contribución: Ayudar a otras personas a mejorar su salud y sus finanzas.">Ayudar a Otros</option></select></div>
                         <div class="form-question"><label>4. ¿Cuál es tu meta de ingreso semanal inicial?</label><div id="income-goal" class="space-y-2"><label class="radio-option"><input type="radio" name="income" value="Recuperar mi inversión y generar mis primeros {val}" data-usd="200" checked><span id="income-label-1">Recuperar mi inversión y generar mis primeros $900.000 COP.</span></label><label class="radio-option"><input type="radio" name="income" value="Generar entre {val1} y {val2} para cubrir gastos importantes" data-usd1="300" data-usd2="500"><span id="income-label-2">Generar entre $1.350.000 - $2.250.000 COP para cubrir gastos importantes.</span></label><label class="radio-option"><input type="radio" name="income" value="Apuntar a más de {val} para empezar a construir un nuevo estilo de vida" data-usd="500"><span id="income-label-3">Apuntar a más de $2.250.000 COP para un nuevo estilo de vida.</span></label></div></div>
                         <div class="form-question"><label for="personal-goal">5. ¿Qué meta personal o sueño inmediato te gustaría alcanzar con tus primeros ingresos? (Opcional)</label><input type="text" id="personal-goal" name="personal-goal" placeholder="Ej: Pagar una deuda, las próximas vacaciones, etc."></div>
-                        <div class="form-question"><label for="health-goal">6. Para ser 'producto del producto', ¿qué área de bienestar te gustaría mejorar?</label><input type="text" id="health-goal" name="health-goal" placeholder="Ej: Mejorar mi energía, manejar el estrés, etc."></div>
+                        <div class="form-question"><label for="health-goal">6. Para ser 'producto del producto', ¿qué área de bienestar te gustaría mejorar?</label><input type="text" id="health-goal" name="health-goal" placeholder="Ej: Mejorar mi energía, manejar el estrés, etc." required></div>
                         <div class="form-question"><label>7. El éxito ama la velocidad. ¿A cuántas personas te comprometes a presentarles la visión en tus primeras 48 horas?</label><div id="commitment" class="space-y-2"><label class="radio-option"><input type="radio" name="commitment" value="a mis 2 mejores prospectos" checked><span>A mis 2 mejores prospectos.</span></label><label class="radio-option"><input type="radio" name="commitment" value="a 4 personas de mi círculo de confianza"><span>A 4 personas de mi círculo de confianza.</span></label><label class="radio-option"><input type="radio" name="commitment" value="a más de 5! Estoy listo para correr"><span>¡A más de 5! Estoy listo para correr.</span></label></div></div>
-                        <div id="form-error" class="text-red-600 text-center" style="display: none;">Por favor, complete todos los campos obligatorios.</div>
+                        <div id="form-error" class="text-red-600 text-center" style="display: none;">Por favor, complete su nombre y meta de bienestar.</div>
                         <div class="text-center mt-8"><button type="button" id="generate-plan-btn" class="w-full md:w-auto btn-primary py-3 px-8 rounded-lg shadow-lg text-lg">✨ Crear Mi Plan de Acción Personalizado</button></div>
                     </form>
                 </div>
@@ -290,6 +287,7 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // ============== CONFIGURACIÓN INICIAL ==============
         const CONFIG = {
             packages: {
                 'ESP1': { investment: 200, gen5Bonuses: [25, 5, 5, 5, 10], cv: 100 },
@@ -330,6 +328,7 @@
             whatsappLink: document.getElementById('whatsapp-link'),
         };
 
+        // ============== FUNCIONES DE RENDERIZADO Y CÁLCULO ==============
         const formatCurrency = (value) => {
             const options = { style: 'currency', currency: state.currency, minimumFractionDigits: 0, maximumFractionDigits: 0 };
             const currencyValue = state.currency === 'COP' ? value * CONFIG.exchangeRate : value;
@@ -402,59 +401,45 @@
             if (binaryChartInstance) updateChartData(teamMembers);
         }
         
-        function updateChartData(maxTeamSize) { /* ... existing logic ... */ }
-        function createBinaryChart() { /* ... existing logic ... */ }
+        function updateChartData(maxTeamSize) {
+             if (!binaryChartInstance) return;
+            const labels = [];
+            const data = [];
+            const step = Math.max(10, Math.floor(maxTeamSize / 10));
+
+            for (let i = 10; i <= maxTeamSize; i += step) {
+                labels.push(i);
+                data.push(calculateBinaryIncome(i));
+            }
+            if (labels[labels.length - 1] < maxTeamSize) {
+                 labels.push(maxTeamSize);
+                 data.push(calculateBinaryIncome(maxTeamSize));
+            }
+
+            binaryChartInstance.data.labels = labels;
+            binaryChartInstance.data.datasets[0].data = data;
+            binaryChartInstance.update();
+        }
+
+        function createBinaryChart() {
+            if (!ui.binaryChartCanvas) return;
+            const ctx = ui.binaryChartCanvas.getContext('2d');
+            binaryChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: { labels: [], datasets: [{ label: 'Ingreso Binario Mensual', data: [], fill: true, borderColor: 'rgb(75, 192, 192)', tension: 0.1, backgroundColor: 'rgba(75, 192, 192, 0.2)' }] },
+                options: { scales: { y: { beginAtZero: true, ticks: { callback: value => formatCurrency(value) } }, x: { title: { display: true, text: 'Personas por Equipo' } } }, plugins: { legend: { display: false } } }
+            });
+            updateChartData(parseInt(ui.teamSlider.value));
+        }
         
         function createTrendsRadarChart() {
             if (!ui.trendsRadarChart) return;
             const ctx = ui.trendsRadarChart.getContext('2d');
-            const labels = [
-                ['Industria del', 'Bienestar'], 
-                ['Economía', 'Colaborativa'], 
-                ['Industria', 'del Café']
-            ];
+            const labels = [['Industria del', 'Bienestar'], ['Economía', 'Colaborativa'], ['Industria', 'del Café']];
             new Chart(ctx, {
                 type: 'radar',
-                data: { 
-                    labels: labels, 
-                    datasets: [{ 
-                        label: 'Posicionamiento de Gano Excel', 
-                        data: [9, 8, 9.5], 
-                        backgroundColor: 'rgba(67, 90, 119, 0.2)', 
-                        borderColor: 'rgb(67, 90, 119)', 
-                        pointBackgroundColor: 'rgb(67, 90, 119)', 
-                        pointBorderColor: '#fff', 
-                        pointHoverBackgroundColor: '#fff', 
-                        pointHoverBorderColor: 'rgb(67, 90, 119)' 
-                    }] 
-                },
-                options: { 
-                    responsive: true, 
-                    maintainAspectRatio: false, 
-                    plugins: { 
-                        legend: { display: false },
-                        tooltip: {
-                            callbacks: {
-                                title: function(tooltipItems) {
-                                    const item = tooltipItems[0];
-                                    let label = item.chart.data.labels[item.dataIndex];
-                                    return Array.isArray(label) ? label.join(' ') : label;
-                                }
-                            }
-                        }
-                    }, 
-                    scales: { 
-                        r: { 
-                            angleLines: { color: '#dee2e6' }, 
-                            grid: { color: '#e5e7eb' }, 
-                            pointLabels: { 
-                                font: { size: window.innerWidth < 640 ? 12 : 14, weight: '600' }, 
-                                color: '#1b263b' 
-                            }, 
-                            ticks: { display: false, stepSize: 2 } 
-                        } 
-                    } 
-                }
+                data: { labels: labels, datasets: [{ label: 'Posicionamiento de Gano Excel', data: [9, 8, 9.5], backgroundColor: 'rgba(67, 90, 119, 0.2)', borderColor: 'rgb(67, 90, 119)', pointBackgroundColor: 'rgb(67, 90, 119)', pointBorderColor: '#fff', pointHoverBackgroundColor: '#fff', pointHoverBorderColor: 'rgb(67, 90, 119)' }] },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { title: function(tooltipItems) { const item = tooltipItems[0]; let label = item.chart.data.labels[item.dataIndex]; return Array.isArray(label) ? label.join(' ') : label; } } } }, scales: { r: { angleLines: { color: '#dee2e6' }, grid: { color: '#e5e7eb' }, pointLabels: { font: { size: window.innerWidth < 640 ? 12 : 14, weight: '600' }, color: '#1b263b' }, ticks: { display: false, stepSize: 2 } } } }
             });
         }
 
@@ -465,12 +450,7 @@
                     const tabNumber = e.target.dataset.tab;
                     ui.tabsContainer.querySelectorAll('.tab').forEach(t => t.classList.remove('tab-active'));
                     e.target.classList.add('tab-active');
-                    ui.tabContents.forEach(c => {
-                        c.classList.remove('tab-content-active');
-                        if (c.id === `content-${tabNumber}`) {
-                            c.classList.add('tab-content-active');
-                        }
-                    });
+                    ui.tabContents.forEach(c => { c.classList.remove('tab-content-active'); if (c.id === `content-${tabNumber}`) { c.classList.add('tab-content-active'); } });
                 }
             });
         }
@@ -479,15 +459,9 @@
             ui.incomeGoalRadios.forEach(radio => {
                 const labelSpan = document.getElementById(radio.nextElementSibling.id);
                 let text = radio.value;
-                if(text.includes('{val}')) {
-                    text = text.replace('{val}', formatCurrency(radio.dataset.usd));
-                }
-                if(text.includes('{val1}')) {
-                    text = text.replace('{val1}', formatCurrency(radio.dataset.usd1));
-                }
-                 if(text.includes('{val2}')) {
-                    text = text.replace('{val2}', formatCurrency(radio.dataset.usd2));
-                }
+                if(text.includes('{val}')) { text = text.replace('{val}', formatCurrency(radio.dataset.usd)); }
+                if(text.includes('{val1}')) { text = text.replace('{val1}', formatCurrency(radio.dataset.usd1)); }
+                 if(text.includes('{val2}')) { text = text.replace('{val2}', formatCurrency(radio.dataset.usd2)); }
                 labelSpan.textContent = text;
             });
         }
@@ -499,22 +473,23 @@
             if (phone) {
                 const message = encodeURIComponent("Hola, vi la presentación de la oportunidad y me gustaría saber más.");
                 ui.whatsappLink.href = `https://wa.me/${phone}?text=${message}`;
-            } else {
-                ui.whatsappLink.href = "https://wa.me/"; 
-            }
+            } else { ui.whatsappLink.href = "https://wa.me/"; }
         }
 
+        // ============== FUNCIÓN CLAVE CORREGIDA (LLAMADA SEGURA A LA API) ==============
         async function generateActionPlan() {
             const form = ui.goalForm;
-            const userName = form.elements['user-name'].value;
-            const selectedPackage = form.elements['package'].value;
-            const motivation = form.elements['motivation'].value;
-            const incomeGoal = form.elements['income'].value;
-            const personalGoal = form.elements['personal-goal'].value || "No especificado";
-            const healthGoal = form.elements['health-goal'].value;
-            const commitment = form.elements['commitment'].value;
+            const formData = {
+                userName: form.elements['user-name'].value,
+                selectedPackage: form.elements['package'].value,
+                motivation: form.elements['motivation'].value,
+                incomeGoal: form.elements['income'].value,
+                personalGoal: form.elements['personal-goal'].value || "No especificado",
+                healthGoal: form.elements['health-goal'].value,
+                commitment: form.elements['commitment'].value,
+            };
 
-            if (!userName || !healthGoal) {
+            if (!formData.userName || !formData.healthGoal) {
                 ui.formError.style.display = 'block';
                 return;
             }
@@ -523,51 +498,30 @@
             ui.actionPlanResult.style.display = 'none';
             ui.actionPlanResult.innerHTML = '';
 
-            const prompt = `
-            Actúa como un coach Diamante de Gano Excel, experto en lanzamientos rápidos. Tu misión es crear un plan de acción de 30 días, hiper-personalizado y motivador, basado en la "Estrategia Psicológica para Gano Excel". Usa un lenguaje profesional y evita la jerga de bajo estatus.
-
-            **Filosofía Central (Contexto Clave):**
-            - El éxito ama la velocidad. El objetivo es un "arranque explosivo" para generar resultados en la primera semana.
-            - No vendemos, conectamos y compartimos una experiencia. Resolvemos problemas de bienestar y construimos activos empresariales.
-            - El sistema es el que produce el resultado, no el talento individual. Nos apalancamos en un sistema probado.
-            - El objetivo final es construir un activo de ingreso residual, no un simple trabajo de ventas.
-            - La base del negocio es ser "producto del producto". Un testimonio genuino es la herramienta más poderosa.
-
-            **Perfil del Nuevo Socio (Datos del Formulario):**
-            - **Nombre:** ${userName}
-            - **Paquete de Inicio:** ${selectedPackage}
-            - **Su 'Gran Porqué' (Motivación):** ${motivation}
-            - **Meta Financiera Semanal:** ${incomeGoal.replace(/{.*?}/g, '')}
-            - **Su Sueño Inmediato (Opcional):** ${personalGoal}.
-            - **Su Meta de Bienestar:** Quiere usar los productos para ${healthGoal}.
-            - **Compromiso de Acción Inmediata:** Se ha comprometido a contactar a ${commitment} en las primeras 48 horas.
-
-            **Instrucciones para el Plan:**
-            1.  **Saludo Personalizado:** Inicia con un saludo cálido y profesional para ${userName}.
-            2.  **Enfoque en la Velocidad:** El plan debe estar diseñado para un "arranque explosivo".
-            3.  **Personaliza la Motivación:** Conecta las acciones con su 'Gran Porqué' (${motivation}) y su 'Sueño Inmediato' (${personalGoal}).
-            4.  **Integra el Producto:** Incluye recordatorios para que use los productos consistentemente para lograr su meta de bienestar (${healthGoal}).
-            5.  **Crea un 'Plan de 48 Horas':** La primera acción debe ser cumplir con su compromiso de llamadas (${commitment}).
-            6.  **Tono:** El tono debe ser el de un líder que dice: 'Entiendo tus metas y este es exactamente el camino para lograrlas. Vamos a hacerlo juntos'.
-            7.  **Estructura:** Usa encabezados para cada semana (ej: #### Semana 1: Cimientos del Negocio) y listas con asteriscos (*) para las acciones. Finaliza con una frase corta y motivadora.`;
-
-            const apiKey = ""; // DEJA ESTO VACÍO.
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+            // URL del asistente seguro en Vercel. ¡Esta es la parte clave!
+            const apiUrl = '/api/generate-plan';
 
             try {
                 const response = await fetch(apiUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+                    body: JSON.stringify(formData)
                 });
-                if (!response.ok) throw new Error(`API request failed with status ${response.status}`);
+
+                if (!response.ok) {
+                    throw new Error(`API request failed with status ${response.status}`);
+                }
+                
                 const result = await response.json();
-                if (result.candidates && result.candidates[0].content && result.candidates[0].content.parts[0]) {
-                    const rawText = result.candidates[0].content.parts[0].text;
-                    ui.actionPlanResult.innerHTML = parseMarkdownToHTML(rawText);
-                } else { throw new Error("No content received from API."); }
+
+                if (result.plan) {
+                    ui.actionPlanResult.innerHTML = parseMarkdownToHTML(result.plan);
+                } else {
+                    throw new Error("No plan received from API.");
+                }
+
             } catch (error) {
-                console.error("Gemini API Error:", error);
+                console.error("API Error:", error);
                 ui.actionPlanResult.innerHTML = '<p class="text-red-600">Lo sentimos, no se pudo generar el plan de acción en este momento. Por favor, intente de nuevo más tarde.</p>';
             } finally {
                 ui.planLoader.style.display = 'none';
@@ -584,6 +538,7 @@
             return text;
         }
 
+        // ============== FUNCIÓN DE INICIALIZACIÓN ==============
         function initialize() {
             if(ui.btnUSD) ui.btnUSD.addEventListener('click', () => setCurrency('USD'));
             if(ui.btnCOP) ui.btnCOP.addEventListener('click', () => setCurrency('COP'));
