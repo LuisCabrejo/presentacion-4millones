@@ -23,7 +23,7 @@ export default async function handler(request, response) {
     healthGoal,
     commitment,
   } = request.body;
-
+  
   // Construir el prompt con los datos recibidos del formulario
   const prompt = `
     Actúa como un coach Diamante de Gano Excel, experto en lanzamientos rápidos. Tu misión es crear un plan de acción de 30 días, hiper-personalizado y motivador, basado en la "Estrategia Psicológica para Gano Excel". Usa un lenguaje profesional y evita la jerga de bajo estatus.
