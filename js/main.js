@@ -1,5 +1,4 @@
 // Contenido para js/main.js
-
 document.addEventListener('DOMContentLoaded', function() {
     // ============== CONFIGURACIÓN INICIAL ==============
     const CONFIG = {
