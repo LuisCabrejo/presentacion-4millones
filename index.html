@@ -25,7 +25,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
 
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f8f9fa; color: #212529; }
@@ -37,8 +36,6 @@
         .feature-card:hover { transform: translateY(-5px); box-shadow: 0 20px 30px -10px rgb(0 0 0 / 0.1); }
         .btn-primary { background-color: #e0b1cb; color: #0d1b2a; font-weight: 700; transition: all 0.3s ease; padding: 0.75rem 1.5rem; border-radius: 0.5rem; }
         .btn-primary:hover { background-color: #c497b2; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .btn-secondary { background-color: #e2e8f0; color: #1e293b; font-weight: 700; transition: all 0.3s ease; padding: 0.75rem 1.5rem; border-radius: 0.5rem; }
-        .btn-secondary:hover { background-color: #cbd5e1; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .chart-container { position: relative; width: 100%; max-width: 500px; margin: 2rem auto 0 auto; height: 350px; md:height: 400px; }
         .tab { cursor: pointer; padding: 0.75rem 1rem; border-bottom: 4px solid transparent; color: #6b7280; font-weight: 600; transition: all 0.2s; }
         .tab:hover { color: #415a77; }
@@ -285,9 +282,9 @@
 
                 <div id="action-plan-result" class="gemini-plan-container" style="display: none;"></div>
 
-                <div id="plan-actions" class="mt-6 text-center space-y-4 sm:space-y-0 sm:space-x-4" style="display: none;">
-                    <button id="copy-plan-btn" class="btn-secondary w-full sm:w-auto">Copiar Plan</button>
-                    <button id="pdf-plan-btn" class="btn-primary w-full sm:w-auto">Descargar PDF</button>
+                <div id="plan-actions" class="mt-6 text-center" style="display: none;">
+                    <button id="copy-plan-btn" class="btn-primary w-full sm:w-auto">Copiar Plan</button>
+                    <p id="copy-feedback" class="text-sm text-slate-600 mt-2 font-medium" style="display: none;"></p>
                 </div>
             </div>
         </section>
@@ -342,7 +339,7 @@
             actionPlanResult: document.getElementById('action-plan-result'),
             planActions: document.getElementById('plan-actions'),
             copyPlanBtn: document.getElementById('copy-plan-btn'),
-            pdfPlanBtn: document.getElementById('pdf-plan-btn'),
+            copyFeedback: document.getElementById('copy-feedback'),
             trendsRadarChart: document.getElementById('trendsRadarChart'),
             tabsContainer: document.getElementById('tabs-container'),
             tabContents: document.querySelectorAll('.tab-content'),
@@ -498,33 +495,22 @@
             } else { ui.whatsappLink.href = "https://wa.me/"; }
         }
 
-        // ============== NUEVAS FUNCIONES PARA COPIAR Y PDF ==============
+        // ============== FUNCIÓN PARA COPIAR CON MEJOR UX ==============
         function copyPlanToClipboard() {
             const planText = ui.actionPlanResult.innerText;
             navigator.clipboard.writeText(planText).then(() => {
-                ui.copyPlanBtn.textContent = '¡Copiado!';
-                setTimeout(() => { ui.copyPlanBtn.textContent = 'Copiar Plan'; }, 2000);
+                ui.copyPlanBtn.textContent = '✅ ¡Copiado!';
+                ui.copyFeedback.textContent = 'Ahora puedes pegarlo en tu app de notas, WhatsApp o un documento (Word, Google Docs).';
+                ui.copyFeedback.style.display = 'block';
+
+                setTimeout(() => {
+                    ui.copyPlanBtn.textContent = 'Copiar Plan';
+                    ui.copyFeedback.style.display = 'none';
+                }, 4000);
             }).catch(err => {
                 console.error('Error al copiar el plan: ', err);
                 alert("No se pudo copiar el plan.");
             });
-        }
-
-        function downloadPlanAsPDF() {
-            const element = ui.actionPlanResult;
-            const userName = ui.goalForm.elements['user-name'].value || 'socio';
-            const fileName = `plan-de-accion-${userName.toLowerCase().replace(/\s/g, '-')}.pdf`;
-            
-            const opt = {
-                margin:       [0.5, 0.5, 0.5, 0.5],
-                filename:     fileName,
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, useCORS: true, scrollY: 0 },
-                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-            };
-            
-            // Usamos la promesa para manejar el proceso de forma más robusta
-            html2pdf().from(element).set(opt).save();
         }
 
         // ============== FUNCIÓN CLAVE (SIN CAMBIOS EN LA LÓGICA DE API) ==============
@@ -597,19 +583,22 @@
         function initialize() {
             if(ui.btnUSD) ui.btnUSD.addEventListener('click', () => setCurrency('USD'));
             if(ui.btnCOP) ui.btnCOP.addEventListener('click', () => setCurrency('COP'));
-            Object.values(ui.packageButtons).forEach(btn => btn.addEventListener('click', () => selectPackage(btn.id.replace('btn-', ''))));
+            if(ui.packageButtons) {
+                Object.values(ui.packageButtons).forEach(btn => btn.addEventListener('click', () => selectPackage(btn.id.replace('btn-', ''))));
+            }
             if(ui.partnersSlider) ui.partnersSlider.addEventListener('input', renderFastStart);
             if(ui.teamSlider) ui.teamSlider.addEventListener('input', renderBinary);
             if(ui.generatePlanBtn) ui.generatePlanBtn.addEventListener('click', generateActionPlan);
             if(ui.copyPlanBtn) ui.copyPlanBtn.addEventListener('click', copyPlanToClipboard);
-            if(ui.pdfPlanBtn) ui.pdfPlanBtn.addEventListener('click', downloadPlanAsPDF);
             
             document.querySelectorAll('input[name="package"], input[name="income"], input[name="commitment"]').forEach(radio => {
                 radio.addEventListener('change', () => {
                     document.querySelectorAll(`input[name="${radio.name}"]`).forEach(r => {
                         r.parentElement.classList.remove('selected');
                     });
-                    radio.parentElement.classList.add('selected');
+                    if (radio.checked) {
+                        radio.parentElement.classList.add('selected');
+                    }
                 });
             });
 
@@ -617,7 +606,7 @@
             if(ui.binaryChartCanvas) createBinaryChart();
             if(ui.trendsRadarChart) createTrendsRadarChart();
             setupWhatsAppLink();
-            if(ui.packageButtons.ESP3) selectPackage('ESP3');
+            if(ui.packageButtons && ui.packageButtons.ESP3) selectPackage('ESP3');
             setCurrency('COP');
         }
 
