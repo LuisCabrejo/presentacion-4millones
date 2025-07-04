@@ -256,8 +256,7 @@
                             <div class="bg-white p-4 rounded-lg shadow-sm"><p id="teamSize" class="text-3xl md:text-4xl font-black text-[#415a77]">10</p><p class="text-sm font-semibold text-slate-500 mt-1">Personas por Equipo (Izq/Der)</p></div>
                             <div class="bg-white p-6 rounded-lg shadow"><p id="binaryIncome" class="text-4xl md:text-5xl font-black text-[#0d1b2a]">$0</p><p class="text-base font-semibold text-slate-600 mt-1">Ingreso Binario Mensual Potencial</p></div>
                         </div>
-                        <div class="mt-8 h-80"><canvas id="binaryChart"></canvas></div>
-                    </div>
+                        <div class="mt-8 h-96"><canvas id="binaryChart"></canvas></div> </div>
                 </div>
             </div>
         </section>
@@ -339,11 +338,11 @@
             goalForm: document.getElementById('goal-form'),
             formError: document.getElementById('form-error'),
             generatePlanBtn: document.getElementById('generate-plan-btn'),
-            planLoaderContainer: document.getElementById('plan-loader-container'), // <-- NUEVO
+            planLoaderContainer: document.getElementById('plan-loader-container'),
             actionPlanResult: document.getElementById('action-plan-result'),
-            planActions: document.getElementById('plan-actions'), // <-- NUEVO
-            copyPlanBtn: document.getElementById('copy-plan-btn'), // <-- NUEVO
-            pdfPlanBtn: document.getElementById('pdf-plan-btn'), // <-- NUEVO
+            planActions: document.getElementById('plan-actions'),
+            copyPlanBtn: document.getElementById('copy-plan-btn'),
+            pdfPlanBtn: document.getElementById('pdf-plan-btn'),
             trendsRadarChart: document.getElementById('trendsRadarChart'),
             tabsContainer: document.getElementById('tabs-container'),
             tabContents: document.querySelectorAll('.tab-content'),
@@ -517,14 +516,15 @@
             const fileName = `plan-de-accion-${userName.toLowerCase().replace(/\s/g, '-')}.pdf`;
             
             const opt = {
-                margin:       0.5,
+                margin:       [0.5, 0.5, 0.5, 0.5],
                 filename:     fileName,
                 image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, useCORS: true },
+                html2canvas:  { scale: 2, useCORS: true, scrollY: 0 },
                 jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
             };
             
-            html2pdf().set(opt).from(element).save();
+            // Usamos la promesa para manejar el proceso de forma más robusta
+            html2pdf().from(element).set(opt).save();
         }
 
         // ============== FUNCIÓN CLAVE (SIN CAMBIOS EN LA LÓGICA DE API) ==============
@@ -545,11 +545,10 @@
                 return;
             }
             
-            // Ocultar todo antes de empezar
             ui.formError.style.display = 'none';
             ui.actionPlanResult.style.display = 'none';
             ui.planActions.style.display = 'none';
-            ui.planLoaderContainer.style.display = 'block'; // Mostrar loader con texto
+            ui.planLoaderContainer.style.display = 'block';
             ui.actionPlanResult.innerHTML = '';
 
             const apiUrl = '/api/generate-plan';
@@ -571,7 +570,7 @@
                 if (result.plan) {
                     ui.actionPlanResult.innerHTML = parseMarkdownToHTML(result.plan);
                     ui.actionPlanResult.style.display = 'block';
-                    ui.planActions.style.display = 'block'; // Mostrar botones de acción
+                    ui.planActions.style.display = 'block';
                 } else {
                     throw new Error("No se recibió un plan de la API.");
                 }
@@ -602,8 +601,8 @@
             if(ui.partnersSlider) ui.partnersSlider.addEventListener('input', renderFastStart);
             if(ui.teamSlider) ui.teamSlider.addEventListener('input', renderBinary);
             if(ui.generatePlanBtn) ui.generatePlanBtn.addEventListener('click', generateActionPlan);
-            if(ui.copyPlanBtn) ui.copyPlanBtn.addEventListener('click', copyPlanToClipboard); // <-- NUEVO
-            if(ui.pdfPlanBtn) ui.pdfPlanBtn.addEventListener('click', downloadPlanAsPDF); // <-- NUEVO
+            if(ui.copyPlanBtn) ui.copyPlanBtn.addEventListener('click', copyPlanToClipboard);
+            if(ui.pdfPlanBtn) ui.pdfPlanBtn.addEventListener('click', downloadPlanAsPDF);
             
             document.querySelectorAll('input[name="package"], input[name="income"], input[name="commitment"]').forEach(radio => {
                 radio.addEventListener('change', () => {
@@ -615,8 +614,8 @@
             });
 
             handleTabs();
-            createBinaryChart();
-            createTrendsRadarChart();
+            if(ui.binaryChartCanvas) createBinaryChart();
+            if(ui.trendsRadarChart) createTrendsRadarChart();
             setupWhatsAppLink();
             if(ui.packageButtons.ESP3) selectPackage('ESP3');
             setCurrency('COP');
