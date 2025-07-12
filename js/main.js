@@ -49,10 +49,17 @@ document.addEventListener('DOMContentLoaded', function() {
         closeModal: document.getElementById('close-modal'),
     };
 
-    // ============== SISTEMA DE PERSONALIZACIÓN COMO EL CATÁLOGO ==============
+    // ============== SISTEMA DE PERSONALIZACIÓN CON SUPABASE (IGUAL QUE EL CATÁLOGO) ==============
+
+    // 🔧 Configuración de Supabase (mismas credenciales que el catálogo)
+    const SUPABASE_URL = 'https://ovsvocjvjnqfaaugwnxg.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im92c3ZvY2p2am5xZmFhdWd3bnhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE3ODEyMzcsImV4cCI6MjA2NzM1NzIzN30.ZErzsooaSXnS-NdmMYD0JcZFupFgrXfMLH-nOvU1NTE';
+
+    // Variable para almacenar cliente Supabase
+    let supabaseClient = null;
 
     /**
-     * 🎯 Generar slug desde nombre completo (igual que el catálogo)
+     * 🎯 Generar slug desde nombre completo (EXACTO igual que el catálogo)
      * @param {string} fullName - Nombre completo del usuario
      * @returns {string} Slug amigable
      */
@@ -60,6 +67,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!fullName) return null;
 
         try {
+            console.log('🔧 Generando slug para:', fullName);
+
+            // Extraer primer nombre + primer apellido
             const parts = fullName.trim().split(' ').filter(part => part.length > 0);
 
             let nombreParaSlug;
@@ -69,19 +79,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 nombreParaSlug = parts[0] || '';
             }
 
+            console.log('📝 Nombre para slug:', nombreParaSlug);
+
+            // Convertir a slug amigable (proceso idéntico al catálogo)
             const slug = nombreParaSlug
                 .toLowerCase()
                 .trim()
+                // Reemplazar caracteres especiales manualmente para mayor control
                 .replace(/á/g, 'a').replace(/é/g, 'e').replace(/í/g, 'i').replace(/ó/g, 'o').replace(/ú/g, 'u')
                 .replace(/à/g, 'a').replace(/è/g, 'e').replace(/ì/g, 'i').replace(/ò/g, 'o').replace(/ù/g, 'u')
                 .replace(/ä/g, 'a').replace(/ë/g, 'e').replace(/ï/g, 'i').replace(/ö/g, 'o').replace(/ü/g, 'u')
                 .replace(/ñ/g, 'n').replace(/ç/g, 'c')
+                // Remover caracteres no alfanuméricos excepto espacios
                 .replace(/[^a-z0-9\s]/g, '')
+                // Espacios múltiples a uno solo
                 .replace(/\s+/g, ' ')
+                // Espacios a guiones
                 .replace(/\s/g, '-')
+                // Múltiples guiones a uno
                 .replace(/-+/g, '-')
+                // Remover guiones al inicio y final
                 .replace(/^-+|-+$/g, '');
 
+            console.log('✅ Slug generado:', slug);
             return slug;
 
         } catch (error) {
@@ -91,79 +111,222 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     /**
-     * 🔗 Configurar enlaces personalizados con distribuidor
+     * 🔍 Buscar distribuidor por slug en Supabase (EXACTO igual que el catálogo)
+     * @param {string} slug - Slug del distribuidor (ej: "maria-gonzalez")
+     * @returns {Object|null} Datos del distribuidor o null
      */
-    function setupPersonalizedLinks() {
+    async function buscarDistribuidor(slug) {
+        try {
+            console.log('🔍 ==========================================');
+            console.log('🔍 INICIANDO BÚSQUEDA DE DISTRIBUIDOR');
+            console.log('🔍 Slug buscado:', slug);
+            console.log('🔍 ==========================================');
+
+            // Verificar que el slug no esté vacío
+            if (!slug || slug.trim() === '') {
+                console.warn('⚠️ Slug vacío o inválido');
+                return null;
+            }
+
+            // Verificar que Supabase esté disponible
+            if (!supabaseClient) {
+                console.error('❌ Cliente Supabase no inicializado');
+                return null;
+            }
+
+            // Paso 1: Obtener todos los perfiles activos con logs detallados
+            console.log('📡 Consultando base de datos Supabase...');
+
+            const { data: perfiles, error } = await supabaseClient
+                .from('profiles')
+                .select('full_name, whatsapp, email')
+                .not('full_name', 'is', null);
+
+            if (error) {
+                console.error('❌ ERROR EN CONSULTA SUPABASE:', error);
+                console.error('❌ Detalles del error:', JSON.stringify(error, null, 2));
+                return null;
+            }
+
+            console.log('📊 RESPUESTA DE SUPABASE:');
+            console.log('📊 Perfiles encontrados:', perfiles?.length || 0);
+
+            if (!perfiles || perfiles.length === 0) {
+                console.warn('⚠️ No se encontraron perfiles en la base de datos');
+                return null;
+            }
+
+            // Mostrar algunos perfiles para debugging
+            console.log('📋 PRIMEROS 5 PERFILES EN BASE DE DATOS:');
+            perfiles.slice(0, 5).forEach((perfil, index) => {
+                console.log(`📋 ${index + 1}. ${perfil.full_name} (WhatsApp: ${perfil.whatsapp})`);
+            });
+
+            // Paso 2: Generar slugs y buscar coincidencia
+            console.log('🔍 GENERANDO SLUGS Y BUSCANDO COINCIDENCIAS...');
+
+            let distribuidorEncontrado = null;
+
+            for (const [index, perfil] of perfiles.entries()) {
+                const slugGenerado = generarSlugDesdNombre(perfil.full_name);
+
+                if (slugGenerado && slugGenerado === slug) {
+                    distribuidorEncontrado = perfil;
+                    console.log('🎉 ==========================================');
+                    console.log('🎉 ¡DISTRIBUIDOR ENCONTRADO!');
+                    console.log('🎉 Nombre:', perfil.full_name);
+                    console.log('🎉 WhatsApp:', perfil.whatsapp);
+                    console.log('🎉 Email:', perfil.email);
+                    console.log('🎉 Slug:', slug);
+                    console.log('🎉 ==========================================');
+                    break;
+                }
+            }
+
+            if (distribuidorEncontrado) {
+                // Formatear número de WhatsApp con validación mejorada
+                let whatsappFormateado = distribuidorEncontrado.whatsapp;
+
+                if (whatsappFormateado) {
+                    // Limpiar el número (solo dígitos)
+                    const numeroLimpio = whatsappFormateado.replace(/[^\d]/g, '');
+
+                    // Si no tiene código de país, agregar +57
+                    if (numeroLimpio.length === 10 && !numeroLimpio.startsWith('57')) {
+                        whatsappFormateado = '+57' + numeroLimpio;
+                    } else if (numeroLimpio.length === 12 && numeroLimpio.startsWith('57')) {
+                        whatsappFormateado = '+' + numeroLimpio;
+                    } else if (!whatsappFormateado.startsWith('+')) {
+                        whatsappFormateado = '+' + numeroLimpio;
+                    }
+
+                    console.log('📱 WhatsApp formateado:', whatsappFormateado);
+                }
+
+                // Extraer primer nombre + primer apellido para personalización
+                const nombreParts = distribuidorEncontrado.full_name.trim().split(' ').filter(part => part.length > 0);
+                const primerNombre = nombreParts[0] || '';
+                const primerApellido = nombreParts[1] || '';
+                const nombreApellido = primerApellido ? `${primerNombre} ${primerApellido}` : primerNombre;
+
+                return {
+                    nombre: distribuidorEncontrado.full_name,
+                    whatsapp: whatsappFormateado,
+                    email: distribuidorEncontrado.email,
+                    slug: slug,
+                    primer_nombre: primerNombre,
+                    nombre_apellido: nombreApellido
+                };
+            }
+
+            console.log('❌ NO SE ENCONTRÓ DISTRIBUIDOR CON SLUG:', slug);
+            return null;
+
+        } catch (error) {
+            console.error('❌ ERROR CRÍTICO en búsqueda de distribuidor:', error);
+            console.error('❌ Stack trace:', error.stack);
+            return null;
+        }
+    }
+
+    /**
+     * 🔗 Configurar enlaces personalizados con distribuidor (MEJORADO CON SUPABASE)
+     */
+    async function setupPersonalizedLinks() {
         const params = new URLSearchParams(window.location.search);
         const distribuidorSlug = params.get('distribuidor');
 
-        console.log('🔗 Configurando enlaces personalizados...');
+        console.log('🔗 ==========================================');
+        console.log('🔗 CONFIGURANDO ENLACES PERSONALIZADOS');
         console.log('🔗 Parámetro distribuidor:', distribuidorSlug);
+        console.log('🔗 ==========================================');
 
-        // Personalizar enlace de WhatsApp
-        if (ui.whatsappLink) {
-            let whatsappUrl = "https://wa.me/";
-            let message = "Hola, vi la presentación de la oportunidad y me gustaría participar, ¿qué debo hacer?";
-
-            // Buscar parámetro 'socio' primero (compatibilidad)
-            const socioPhone = params.get('socio');
-
-            if (socioPhone) {
-                whatsappUrl = `https://wa.me/${socioPhone}?text=${encodeURIComponent(message)}`;
-                console.log('📱 WhatsApp configurado con parámetro socio:', socioPhone);
-            } else if (distribuidorSlug) {
-                // Usar sistema de distribuidores conocidos para obtener el WhatsApp del distribuidor
-                configurarWhatsAppPorDistribuidor(distribuidorSlug);
-            } else {
-                console.log('📱 WhatsApp con configuración por defecto');
-            }
-
-            ui.whatsappLink.href = whatsappUrl;
-        }
-
-        // Personalizar enlace del catálogo
+        // Personalizar enlace del catálogo inmediatamente
         if (ui.catalogLink && distribuidorSlug) {
             const catalogUrl = `https://catalogo.4millones.com/?distribuidor=${distribuidorSlug}`;
             ui.catalogLink.href = catalogUrl;
             console.log('📋 Enlace de catálogo personalizado:', catalogUrl);
         }
+
+        // Configurar WhatsApp
+        if (ui.whatsappLink) {
+            // Buscar parámetro 'socio' primero (compatibilidad)
+            const socioPhone = params.get('socio');
+
+            if (socioPhone) {
+                const message = "Hola, vi la presentación de la oportunidad y me gustaría participar, ¿qué debo hacer?";
+                const whatsappUrl = `https://wa.me/${socioPhone}?text=${encodeURIComponent(message)}`;
+                ui.whatsappLink.href = whatsappUrl;
+                console.log('📱 WhatsApp configurado con parámetro socio:', socioPhone);
+
+            } else if (distribuidorSlug) {
+                // Buscar distribuidor real en Supabase
+                await configurarWhatsAppPorDistribuidor(distribuidorSlug);
+
+            } else {
+                // Configuración por defecto
+                const message = "Hola, vi la presentación de la oportunidad y me gustaría participar, ¿qué debo hacer?";
+                ui.whatsappLink.href = `https://wa.me/?text=${encodeURIComponent(message)}`;
+                console.log('📱 WhatsApp con configuración por defecto');
+            }
+        }
     }
 
     /**
-     * 📱 Configurar WhatsApp por distribuidor usando datos conocidos
+     * 📱 Configurar WhatsApp por distribuidor usando Supabase (NUEVO)
      */
     async function configurarWhatsAppPorDistribuidor(slug) {
         try {
             console.log('📱 Buscando WhatsApp para distribuidor:', slug);
 
-            // Datos conocidos de distribuidores (basado en sistema exitoso del catálogo)
-            const distribuidoresConocidos = {
-                'ganocafe-online': { nombre: 'Ganocafé', whatsapp: '+573118870682' },
-                'luis-cabrejo': { nombre: 'Luis', whatsapp: '+573203415438' }
-            };
-
-            const distribuidor = distribuidoresConocidos[slug];
+            // Buscar distribuidor en Supabase
+            const distribuidor = await buscarDistribuidor(slug);
 
             if (distribuidor && ui.whatsappLink) {
                 // Mensaje personalizado exacto como solicita el prompt
-                const message = `Hola ${distribuidor.nombre}, muy buena la información, me gustaría participar, ¿qué debo hacer?`;
+                const message = `Hola ${distribuidor.primer_nombre}, muy buena la información, me gustaría participar, ¿qué debo hacer?`;
                 const whatsappUrl = `https://wa.me/${distribuidor.whatsapp}?text=${encodeURIComponent(message)}`;
 
                 ui.whatsappLink.href = whatsappUrl;
-                console.log('📱 WhatsApp personalizado configurado:', {
-                    nombre: distribuidor.nombre,
-                    whatsapp: distribuidor.whatsapp,
-                    mensaje: message
-                });
+                console.log('📱 ==========================================');
+                console.log('✅ WHATSAPP PERSONALIZADO CONFIGURADO');
+                console.log('📱 Nombre:', distribuidor.primer_nombre);
+                console.log('📱 WhatsApp:', distribuidor.whatsapp);
+                console.log('📱 Mensaje:', message);
+                console.log('📱 URL:', whatsappUrl);
+                console.log('📱 ==========================================');
+
             } else {
-                console.log('📱 Distribuidor no encontrado, usando configuración genérica');
-                // Fallback para casos sin distribuidor conocido
+                console.log('📱 Distribuidor no encontrado en Supabase, usando fallback');
+                // Fallback para casos sin distribuidor encontrado
                 const genericMessage = "Hola, vi la presentación de la oportunidad y me gustaría participar, ¿qué debo hacer?";
                 ui.whatsappLink.href = `https://wa.me/?text=${encodeURIComponent(genericMessage)}`;
             }
 
         } catch (error) {
             console.error('❌ Error configurando WhatsApp personalizado:', error);
+            // Fallback en caso de error
+            const genericMessage = "Hola, vi la presentación de la oportunidad y me gustaría participar, ¿qué debo hacer?";
+            ui.whatsappLink.href = `https://wa.me/?text=${encodeURIComponent(genericMessage)}`;
+        }
+    }
+
+    /**
+     * 🔧 Inicializar cliente Supabase
+     */
+    function initializeSupabase() {
+        try {
+            if (typeof window.supabase !== 'undefined') {
+                supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                console.log('✅ Cliente Supabase inicializado correctamente');
+                return true;
+            } else {
+                console.warn('⚠️ Librería Supabase no disponible');
+                return false;
+            }
+        } catch (error) {
+            console.error('❌ Error inicializando Supabase:', error);
+            return false;
         }
     }
 
@@ -471,8 +634,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ============== FUNCIÓN DE INICIALIZACIÓN ==============
-    function initialize() {
-        console.log('🚀 Inicializando sistema de oportunidad...');
+    async function initialize() {
+        console.log('🚀 ==========================================');
+        console.log('🚀 INICIALIZANDO SISTEMA DE OPORTUNIDAD V2.0');
+        console.log('🚀 ==========================================');
 
         // Eventos de calculadora
         if(ui.btnUSD) ui.btnUSD.addEventListener('click', () => setCurrency('USD'));
@@ -499,10 +664,27 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-        // Configurar funcionalidades
+        // Configurar funcionalidades básicas
         handleTabs();
         setupModalEvents();
-        setupPersonalizedLinks();
+
+        // 🔧 Inicializar Supabase y sistema de personalización
+        console.log('🔧 Inicializando Supabase...');
+        const supabaseOk = initializeSupabase();
+
+        if (supabaseOk) {
+            console.log('📡 Configurando enlaces personalizados con Supabase...');
+            await setupPersonalizedLinks();
+        } else {
+            console.warn('⚠️ Supabase no disponible, usando configuración básica');
+            // Fallback básico si Supabase no está disponible
+            const params = new URLSearchParams(window.location.search);
+            const socioPhone = params.get('socio');
+            if (socioPhone && ui.whatsappLink) {
+                const message = "Hola, vi la presentación de la oportunidad y me gustaría participar, ¿qué debo hacer?";
+                ui.whatsappLink.href = `https://wa.me/${socioPhone}?text=${encodeURIComponent(message)}`;
+            }
+        }
 
         // Crear gráficos
         if(ui.binaryChartCanvas) createBinaryChart();
@@ -512,8 +694,16 @@ document.addEventListener('DOMContentLoaded', function() {
         if(ui.packageButtons && ui.packageButtons.ESP3) selectPackage('ESP3');
         setCurrency('COP');
 
-        console.log('✅ Sistema inicializado correctamente');
+        console.log('🚀 ==========================================');
+        console.log('✅ SISTEMA INICIALIZADO CORRECTAMENTE');
+        console.log('🚀 ==========================================');
     }
 
-    initialize();
+    // Ejecutar inicialización cuando el DOM esté listo
+    document.addEventListener('DOMContentLoaded', function() {
+        // Pequeño delay para asegurar que Supabase esté cargado
+        setTimeout(() => {
+            initialize();
+        }, 100);
+    });
 });
