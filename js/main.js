@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const socioPhone = params.get('socio');
 
             if (socioPhone) {
-                const message = "Hola, vi la presentación de la oportunidad y me gustaría participar, ¿qué debo hacer?";
+                const message = "Hola, veo que ustedes hacen las cosas genial, vi la presentación para construir un activo global, y me interesa, ¿cómo empiezo?";
                 const whatsappUrl = `https://wa.me/${socioPhone}?text=${encodeURIComponent(message)}`;
                 ui.whatsappLink.href = whatsappUrl;
                 console.log('📱 WhatsApp configurado con parámetro socio:', socioPhone);
@@ -265,7 +265,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             } else {
                 // Configuración por defecto
-                const message = "Hola, vi la presentación de la oportunidad y me gustaría participar, ¿qué debo hacer?";
+                const message = "Hola, veo que ustedes hacen las cosas genial, vi la presentación para construir un activo global, y me interesa, ¿cómo empiezo?";
                 ui.whatsappLink.href = `https://wa.me/?text=${encodeURIComponent(message)}`;
                 console.log('📱 WhatsApp con configuración por defecto');
             }
@@ -283,8 +283,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const distribuidor = await buscarDistribuidor(slug);
 
             if (distribuidor && ui.whatsappLink) {
-                // Mensaje personalizado exacto como solicita el prompt
-                const message = `Hola ${distribuidor.primer_nombre}, muy buena la información, me gustaría participar, ¿qué debo hacer?`;
+                // Mensaje personalizado con tono natural y directo (prospecto caliente)
+                const message = `Hola ${distribuidor.primer_nombre}, veo que ustedes hacen las cosas genial, vi la presentación para construir un activo global, y me interesa, ¿cómo empiezo?`;
                 const whatsappUrl = `https://wa.me/${distribuidor.whatsapp}?text=${encodeURIComponent(message)}`;
 
                 ui.whatsappLink.href = whatsappUrl;
@@ -298,15 +298,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
             } else {
                 console.log('📱 Distribuidor no encontrado en Supabase, usando fallback');
-                // Fallback para casos sin distribuidor encontrado
-                const genericMessage = "Hola, vi la presentación de la oportunidad y me gustaría participar, ¿qué debo hacer?";
+                // Fallback con el mismo tono natural para casos sin distribuidor encontrado
+                const genericMessage = "Hola, veo que ustedes hacen las cosas genial, vi la presentación para construir un activo global, y me interesa, ¿cómo empiezo?";
                 ui.whatsappLink.href = `https://wa.me/?text=${encodeURIComponent(genericMessage)}`;
             }
 
         } catch (error) {
             console.error('❌ Error configurando WhatsApp personalizado:', error);
-            // Fallback en caso de error
-            const genericMessage = "Hola, vi la presentación de la oportunidad y me gustaría participar, ¿qué debo hacer?";
+            // Fallback en caso de error con el mismo tono
+            const genericMessage = "Hola, veo que ustedes hacen las cosas genial, vi la presentación para construir un activo global, y me interesa, ¿cómo empiezo?";
             ui.whatsappLink.href = `https://wa.me/?text=${encodeURIComponent(genericMessage)}`;
         }
     }
@@ -681,7 +681,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const params = new URLSearchParams(window.location.search);
             const socioPhone = params.get('socio');
             if (socioPhone && ui.whatsappLink) {
-                const message = "Hola, vi la presentación de la oportunidad y me gustaría participar, ¿qué debo hacer?";
+                const message = "Hola, veo que ustedes hacen las cosas genial, vi la presentación para construir un activo global, y me interesa, ¿cómo empiezo?";
                 ui.whatsappLink.href = `https://wa.me/${socioPhone}?text=${encodeURIComponent(message)}`;
             }
         }
