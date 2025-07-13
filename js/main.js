@@ -169,11 +169,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('🎉 ¡DISTRIBUIDOR ENCONTRADO!');
                 console.log('🎉 Nombre:', distribuidorEncontrado.full_name);
                 console.log('🎉 Primer nombre:', primerNombre);
-                console.log('🎉 WhatsApp:', whatsappFormateado);
+                console.log('🎉 WhatsApp:', distribuidorEncontrado.whatsapp);
 
                 return {
                     nombre: distribuidorEncontrado.full_name,
-                    whatsapp: whatsappFormateado,
+                    whatsapp: distribuidorEncontrado.whatsapp, // Mantener número original
                     email: distribuidorEncontrado.email,
                     slug: slug,
                     primer_nombre: primerNombre
@@ -215,7 +215,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (socioPhone) {
                 const message = "Hola, vi la presentación de la oportunidad y me gustaría participar, ¿qué debo hacer?";
-                const whatsappUrl = `https://wa.me/${socioPhone}?text=${encodeURIComponent(message)}`;
+
+                // Limpiar número para formato correcto
+                let numeroLimpio = socioPhone.replace(/[^\d]/g, '');
+                if (!numeroLimpio.startsWith('57') && numeroLimpio.length === 10) {
+                    numeroLimpio = '57' + numeroLimpio;
+                }
+
+                const whatsappUrl = `https://api.whatsapp.com/send?phone=${numeroLimpio}&text=${encodeURIComponent(message)}`;
                 ui.whatsappLink.href = whatsappUrl;
                 console.log('📱 WhatsApp configurado con parámetro socio:', socioPhone);
             } else if (distribuidorSlug) {
@@ -245,27 +252,41 @@ document.addEventListener('DOMContentLoaded', function() {
             if (distribuidor && ui.whatsappLink) {
                 // Mensaje personalizado EXACTO como funciona en el catálogo
                 const message = `Hola ${distribuidor.primer_nombre}, vi la presentación y me interesa construir un activo global ¿cómo empiezo?`;
-                const whatsappUrl = `https://wa.me/${distribuidor.whatsapp}?text=${encodeURIComponent(message)}`;
+
+                // Limpiar número de WhatsApp para asegurar formato correcto
+                let numeroLimpio = distribuidor.whatsapp.replace(/[^\d]/g, '');
+
+                // Asegurar que tenga código de país correcto
+                if (!numeroLimpio.startsWith('57') && numeroLimpio.length === 10) {
+                    numeroLimpio = '57' + numeroLimpio;
+                }
+
+                // Usar API de WhatsApp exacta como en el catálogo
+                const whatsappUrl = `https://api.whatsapp.com/send?phone=${numeroLimpio}&text=${encodeURIComponent(message)}`;
 
                 ui.whatsappLink.href = whatsappUrl;
 
                 console.log('📱 ✅ WHATSAPP PERSONALIZADO CONFIGURADO:');
                 console.log('📱   Nombre:', distribuidor.primer_nombre);
-                console.log('📱   WhatsApp:', distribuidor.whatsapp);
+                console.log('📱   WhatsApp original:', distribuidor.whatsapp);
+                console.log('📱   Número limpio:', numeroLimpio);
                 console.log('📱   Mensaje:', message);
-                console.log('📱   URL:', whatsappUrl);
+                console.log('📱   URL completa:', whatsappUrl);
+                console.log('📱   ==========================================');
 
             } else {
                 console.log('📱 ❌ Distribuidor no encontrado, usando configuración genérica');
                 const genericMessage = "Hola, vi la presentación de la oportunidad y me gustaría participar, ¿qué debo hacer?";
-                ui.whatsappLink.href = `https://wa.me/?text=${encodeURIComponent(genericMessage)}`;
+                const fallbackUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(genericMessage)}`;
+                ui.whatsappLink.href = fallbackUrl;
+                console.log('📱   URL genérica:', fallbackUrl);
             }
 
         } catch (error) {
             console.error('❌ Error configurando WhatsApp personalizado:', error);
             // Fallback en caso de error
             const genericMessage = "Hola, vi la presentación de la oportunidad y me gustaría participar, ¿qué debo hacer?";
-            ui.whatsappLink.href = `https://wa.me/?text=${encodeURIComponent(genericMessage)}`;
+            ui.whatsappLink.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(genericMessage)}`;
         }
     }
 
@@ -639,8 +660,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const params = new URLSearchParams(window.location.search);
             const socioPhone = params.get('socio');
             if (socioPhone && ui.whatsappLink) {
+                // Limpiar número para formato correcto
+                let numeroLimpio = socioPhone.replace(/[^\d]/g, '');
+                if (!numeroLimpio.startsWith('57') && numeroLimpio.length === 10) {
+                    numeroLimpio = '57' + numeroLimpio;
+                }
                 const message = "Hola, vi la presentación de la oportunidad y me gustaría participar, ¿qué debo hacer?";
-                ui.whatsappLink.href = `https://wa.me/${socioPhone}?text=${encodeURIComponent(message)}`;
+                ui.whatsappLink.href = `https://api.whatsapp.com/send?phone=${numeroLimpio}&text=${encodeURIComponent(message)}`;
             }
         }
 
