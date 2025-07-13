@@ -255,7 +255,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (socioPhone) {
                 const message = "Hola, veo que ustedes hacen las cosas genial, vi la presentación para construir un activo global, y me interesa, ¿cómo empiezo?";
-                const whatsappUrl = `https://wa.me/${socioPhone}?text=${encodeURIComponent(message)}`;
+                const whatsappUrl = `https://api.whatsapp.com/send?phone=${socioPhone}&text=${encodeURIComponent(message)}`;
                 ui.whatsappLink.href = whatsappUrl;
                 console.log('📱 WhatsApp configurado con parámetro socio:', socioPhone);
 
@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 // Configuración por defecto
                 const message = "Hola, veo que ustedes hacen las cosas genial, vi la presentación para construir un activo global, y me interesa, ¿cómo empiezo?";
-                ui.whatsappLink.href = `https://wa.me/?text=${encodeURIComponent(message)}`;
+                ui.whatsappLink.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
                 console.log('📱 WhatsApp con configuración por defecto');
             }
         }
@@ -285,7 +285,8 @@ document.addEventListener('DOMContentLoaded', function() {
             if (distribuidor && ui.whatsappLink) {
                 // Mensaje personalizado con tono natural y directo (prospecto caliente)
                 const message = `Hola ${distribuidor.primer_nombre}, veo que ustedes hacen las cosas genial, vi la presentación para construir un activo global, y me interesa, ¿cómo empiezo?`;
-                const whatsappUrl = `https://wa.me/${distribuidor.whatsapp}?text=${encodeURIComponent(message)}`;
+                // Usar el mismo formato que funciona en el catálogo
+                const whatsappUrl = `https://api.whatsapp.com/send?phone=${distribuidor.whatsapp}&text=${encodeURIComponent(message)}`;
 
                 ui.whatsappLink.href = whatsappUrl;
                 console.log('📱 ==========================================');
@@ -300,14 +301,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('📱 Distribuidor no encontrado en Supabase, usando fallback');
                 // Fallback con el mismo tono natural para casos sin distribuidor encontrado
                 const genericMessage = "Hola, veo que ustedes hacen las cosas genial, vi la presentación para construir un activo global, y me interesa, ¿cómo empiezo?";
-                ui.whatsappLink.href = `https://wa.me/?text=${encodeURIComponent(genericMessage)}`;
+                // Usar formato genérico pero compatible
+                ui.whatsappLink.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(genericMessage)}`;
             }
 
         } catch (error) {
             console.error('❌ Error configurando WhatsApp personalizado:', error);
             // Fallback en caso de error con el mismo tono
             const genericMessage = "Hola, veo que ustedes hacen las cosas genial, vi la presentación para construir un activo global, y me interesa, ¿cómo empiezo?";
-            ui.whatsappLink.href = `https://wa.me/?text=${encodeURIComponent(genericMessage)}`;
+            ui.whatsappLink.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(genericMessage)}`;
         }
     }
 
@@ -682,7 +684,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const socioPhone = params.get('socio');
             if (socioPhone && ui.whatsappLink) {
                 const message = "Hola, veo que ustedes hacen las cosas genial, vi la presentación para construir un activo global, y me interesa, ¿cómo empiezo?";
-                ui.whatsappLink.href = `https://wa.me/${socioPhone}?text=${encodeURIComponent(message)}`;
+                ui.whatsappLink.href = `https://api.whatsapp.com/send?phone=${socioPhone}&text=${encodeURIComponent(message)}`;
             }
         }
 
