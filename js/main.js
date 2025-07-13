@@ -49,95 +49,243 @@ document.addEventListener('DOMContentLoaded', function() {
         closeModal: document.getElementById('close-modal'),
     };
 
-    // ============== SISTEMA DE WHATSAPP SIMPLIFICADO Y ROBUSTO ==============
+    // ============== SISTEMA DE PERSONALIZACIÓN CON SUPABASE (IGUAL QUE EL CATÁLOGO) ==============
+
+    // 🔧 Configuración de Supabase (IGUALES al catálogo exitoso)
+    const SUPABASE_URL = 'https://ovsvocjvjnqfaaugwnxg.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im92c3ZvY2p2am5xZmFhdWd3bnhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE3ODEyMzcsImV4cCI6MjA2NzM1NzIzN30.ZErzsooaSXnS-NdmMYD0JcZFupFgrXfMLH-nOvU1NTE';
+
+    let supabaseClient = null;
 
     /**
-     * 🔥 CONFIGURAR WHATSAPP - VERSIÓN SIMPLIFICADA QUE FUNCIONA
+     * 🔧 Inicializar cliente Supabase (igual que el catálogo)
      */
-    function configurarWhatsAppFinal() {
-        console.log('🔥 ==========================================');
-        console.log('🔥 CONFIGURACIÓN FINAL DE WHATSAPP');
-        console.log('🔥 ==========================================');
+    function initializeSupabase() {
+        try {
+            if (typeof window.supabase !== 'undefined') {
+                supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                console.log('✅ Cliente Supabase inicializado correctamente');
+                return true;
+            } else {
+                console.error('❌ Supabase no está disponible en window.supabase');
+                return false;
+            }
+        } catch (error) {
+            console.error('❌ Error inicializando Supabase:', error);
+            return false;
+        }
+    }
 
+    /**
+     * 🎯 Generar slug desde nombre completo (EXACTO al catálogo)
+     * @param {string} fullName - Nombre completo del usuario
+     * @returns {string} Slug amigable
+     */
+    function generarSlugDesdNombre(fullName) {
+        if (!fullName) return null;
+
+        try {
+            console.log('🔧 Generando slug para:', fullName);
+
+            // Extraer primer nombre + primer apellido
+            const parts = fullName.trim().split(' ').filter(part => part.length > 0);
+
+            let nombreParaSlug;
+            if (parts.length >= 2) {
+                nombreParaSlug = `${parts[0]} ${parts[1]}`;
+            } else {
+                nombreParaSlug = parts[0] || '';
+            }
+
+            console.log('📝 Nombre para slug:', nombreParaSlug);
+
+            // Convertir a slug amigable (proceso exacto del catálogo)
+            const slug = nombreParaSlug
+                .toLowerCase()
+                .trim()
+                .replace(/á/g, 'a').replace(/é/g, 'e').replace(/í/g, 'i').replace(/ó/g, 'o').replace(/ú/g, 'u')
+                .replace(/à/g, 'a').replace(/è/g, 'e').replace(/ì/g, 'i').replace(/ò/g, 'o').replace(/ù/g, 'u')
+                .replace(/ä/g, 'a').replace(/ë/g, 'e').replace(/ï/g, 'i').replace(/ö/g, 'o').replace(/ü/g, 'u')
+                .replace(/ñ/g, 'n').replace(/ç/g, 'c')
+                .replace(/[^a-z0-9\s]/g, '')
+                .replace(/\s+/g, ' ')
+                .replace(/\s/g, '-')
+                .replace(/-+/g, '-')
+                .replace(/^-+|-+$/g, '');
+
+            console.log('✅ Slug generado:', slug);
+            return slug;
+
+        } catch (error) {
+            console.error('❌ Error generando slug:', error);
+            return null;
+        }
+    }
+
+    /**
+     * 🔍 Buscar distribuidor por slug en Supabase (EXACTO al catálogo)
+     * @param {string} slug - Slug del distribuidor (ej: "luis-cabrejo")
+     * @returns {Object|null} Datos del distribuidor o null
+     */
+    async function buscarDistribuidor(slug) {
+        try {
+            console.log('🔍 ==========================================');
+            console.log('🔍 INICIANDO BÚSQUEDA DE DISTRIBUIDOR');
+            console.log('🔍 Slug buscado:', slug);
+            console.log('🔍 ==========================================');
+
+            if (!supabaseClient) {
+                console.error('❌ Cliente Supabase no inicializado');
+                return null;
+            }
+
+            if (!slug || slug.trim() === '') {
+                console.warn('⚠️ Slug vacío o inválido');
+                return null;
+            }
+
+            // Consultar todos los perfiles activos
+            console.log('📡 Consultando base de datos Supabase...');
+
+            const { data: perfiles, error } = await supabaseClient
+                .from('profiles')
+                .select('full_name, whatsapp, email')
+                .not('full_name', 'is', null);
+
+            if (error) {
+                console.error('❌ ERROR EN CONSULTA SUPABASE:', error);
+                return null;
+            }
+
+            console.log('📊 Perfiles encontrados:', perfiles?.length || 0);
+
+            if (!perfiles || perfiles.length === 0) {
+                console.warn('⚠️ No se encontraron perfiles en la base de datos');
+                return null;
+            }
+
+            // Generar slugs y buscar coincidencia
+            console.log('🔍 GENERANDO SLUGS Y BUSCANDO COINCIDENCIAS...');
+
+            let distribuidorEncontrado = null;
+
+            for (const [index, perfil] of perfiles.entries()) {
+                const slugGenerado = generarSlugDesdNombre(perfil.full_name);
+
+                console.log(`🔍 [${index + 1}/${perfiles.length}] Perfil: "${perfil.full_name}"`);
+                console.log(`🔍 [${index + 1}/${perfiles.length}] Slug generado: "${slugGenerado}"`);
+                console.log(`🔍 [${index + 1}/${perfiles.length}] ¿Coincide? ${slugGenerado === slug ? '✅ SÍ' : '❌ NO'}`);
+
+                if (slugGenerado && slugGenerado === slug) {
+                    distribuidorEncontrado = perfil;
+                    console.log('🎉 ¡DISTRIBUIDOR ENCONTRADO!');
+                    console.log('🎉 Nombre:', perfil.full_name);
+                    console.log('🎉 WhatsApp:', perfil.whatsapp);
+                    break;
+                }
+            }
+
+            if (distribuidorEncontrado) {
+                // Formatear número de WhatsApp
+                let whatsappFormateado = distribuidorEncontrado.whatsapp;
+
+                if (whatsappFormateado) {
+                    const numeroLimpio = whatsappFormateado.replace(/[^\d]/g, '');
+
+                    if (numeroLimpio.length === 10 && !numeroLimpio.startsWith('57')) {
+                        whatsappFormateado = '+57' + numeroLimpio;
+                    } else if (numeroLimpio.length === 12 && numeroLimpio.startsWith('57')) {
+                        whatsappFormateado = '+' + numeroLimpio;
+                    } else if (!whatsappFormateado.startsWith('+')) {
+                        whatsappFormateado = '+' + numeroLimpio;
+                    }
+
+                    console.log('📱 WhatsApp formateado:', whatsappFormateado);
+                }
+
+                // Extraer primer nombre para personalización
+                const nombreParts = distribuidorEncontrado.full_name.trim().split(' ').filter(part => part.length > 0);
+                const primerNombre = nombreParts[0] || '';
+                const primerApellido = nombreParts[1] || '';
+                const nombreApellido = primerApellido ? `${primerNombre} ${primerApellido}` : primerNombre;
+
+                return {
+                    nombre: distribuidorEncontrado.full_name,
+                    whatsapp: whatsappFormateado,
+                    email: distribuidorEncontrado.email,
+                    slug: slug,
+                    primer_nombre: primerNombre,
+                    nombre_apellido: nombreApellido
+                };
+            }
+
+            console.log('❌ NO SE ENCONTRÓ DISTRIBUIDOR');
+            console.log('❌ Slug buscado:', slug);
+            return null;
+
+        } catch (error) {
+            console.error('❌ ERROR CRÍTICO en búsqueda de distribuidor:', error);
+            return null;
+        }
+    }
+
+    /**
+     * 🔗 Configurar enlaces personalizados con distribuidor (MEJORADO CON SUPABASE)
+     */
+    async function setupPersonalizedLinks() {
         const params = new URLSearchParams(window.location.search);
         const distribuidorSlug = params.get('distribuidor');
-        const socioPhone = params.get('socio');
+        const socioPhone = params.get('socio'); // Compatibilidad con parámetro socio
 
-        console.log('🔥 URL completa:', window.location.href);
-        console.log('🔥 Parámetro distribuidor:', distribuidorSlug);
-        console.log('🔥 Parámetro socio:', socioPhone);
+        console.log('🔗 Configurando enlaces personalizados...');
+        console.log('🔗 Parámetro distribuidor:', distribuidorSlug);
+        console.log('🔗 Parámetro socio:', socioPhone);
 
-        if (!ui.whatsappLink) {
-            console.error('❌ No se encontró botón de WhatsApp (#whatsapp-link)');
-            return;
-        }
+        // Configurar enlace de WhatsApp
+        if (ui.whatsappLink) {
+            let whatsappConfigured = false;
 
-        // MAPA DIRECTO DE DISTRIBUIDORES (más confiable que Supabase)
-        const distribuidorMap = {
-            'luis-cabrejo': {
-                nombre: 'Luis',
-                whatsapp: '+573203415438',
-                mensaje: 'Hola Luis, muy buena la información, me gustaría participar, ¿qué debo hacer?'
-            },
-            'ganocafe-online': {
-                nombre: 'Ganocafé',
-                whatsapp: '+573118870682',
-                mensaje: 'Hola Ganocafé, muy buena la información, me gustaría participar, ¿qué debo hacer?'
+            // Prioridad 1: Parámetro 'socio' directo
+            if (socioPhone) {
+                const message = "Hola, vi la presentación de la oportunidad y me gustaría participar, ¿qué debo hacer?";
+                const whatsappUrl = `https://wa.me/${socioPhone}?text=${encodeURIComponent(message)}`;
+                ui.whatsappLink.href = whatsappUrl;
+                console.log('📱 WhatsApp configurado con parámetro socio:', socioPhone);
+                whatsappConfigured = true;
             }
-        };
+            // Prioridad 2: Buscar distribuidor en Supabase
+            else if (distribuidorSlug && supabaseClient) {
+                const distribuidor = await buscarDistribuidor(distribuidorSlug);
 
-        let whatsappConfig = null;
+                if (distribuidor && distribuidor.whatsapp) {
+                    // Mensaje personalizado EXACTO como solicita el prompt
+                    const message = `Hola ${distribuidor.primer_nombre}, muy buena la información, me gustaría participar, ¿qué debo hacer?`;
+                    const whatsappUrl = `https://api.whatsapp.com/send?phone=${distribuidor.whatsapp}&text=${encodeURIComponent(message)}`;
+                    ui.whatsappLink.href = whatsappUrl;
 
-        // 1. Prioridad: parámetro socio directo
-        if (socioPhone) {
-            let numeroFormateado = socioPhone;
-            if (!numeroFormateado.startsWith('+')) {
-                numeroFormateado = '+57' + numeroFormateado.replace(/[^\d]/g, '');
+                    console.log('📱 WhatsApp personalizado configurado:');
+                    console.log('📱   Nombre:', distribuidor.primer_nombre);
+                    console.log('📱   Número:', distribuidor.whatsapp);
+                    console.log('📱   Mensaje:', message);
+                    whatsappConfigured = true;
+                } else {
+                    console.log('📱 Distribuidor no encontrado en Supabase, usando fallback');
+                }
             }
-            whatsappConfig = {
-                whatsapp: numeroFormateado,
-                mensaje: 'Hola, vi la presentación de la oportunidad y me gustaría participar, ¿qué debo hacer?'
-            };
-            console.log('🔥 Usando parámetro socio:', numeroFormateado);
-        }
 
-        // 2. Segunda prioridad: distribuidor conocido
-        else if (distribuidorSlug && distribuidorMap[distribuidorSlug]) {
-            whatsappConfig = distribuidorMap[distribuidorSlug];
-            console.log('🔥 Distribuidor encontrado:', whatsappConfig.nombre, '-', whatsappConfig.whatsapp);
-        }
-
-        // 3. Fallback: configuración por defecto
-        else {
-            whatsappConfig = {
-                whatsapp: '+573118870682',
-                mensaje: 'Hola, vi la presentación de la oportunidad y me gustaría participar, ¿qué debo hacer?'
-            };
-            console.log('🔥 Usando configuración por defecto');
-        }
-
-        // APLICAR CONFIGURACIÓN FINAL
-        if (whatsappConfig) {
-            const whatsappUrl = `https://wa.me/${whatsappConfig.whatsapp}?text=${encodeURIComponent(whatsappConfig.mensaje)}`;
-
-            // FORZAR la configuración del href
-            ui.whatsappLink.href = whatsappUrl;
-            ui.whatsappLink.setAttribute('href', whatsappUrl);
-
-            console.log('🔥 ==========================================');
-            console.log('✅ WHATSAPP CONFIGURADO EXITOSAMENTE');
-            console.log('📱 Número:', whatsappConfig.whatsapp);
-            console.log('💬 Mensaje:', whatsappConfig.mensaje);
-            console.log('🔗 URL final:', whatsappUrl);
-            console.log('🔗 Href aplicado:', ui.whatsappLink.href);
-            console.log('🔥 ==========================================');
-
-            // Personalizar enlace de catálogo también
-            if (ui.catalogLink && distribuidorSlug) {
-                const catalogUrl = `https://catalogo.4millones.com/?distribuidor=${distribuidorSlug}`;
-                ui.catalogLink.href = catalogUrl;
-                console.log('📋 Catálogo personalizado:', catalogUrl);
+            // Fallback: Configuración por defecto
+            if (!whatsappConfigured) {
+                const genericMessage = "Hola, vi la presentación de la oportunidad y me gustaría participar, ¿qué debo hacer?";
+                ui.whatsappLink.href = `https://wa.me/?text=${encodeURIComponent(genericMessage)}`;
+                console.log('📱 WhatsApp configurado con mensaje genérico');
             }
+        }
+
+        // Personalizar enlace del catálogo
+        if (ui.catalogLink && distribuidorSlug) {
+            const catalogUrl = `https://catalogo.4millones.com/?distribuidor=${distribuidorSlug}`;
+            ui.catalogLink.href = catalogUrl;
+            console.log('📋 Enlace de catálogo personalizado:', catalogUrl);
         }
     }
 
@@ -222,7 +370,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ============== FUNCIONES DE RENDERIZADO Y CÁLCULO ==============
+    // ============== FUNCIONES DE RENDERIZADO Y CÁLCULO (SIN CAMBIOS) ==============
     const formatCurrency = (value) => {
         const options = { style: 'currency', currency: state.currency, minimumFractionDigits: 0, maximumFractionDigits: 0 };
         const currencyValue = state.currency === 'COP' ? value * CONFIG.exchangeRate : value;
@@ -444,14 +592,19 @@ document.addEventListener('DOMContentLoaded', function() {
         return text;
     }
 
-    // ============== FUNCIÓN DE INICIALIZACIÓN ==============
-    function initialize() {
-        console.log('🚀 ==========================================');
-        console.log('🚀 SISTEMA DE OPORTUNIDAD - VERSIÓN SIMPLIFICADA');
-        console.log('🚀 Enfoque: WhatsApp que FUNCIONA');
-        console.log('🚀 ==========================================');
+    // ============== FUNCIÓN DE INICIALIZACIÓN MEJORADA ==============
+    async function initialize() {
+        console.log('🚀 Inicializando sistema de oportunidad...');
 
-        // Eventos de calculadora
+        // 1. Inicializar Supabase primero
+        const supabaseReady = initializeSupabase();
+        if (supabaseReady) {
+            console.log('✅ Supabase inicializado, configurando personalización...');
+        } else {
+            console.warn('⚠️ Supabase no disponible, usando modo fallback');
+        }
+
+        // 2. Configurar eventos de calculadora (sincrónicos)
         if(ui.btnUSD) ui.btnUSD.addEventListener('click', () => setCurrency('USD'));
         if(ui.btnCOP) ui.btnCOP.addEventListener('click', () => setCurrency('COP'));
         if(ui.packageButtons) {
@@ -460,11 +613,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if(ui.partnersSlider) ui.partnersSlider.addEventListener('input', renderFastStart);
         if(ui.teamSlider) ui.teamSlider.addEventListener('input', renderBinary);
 
-        // Eventos de formulario
+        // 3. Configurar eventos de formulario (sincrónicos)
         if(ui.generatePlanBtn) ui.generatePlanBtn.addEventListener('click', generateActionPlan);
         if(ui.copyPlanBtn) ui.copyPlanBtn.addEventListener('click', copyPlanToClipboard);
 
-        // Eventos de radio buttons
+        // 4. Configurar eventos de radio buttons (sincrónicos)
         document.querySelectorAll('input[name="package"], input[name="income"], input[name="commitment"]').forEach(radio => {
             radio.addEventListener('change', () => {
                 document.querySelectorAll(`input[name="${radio.name}"]`).forEach(r => {
@@ -476,42 +629,35 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-        // Configurar funcionalidades
+        // 5. Configurar funcionalidades básicas (sincrónicos)
         handleTabs();
         setupModalEvents();
 
-        // 🔥 CONFIGURAR WHATSAPP - PRIORIDAD MÁXIMA
-        console.log('🔥 Configurando WhatsApp - ÚLTIMO PASO');
-        configurarWhatsAppFinal();
-
-        // Crear gráficos
+        // 6. Crear gráficos (sincrónicos)
         if(ui.binaryChartCanvas) createBinaryChart();
         if(ui.trendsRadarChart) createTrendsRadarChart();
 
-        // Configuración inicial
+        // 7. Configuración inicial de UI (sincrónica)
         if(ui.packageButtons && ui.packageButtons.ESP3) selectPackage('ESP3');
         setCurrency('COP');
 
-        console.log('✅ SISTEMA INICIALIZADO');
-
-        // VERIFICACIÓN FINAL DEL WHATSAPP
-        setTimeout(() => {
-            console.log('🔍 VERIFICACIÓN FINAL:');
-            console.log('🔍 WhatsApp href actual:', ui.whatsappLink?.href || 'NO ENCONTRADO');
-
-            if (ui.whatsappLink?.href && !ui.whatsappLink.href.includes('3203415438') && window.location.search.includes('luis-cabrejo')) {
-                console.error('❌ ERROR: WhatsApp no está configurado para Luis');
-                console.log('🔄 Reintentando configuración...');
-                configurarWhatsAppFinal();
+        // 8. CONFIGURAR PERSONALIZACIÓN CON SUPABASE (asíncrono)
+        try {
+            await setupPersonalizedLinks();
+            console.log('✅ Enlaces personalizados configurados');
+        } catch (error) {
+            console.error('❌ Error configurando enlaces personalizados:', error);
+            console.log('🔄 Aplicando configuración fallback...');
+            // Fallback básico si falla Supabase
+            if (ui.whatsappLink) {
+                const genericMessage = "Hola, vi la presentación de la oportunidad y me gustaría participar, ¿qué debo hacer?";
+                ui.whatsappLink.href = `https://wa.me/?text=${encodeURIComponent(genericMessage)}`;
             }
-        }, 2000);
+        }
+
+        console.log('✅ Sistema inicializado correctamente');
     }
 
+    // Llamar a la función de inicialización cuando el DOM esté listo
     initialize();
 });
-
-// ============== VERIFICACIÓN DE CARGA ==============
-console.log('🎯 ==========================================');
-console.log('✅ ARCHIVO MAIN.JS SIMPLIFICADO CARGADO');
-console.log('🔥 Prioridad: WhatsApp personalizado FUNCIONAL');
-console.log('🎯 ==========================================');
